@@ -5,10 +5,7 @@ const examsMeta = [
     { id: "tsa_02", type: "TSA", category: "comprehensive", title: "Đề thi thử HUST 2026 - Lần 1", questionsCount: 1, time: 60, img: "https://i.postimg.cc/tg7k50hw/ID.png", isVip: false },
     
     // --- Nhóm TSA - Tư duy Toán học ---
-    { id: "tsa_toan_01", type: "TSA", category: "math", title: "Đề thi Đánh giá Tư duy - TSA26A (Môn Toán)", questionsCount: 40, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
-    { id: "tsa_toan_02", type: "TSA", category: "math", title: "Đề thi Đánh giá Tư duy - TSA26B (Môn Toán)", questionsCount: 40, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
-    { id: "tsa_toan_03", type: "TSA", category: "math", title: "Đề thi Đánh giá Tư duy - TSA26C (Môn Toán)", questionsCount: 40, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
-    { id: "tsa_toan_04", type: "TSA", category: "math", title: "Đề sau live TSA26C - Môn Toán", questionsCount: 40, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
+    
     // --- Nhóm HSA - Định tính (Ngữ văn) ---
     { id: "hsa_van_01", type: "HSA", category: "language", title: "Đề ĐGNL HSA Số 01 - Định tính (VLCM)", questionsCount: 50, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
     
