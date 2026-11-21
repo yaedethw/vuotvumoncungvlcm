@@ -27,11 +27,13 @@
         .text-custom-red { color: #c51624; }
         .bg-custom-red { background-color: #c51624; }
         
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar {
+            width: 5px;   /* Độ dày thanh cuộn dọc */
+            height: 5px;  /* Độ dày thanh cuộn ngang (sửa lỗi thanh bị to) */
+        }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
         .nav-item.active {
             background-color: #fef2f2;
             color: #c51624;
