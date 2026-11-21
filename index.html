@@ -312,6 +312,65 @@
             0% { transform: scale(0.65); opacity: 0.35; }
             100% { transform: scale(1.15); opacity: 0.85; }
         }
+        /* === CSS CHO CÂU HỎI KÉO THẢ (DRAG & DROP) === */
+.drag-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+.drag-chip:hover:not(.is-used) {
+    border-color: #3b82f6;
+    background: #eff6ff;
+    transform: translateY(-1px);
+}
+.drag-chip.is-selected {
+    border-color: #2563eb;
+    background: #dbeafe;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+.drag-chip.is-used {
+    opacity: 0.35;
+    pointer-events: none;
+    border-style: dashed;
+}
+.drop-zone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    min-height: 36px;
+    padding: 3px 12px;
+    margin: 2px 4px;
+    vertical-align: middle;
+    border: 2px dashed #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.drop-zone.drag-over {
+    border-color: #2563eb;
+    background: #dbeafe;
+    transform: scale(1.03);
+}
+.drop-zone.filled {
+    border-style: solid;
+    border-color: #3b82f6;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden relative">
@@ -1643,7 +1702,169 @@
         function closeConfirmModal() {
             document.getElementById('modal-confirm').classList.add('hidden');
         }
+// --- HỆ THỐNG KÉO THẢ (DRAG & DROP + CHẠM CHỌN MOBILE) ---
+        let currentDragData = null;
+        let selectedDragChoice = null;
 
+        function getQuestionById(qId) {
+            return (allExamsData[currentExamId] || []).find(item => item.id === qId);
+        }
+
+        function buildDragDropExamHTML(q) {
+            const choicesHTML = (q.choices || []).map((choice, cIdx) => `
+                <div id="drag-chip-${q.id}-${cIdx}"
+                     class="drag-chip"
+                     draggable="true"
+                     ondragstart="handleDragStart(event, ${q.id}, ${cIdx})"
+                     onclick="handleChipClick(${q.id}, ${cIdx})">
+                    ${choice}
+                </div>
+            `).join('');
+
+            const contentWithSlots = q.content.replace(/(\\sqrt\[\d+\])|\[(\d+)\]/g, (match, sqrtMatch, num) => {
+                if (sqrtMatch) return sqrtMatch;
+                const slotIdx = parseInt(num, 10) - 1;
+                return `<span id="drop-zone-${q.id}-${slotIdx}"
+                              class="drop-zone"
+                              data-choice-idx=""
+                              ondragover="handleDragOver(event)"
+                              ondragleave="handleDragLeave(event)"
+                              ondrop="handleDrop(event, ${q.id}, ${slotIdx})"
+                              onclick="handleSlotClick(${q.id}, ${slotIdx})"
+                              title="Kéo thả hoặc bấm để đặt / gỡ đáp án">Ô trống ${num}</span>`;
+            });
+
+            return `
+                <div class="mb-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                        <i class="fa-solid fa-hand-pointer text-blue-500"></i> Kéo thả (hoặc chạm vào ô đáp án rồi chạm vào ô trống)
+                    </div>
+                    <div class="flex flex-wrap gap-2.5">${choicesHTML}</div>
+                </div>
+                <div class="leading-loose">${contentWithSlots}</div>
+            `;
+        }
+
+        function handleDragStart(event, qId, choiceIdx) {
+            currentDragData = { qId, choiceIdx };
+            event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setData('text/plain', JSON.stringify(currentDragData));
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDragLeave(event) {
+            event.currentTarget.classList.remove('drag-over');
+        }
+
+        function handleDrop(event, qId, slotIdx) {
+            event.preventDefault();
+            event.currentTarget.classList.remove('drag-over');
+            let data = currentDragData;
+            if (!data) {
+                try { data = JSON.parse(event.dataTransfer.getData('text/plain')); } catch (e) {}
+            }
+            if (!data || data.qId !== qId) return;
+            placeDragChoice(qId, slotIdx, data.choiceIdx);
+            currentDragData = null;
+        }
+
+        function handleChipClick(qId, choiceIdx) {
+            const chipEl = document.getElementById(`drag-chip-${qId}-${choiceIdx}`);
+            if (!chipEl || chipEl.classList.contains('is-used')) return;
+
+            // Bỏ highlight chip cũ nếu có
+            document.querySelectorAll('.drag-chip.is-selected').forEach(el => el.classList.remove('is-selected'));
+
+            if (selectedDragChoice && selectedDragChoice.qId === qId && selectedDragChoice.choiceIdx === choiceIdx) {
+                selectedDragChoice = null;
+            } else {
+                selectedDragChoice = { qId, choiceIdx };
+                chipEl.classList.add('is-selected');
+            }
+        }
+
+        function handleSlotClick(qId, slotIdx) {
+            // Nếu đang chọn một ô đáp án của đúng câu này -> thả vào ô trống
+            if (selectedDragChoice && selectedDragChoice.qId === qId) {
+                placeDragChoice(qId, slotIdx, selectedDragChoice.choiceIdx);
+                document.querySelectorAll('.drag-chip.is-selected').forEach(el => el.classList.remove('is-selected'));
+                selectedDragChoice = null;
+                return;
+            }
+            // Nếu không chọn chip nào mà bấm vào ô đã điền -> gỡ đáp án trả lại khay
+            const slotEl = document.getElementById(`drop-zone-${qId}-${slotIdx}`);
+            if (slotEl && slotEl.dataset.choiceIdx !== '') {
+                clearDragSlot(qId, slotIdx);
+            }
+        }
+
+        function placeDragChoice(qId, slotIdx, choiceIdx) {
+            const q = getQuestionById(qId);
+            const slotEl = document.getElementById(`drop-zone-${qId}-${slotIdx}`);
+            const newChipEl = document.getElementById(`drag-chip-${qId}-${choiceIdx}`);
+            if (!q || !slotEl || !newChipEl) return;
+
+            // Nếu ô này đã có đáp án cũ -> trả đáp án cũ về khay
+            if (slotEl.dataset.choiceIdx !== '') {
+                const oldChip = document.getElementById(`drag-chip-${qId}-${slotEl.dataset.choiceIdx}`);
+                if (oldChip) oldChip.classList.remove('is-used');
+            }
+
+            const rawText = q.choices[choiceIdx];
+            slotEl.dataset.choiceIdx = String(choiceIdx);
+            slotEl.classList.add('filled');
+            slotEl.innerHTML = `<span class="pointer-events-none">${rawText}</span><i class="fa-solid fa-xmark text-xs ml-2 text-blue-400 hover:text-red-500"></i>`;
+            newChipEl.classList.add('is-used');
+
+            if (!userAnswers[qId]) userAnswers[qId] = {};
+            userAnswers[qId][slotIdx] = rawText;
+            updateQuestionGridStatus(qId, true);
+
+            if (window.MathJax) {
+                MathJax.typesetPromise([slotEl]).catch(() => {});
+            }
+        }
+
+        function clearDragSlot(qId, slotIdx) {
+            const slotEl = document.getElementById(`drop-zone-${qId}-${slotIdx}`);
+            if (!slotEl) return;
+
+            if (slotEl.dataset.choiceIdx !== '') {
+                const oldChip = document.getElementById(`drag-chip-${qId}-${slotEl.dataset.choiceIdx}`);
+                if (oldChip) oldChip.classList.remove('is-used');
+            }
+
+            slotEl.dataset.choiceIdx = '';
+            slotEl.classList.remove('filled');
+            slotEl.innerHTML = `Ô trống ${slotIdx + 1}`;
+
+            if (userAnswers[qId]) {
+                delete userAnswers[qId][slotIdx];
+                updateQuestionGridStatus(qId, Object.keys(userAnswers[qId]).length > 0);
+            }
+        }
+
+        function buildDragDropReviewHTML(q) {
+            return q.content.replace(/(\\sqrt\[\d+\])|\[(\d+)\]/g, (match, sqrtMatch, num) => {
+                if (sqrtMatch) return sqrtMatch;
+                const slotIdx = parseInt(num, 10) - 1;
+                const uAns = userAnswers[q.id] ? userAnswers[q.id][slotIdx] : null;
+                const cAns = q.correctAnswer[slotIdx];
+                const isRight = uAns === cAns;
+
+                if (isRight) {
+                    return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 mx-1 rounded-lg border border-green-500 bg-green-50 text-green-800 font-bold text-base"><i class="fa-solid fa-check text-xs"></i> ${uAns}</span>`;
+                }
+                const wrongPart = uAns
+                    ? `<span class="line-through text-red-600">${uAns}</span>`
+                    : `<span class="italic text-gray-400">Bỏ trống</span>`;
+                return `<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 rounded-lg border border-red-300 bg-red-50 text-base">${wrongPart} <i class="fa-solid fa-arrow-right text-xs text-gray-400"></i> <span class="text-green-700 font-bold">${cAns}</span></span>`;
+            });
+        }
         function renderExamContainer(examData) {
             const container = document.getElementById('exam-content-container'); 
             container.innerHTML = ''; 
@@ -1658,7 +1879,7 @@
                     <div id="question-${index + 1}" class="flex items-start gap-4 mb-10 scroll-mt-6">
                         <div class="w-10 h-10 shrink-0 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">${index + 1}</div>
                         <div class="pt-1 flex-1 text-lg text-gray-800 w-full">
-                            <div class="mb-4 leading-relaxed">${q.content}</div>
+                            <div class="mb-4 leading-relaxed">${q.type === 'drag_drop' ? buildDragDropExamHTML(q) : q.content}</div>
                 `;
 
                 if (q.type === 'true_false') {
@@ -1879,6 +2100,20 @@
                         if (correctProps === q.propositions.length) isFullyCorrect = true;
                     }
                 }
+                // === PHẦN THÊM MỚI CHO DẠNG KÉO THẢ ===
+                else if (q.type === 'drag_drop') {
+                    let correctSlots = 0;
+                    const totalSlots = q.correctAnswer.length;
+                    if (userAnswers[q.id]) {
+                        for (let i = 0; i < totalSlots; i++) {
+                            if (userAnswers[q.id][i] === q.correctAnswer[i]) correctSlots++;
+                        }
+                    }
+                    if (correctSlots === totalSlots) {
+                        isFullyCorrect = true;
+                        if (currentExamType === 'THPT') totalScore += 1.0;
+                    }
+                }
 
                 if (isFullyCorrect) correctCount++;
             });
@@ -1983,6 +2218,13 @@
                     if (userAnswers[q.id][i] === q.correctAnswer[i]) correctProps++;
                 }
                 return correctProps === q.propositions.length; 
+            } 
+            // === PHẦN THÊM MỚI CHO DẠNG KÉO THẢ ===
+            else if (q.type === 'drag_drop') {
+                for (let i = 0; i < q.correctAnswer.length; i++) {
+                    if (userAnswers[q.id][i] !== q.correctAnswer[i]) return false;
+                }
+                return true;
             }
             return false;
         }
@@ -2032,7 +2274,7 @@
                     <div id="review-question-${index + 1}" class="flex items-start gap-4 mb-8 scroll-mt-6 p-6 rounded-2xl border ${borderColor}">
                         <div class="w-10 h-10 shrink-0 ${qColor} text-white rounded-full flex items-center justify-center font-bold text-lg shadow-sm">${index + 1}</div>
                         <div class="pt-1 flex-1 text-lg text-gray-800 w-full">
-                            <div class="mb-4 leading-relaxed font-medium">${q.content}</div>
+                            <div class="mb-4 leading-relaxed font-medium">${q.type === 'drag_drop' ? buildDragDropReviewHTML(q) : q.content}</div>
                 `;
 
                 if (q.type === 'true_false') {
