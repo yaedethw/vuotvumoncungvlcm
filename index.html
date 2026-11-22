@@ -48,7 +48,7 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
-            display: none;
+            display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
             align-content: space-around;
@@ -1074,7 +1074,28 @@
             </div>
         </div>
     </div>
-
+<!-- ================= 4.5 MODAL XÁC NHẬN NỘP BÀI ================= -->
+    <div id="modal-submit-confirm" onclick="if(event.target === this) closeSubmitModal()" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 border border-gray-100 animate-view">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-14 h-14 bg-red-50 text-custom-red rounded-full flex items-center justify-center text-2xl mb-4">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h3 class="text-xl font-extrabold text-navy mb-2">Xác nhận nộp bài?</h3>
+                <p id="submit-confirm-desc" class="text-sm text-gray-500 leading-relaxed mb-6">
+                    Hệ thống sẽ kết thúc tính giờ và bắt đầu chấm điểm bài làm của bạn.
+                </p>
+            </div>
+            <div class="flex gap-3">
+                <button type="button" onclick="closeSubmitModal()" class="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl transition-colors text-sm cursor-pointer">
+                    Hủy
+                </button>
+                <button type="button" onclick="confirmSubmitExam()" class="flex-1 py-2.5 px-4 bg-[#b91c1c] hover:bg-red-800 text-white font-bold rounded-xl shadow-md transition-colors text-sm cursor-pointer">
+                    Xác nhận nộp
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- ================= 5. KẾT QUẢ HIỆN ĐẠI ================= -->
     <div id="view-exam-result" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-gray-50 overflow-y-auto py-10">
         <div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
@@ -2304,9 +2325,45 @@
                 total: totalQuestions
             };
         }
+function openSubmitModal() {
+            const examQuestions = allExamsData[currentExamId] || [];
+            let answeredCount = 0;
+            examQuestions.forEach(q => {
+                const ans = userAnswers[q.id];
+                if (!ans) return;
+                if (typeof ans === 'string' && ans.trim() !== '') answeredCount++;
+                else if (Array.isArray(ans) && ans.length > 0) answeredCount++;
+                else if (typeof ans === 'object' && Object.keys(ans).length > 0) answeredCount++;
+            });
 
+            const total = examQuestions.length;
+            const remaining = total - answeredCount;
+            const descEl = document.getElementById('submit-confirm-desc');
+            if (descEl) {
+                descEl.innerHTML = remaining > 0
+                    ? `Bạn đã trả lời <b class="text-navy">${answeredCount}/${total}</b> câu (còn <b class="text-custom-red">${remaining}</b> câu chưa làm).<br>Hệ thống sẽ bắt đầu chấm điểm ngay sau khi nộp.`
+                    : `Bạn đã hoàn thành đủ <b class="text-green-600">${total}/${total}</b> câu hỏi.<br>Bạn có chắc chắn muốn nộp bài và chấm điểm không?`;
+            }
+
+            document.getElementById('modal-submit-confirm').classList.remove('hidden');
+        }
+
+        function closeSubmitModal() {
+            const modal = document.getElementById('modal-submit-confirm');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function confirmSubmitExam() {
+            closeSubmitModal();
+            submitExam(true);
+        }
         function submitExam(forceSubmit = false) {
-            if(forceSubmit || confirm("Xác nhận nộp bài? Hệ thống sẽ bắt đầu chấm điểm.")) {
+            if (!forceSubmit) {
+                openSubmitModal();
+                return;
+            }
+            closeSubmitModal();
+            if (forceSubmit) {
                 clearInterval(soloTimerInterval);
                 
                 let timeRemainingStr = document.getElementById('countdown-timer').innerText;
