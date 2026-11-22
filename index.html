@@ -3455,7 +3455,7 @@ function toggleExplanation(index) {
                 title: "Số học",
                 desc: "Chia hết, ước chung - bội chung, số nguyên tố, đồng dư thức và phần nguyên.",
                 exercises: [
-                    { title: "Bài 1: Tổng hợp kiến thức trọng tâm chủ đề Số học (P1)", desc: "30 câu hỏi trắc nghiệm, kéo thả, đúng/sai và điền khuyết về Số học.", examId: "bt_sohoc_01" },
+                    { title: "Bài 1: Tính chia hết, ƯCLN - BCNN & Số nguyên tố", desc: "Bài tập vận dụng số học cơ bản trong đề TSA.", examId: "" },
                     { title: "Bài 2: Phương trình nghiệm nguyên & Đồng dư", desc: "Các bài toán số học nâng cao và phần nguyên.", examId: "" }
                 ],
                 theory: `
@@ -3683,7 +3683,65 @@ function toggleExplanation(index) {
             }
         ];
 
-        
+        function filterTSAReview(category) {
+            document.querySelectorAll('.tsa-review-tab').forEach(tab => {
+                tab.classList.remove('bg-rose-50', 'text-rose-700');
+                tab.classList.add('text-gray-500', 'hover:bg-gray-50');
+            });
+            const activeTab = document.getElementById(`tab-review-${category}`);
+            if (activeTab) {
+                activeTab.classList.remove('text-gray-500', 'hover:bg-gray-50');
+                activeTab.classList.add('bg-rose-50', 'text-rose-700');
+            }
+
+            const container = document.getElementById('tsa-review-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const items = tsaReviewData.filter(item => item.category === category);
+            if (items.length === 0) {
+                container.innerHTML = `<div class="col-span-full py-12 text-center text-gray-500 bg-white rounded-2xl border border-gray-100 font-semibold">Chưa có chuyên đề nào trong mục này.</div>`;
+                return;
+            }
+
+            items.forEach(item => {
+                const exCount = (item.exercises || []).length;
+                container.innerHTML += `
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:border-rose-300 hover:shadow-md transition-all flex flex-col">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-rose-50 text-rose-700 text-xs font-extrabold rounded-lg uppercase">${item.chapter}</span>
+                            <span class="text-xs text-gray-400 font-semibold"><i class="fa-solid fa-layer-group mr-1"></i> ${exCount} bài tập</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-navy mb-2">${item.title}</h3>
+                        <p class="text-sm text-gray-500 mb-6 flex-1">${item.desc}</p>
+                        <div class="flex gap-3 mt-auto">
+                            <button type="button" onclick="openTheoryModal('${item.id}')" class="flex-1 py-2.5 px-4 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold rounded-xl transition-colors text-sm cursor-pointer">
+                                <i class="fa-solid fa-book-open mr-1.5"></i> Xem lý thuyết
+                            </button>
+                            <button type="button" onclick="openExercisesModal('${item.id}')" class="flex-1 py-2.5 px-4 bg-navy hover:bg-blue-900 text-white font-bold rounded-xl transition-colors text-sm cursor-pointer" style="background-color: #1a365d;">
+                                <i class="fa-solid fa-pen-to-square mr-1.5"></i> Làm bài tập
+                            </button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function openTheoryModal(topicId) {
+            const topic = tsaReviewData.find(t => t.id === topicId);
+            if (!topic) return;
+            document.getElementById('theory-modal-title').innerText = `${topic.chapter}: ${topic.title}`;
+            const bodyEl = document.getElementById('theory-modal-body');
+            bodyEl.innerHTML = topic.theory;
+            document.getElementById('modal-tsa-theory').classList.remove('hidden');
+
+            if (window.MathJax) {
+                MathJax.typesetPromise([bodyEl]).catch(() => {});
+            }
+        }
+
+        function closeTheoryModal() {
+            document.getElementById('modal-tsa-theory')?.classList.add('hidden');
+        }
 
         function openExercisesModal(topicId) {
             const topic = tsaReviewData.find(t => t.id === topicId);
