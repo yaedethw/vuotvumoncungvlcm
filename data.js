@@ -6,7 +6,7 @@ const examsMeta = [
     // =========================================================================
     // 👉 Thêm bài tập tổng ôn vào ngay dưới đây (nhớ để category: "review"):
     // { id: "bt_hamso_01", type: "TSA", category: "review", title: "Bài 1: Tính đơn điệu & Cực trị", questionsCount: 10, time: 20, img: "", isVip: false },
-    
+    { id: "bt_sohoc_01", type: "TSA", category: "review", title: "Tổng hợp kiến thức trọng tâm chủ đề Số học (P1)", questionsCount: 30, time: 45, img: "", isVip: false },
     // =========================================================================
     // 2. THƯ VIỆN ĐỀ THI TSA (ĐẠI HỌC BÁCH KHOA HÀ NỘI)
     // =========================================================================
@@ -2017,6 +2017,225 @@ const allExamsData = {
   {"id": 38, "type": "multiple_choice", "content": "Một máy bay nghiên cứu bay qua tâm của một đám mây dông ở giai đoạn hoàn chỉnh tại độ cao không đổi và phát hiện hầu hết các hạt trong vùng đó đều tích điện âm. Cả hai lý thuyết đều đồng ý rằng", "options": ["A. không có hoàn lưu gió để mang các hạt tích điện dương lên khỏi mặt đất.", "B. hầu hết các hạt tích điện dương lơ lửng phía trên vùng được khảo sát.", "C. hoàn lưu gió chỉ xảy ra ở các mức trên của khu vực được khảo sát.", "D. toàn bộ đám mây mang điện tích âm."], "correctAnswer": "B", "explanation": ""},
   {"id": 39, "type": "multiple_choice", "content": "Nếu một đám mây được tạo thành hoàn toàn từ tinh thể băng, theo lý thuyết hấp dẫn, nhận định nào sau đây là đúng?", "options": ["A. Chỉ những tinh thể băng mang điện tích dương mới rơi xuống và tạo ra sự phân tách điện tích.", "B. Các tinh thể băng tích điện dương sẽ hút các tinh thể băng tích điện âm từ khí quyển.", "C. Các tinh thể băng lớn hơn sẽ rơi nhanh hơn các tinh thể băng nhỏ hơn và trở nên tích điện âm.", "D. Dòng khí đi xuống làm cho các tinh thể băng rơi xuống và do đó mang điện tích âm."], "correctAnswer": "C", "explanation": ""},
   {"id": 40, "type": "multiple_choice", "content": "Sét thường xảy ra khi dòng điện chạy từ vùng mang điện tích âm đến vùng mang điện tích dương. Dựa trên lý thuyết đối lưu, đường đi nào của tia sét không thể xảy ra?", "options": ["A. Trong đám mây từ chân tới đỉnh.", "B. Từ chân đám mây này đến đỉnh đám mây khác.", "C. Từ chân mây xuống mặt đất.", "D. Từ chân mây đến vùng tích điện dương của khí quyển."], "correctAnswer": "C", "explanation": ""}
+],
+    "bt_sohoc_01": [
+    {
+        id: 318902, type: "multiple_choice",
+        content: "Một số nguyên tố $p$ chia cho $42$ có số dư là hợp số. Khi đó, hợp số đó bằng",
+        options: ["A. $9$.", "B. $21$.", "C. $25$.", "D. $39$."],
+        correctAnswer: "C",
+        explanation: "Đặt $p = 42k + r$ ($k \\in \\mathbb{N}^*$, $0 < r < 42$). Vì $p$ là số nguyên tố lớn hơn $42$ nên $\\gcd(p, 42) = 1 \\Rightarrow \\gcd(r, 42) = 1$. Do $42 = 2 \\cdot 3 \\cdot 7$ nên $r$ không chia hết cho $2, 3, 7$. Trong 4 đáp án chỉ có $25 = 5^2$ là hợp số nguyên tố cùng nhau với $42$ (ví dụ $p = 67$)."
+    },
+    {
+        id: 318903, type: "multiple_choice",
+        content: "Cho số nguyên tố $\\overline{ab}$ thỏa mãn $\\overline{ab} - \\overline{ba}$ là số chính phương và $a > b > 0$. Tổng các số nguyên tố thỏa mãn điều kiện đã cho bằng",
+        options: ["A. $73$.", "B. $43$.", "C. $84$.", "D. $116$."],
+        correctAnswer: "D",
+        explanation: "Ta có $\\overline{ab} - \\overline{ba} = 9(a - b)$ là số chính phương nên $a - b$ là số chính phương. Vì $1 \\le a - b \\le 8$ nên $a - b \\in \\{1; 4\\}$. Do $\\overline{ab}$ nguyên tố nên $b \\in \\{1; 3; 7; 9\\}$. Thử trực tiếp tìm được hai số nguyên tố là $43$ và $73$. Tổng: $43 + 73 = 116$."
+    },
+    {
+        id: 318904, type: "multiple_choice",
+        content: "Cho $B = 3 + 3^2 + 3^3 + \\dots + 3^{100}$ (có $100$ số hạng). Khi chia $B$ cho $82$ ta được số dư là",
+        options: ["A. $0$.", "B. $38$.", "C. $1$.", "D. $39$."],
+        correctAnswer: "B",
+        explanation: "Ta có $3^4 + 1 = 82$, nên tổng 8 số hạng liên tiếp luôn chia hết cho $82$: $(3 + 3^2 + 3^3 + 3^4)(1 + 3^4) \\vdots 82$. Vì $100 = 8 \\cdot 12 + 4$ nên $B \\equiv 3 + 3^2 + 3^3 + 3^4 = 120 \\equiv 38 \\pmod{82}$."
+    },
+    {
+        id: 318905, type: "multiple_choice",
+        content: "Có bao nhiêu số tự nhiên $n$ thỏa mãn $n^2 + 2026$ là số chính phương?",
+        options: ["A. $0$.", "B. $1$.", "C. $7$.", "D. $45$."],
+        correctAnswer: "A",
+        explanation: "Giả sử $n^2 + 2026 = k^2 \\Rightarrow (k - n)(k + n) = 2026$. Vì $k - n$ và $k + n$ cùng tính chẵn lẻ mà tích chẵn nên cả hai cùng chẵn $\\Rightarrow$ tích chia hết cho $4$. Vô lý vì $2026$ không chia hết cho $4$. Vậy có $0$ số."
+    },
+    {
+        id: 318906, type: "multiple_choice",
+        content: "Cho $a, b$ là hai số tự nhiên. Biết rằng $a$ chia cho $5$ dư $3$ và $b$ chia cho $5$ dư $2$. Tích $a \\cdot b$ chia cho $5$ dư bao nhiêu?",
+        options: ["A. $0$.", "B. $1$.", "C. $2$.", "D. $3$."],
+        correctAnswer: "B",
+        explanation: "Ta có $a \\equiv 3 \\pmod 5$ và $b \\equiv 2 \\pmod 5 \\Rightarrow a \\cdot b \\equiv 3 \\cdot 2 = 6 \\equiv 1 \\pmod 5$."
+    },
+    {
+        id: 318907, type: "multiple_select",
+        content: "Cho bộ các số nguyên $(m, n)$ thỏa mãn $m = \\frac{n^2 + n + 1}{n + 1}$. Tổng $m + n$ có thể bằng",
+        options: ["A. $-3$.", "B. $1$.", "C. $-5$.", "D. $2$."],
+        correctAnswer: ["B", "C"],
+        explanation: "Ta có $m = n + \\frac{1}{n + 1}$. Để $m \\in \\mathbb{Z}$ thì $n + 1 \\in \\{1; -1\\} \\Rightarrow n \\in \\{0; -2\\}$. Với $n = 0 \\Rightarrow m = 1 \\Rightarrow m + n = 1$; với $n = -2 \\Rightarrow m = -3 \\Rightarrow m + n = -5$."
+    },
+    {
+        id: 318908, type: "multiple_choice",
+        content: "Cho $A = \\frac{a^2 + 4a + 4}{a^3 + 2a^2 - 4a - 8}$. Tổng các giá trị nguyên của $a$ để $A$ là số nguyên bằng",
+        options: ["A. $1$.", "B. $3$.", "C. $2$.", "D. $4$."],
+        correctAnswer: "D",
+        explanation: "ĐKXĐ: $a \\ne \\pm 2$. Rút gọn $A = \\frac{(a+2)^2}{(a+2)^2(a-2)} = \\frac{1}{a - 2}$. Để $A \\in \\mathbb{Z}$ thì $a - 2 \\in \\{1; -1\\} \\Rightarrow a \\in \\{3; 1\\}$ (thỏa mãn). Tổng bằng $3 + 1 = 4$."
+    },
+    {
+        id: 318909, type: "multiple_choice",
+        content: "Có bao nhiêu số tự nhiên $n$ thỏa mãn $n^5 + 1$ chia hết cho $n^3 + 1$?",
+        options: ["A. $2$.", "B. $1$.", "C. $13$.", "D. $12$."],
+        correctAnswer: "A",
+        explanation: "Ta có $n^5 + 1 = n^2(n^3 + 1) - (n^2 - 1)$, suy ra $n^2 - 1 \\vdots n^3 + 1$. Với $n \\ge 2$ thì $0 < n^2 - 1 < n^3 + 1$ (vô lý). Thử $n = 0$ ($1 \\vdots 1$) và $n = 1$ ($2 \\vdots 2$) đều thỏa mãn. Vậy có $2$ số."
+    },
+    {
+        id: 318910, type: "multiple_choice",
+        content: "Cho $a, b, c$ đôi một khác nhau và khác $0$. Biết $\\overline{ab}$ là số nguyên tố và $\\frac{\\overline{ab}}{\\overline{bc}} = \\frac{a}{c}$. Số $\\overline{abc}$ không chia hết cho số nào sau đây?",
+        options: ["A. $1$.", "B. $13$.", "C. $3$.", "D. $9$."],
+        correctAnswer: "D",
+        explanation: "Từ $\\frac{10a + b}{10b + c} = \\frac{a}{c} \\Leftrightarrow c(9a + b) = 10ab$. Với $a, b, c$ khác nhau và $\\overline{ab}$ nguyên tố, tìm được duy nhất $a = 1, b = 9, c = 5 \\Rightarrow \\overline{abc} = 195 = 3 \\cdot 5 \\cdot 13$. Do đó $195$ không chia hết cho $9$."
+    },
+    {
+        id: 318911, type: "multiple_choice",
+        content: "Cho hai đa thức $P(x) = 1 + x + x^2 + x^3 + \\dots + x^{2025} + x^{2026}$ và $Q(x) = 1 - x + x^2 - x^3 + \\dots - x^{2025} + x^{2026}$. Biết $P\\left(\\frac{1}{2}\\right) + Q\\left(\\frac{1}{2}\\right) = \\frac{a}{b}$ với $a, b \\in \\mathbb{N}$ và $a, b$ nguyên tố cùng nhau. Tổng chữ số tận cùng của $a$ và $b$ bằng",
+        options: ["A. $1$.", "B. $3$.", "C. $11$.", "D. $7$."],
+        correctAnswer: "D",
+        explanation: "Ta có $P\\left(\\frac{1}{2}\\right) + Q\\left(\\frac{1}{2}\\right) = 2\\left(1 + \\frac{1}{4} + \\dots + \\frac{1}{4^{1013}}\\right) = \\frac{4^{1014} - 1}{3 \\cdot 2^{2025}}$. Do đó $a = \\frac{4^{1014}-1}{3}$ (tận cùng là $5$) và $b = 2^{2025}$ (tận cùng là $2$). Tổng hai chữ số tận cùng là $5 + 2 = 7$."
+    },
+    {
+        id: 318912, type: "drag_drop",
+        content: "Cho $5$ số chính phương (có từ hai chữ số trở lên) có chữ số hàng chục khác nhau còn chữ số hàng đơn vị đều là $6$.<br>Tổng các chữ số hàng chục của $5$ số chính phương đó là [1] và có chữ số tận cùng bằng [2].",
+        choices: ["số nguyên tố", "1", "5", "3", "7", "số chính phương"],
+        correctAnswer: ["số chính phương", "5"],
+        explanation: "Số chính phương tận cùng là $6$ có dạng $(10k \\pm 4)^2 = 100k^2 \\pm 80k + 16$ nên chữ số hàng chục luôn lẻ, thuộc $\\{1; 3; 5; 7; 9\\}$. Tổng $5$ chữ số hàng chục là $1 + 3 + 5 + 7 + 9 = 25$, là số chính phương và tận cùng bằng $5$."
+    },
+    {
+        id: 318913, type: "drag_drop",
+        content: "Cho một số có ba chữ số biết rằng số đó chia hết cho $72$, các chữ số của nó sắp xếp theo thứ tự từ nhỏ đến lớn tỉ lệ với $2; 3; 4$.<br>Có [1] số thỏa mãn, trong đó tổng các chữ số của số nhỏ nhất là [2].",
+        choices: ["9", "7", "6", "3"],
+        correctAnswer: ["3", "9"],
+        explanation: "Bộ 3 chữ số tỉ lệ với $2:3:4$ là $\\{2; 3; 4\\}$ (tổng $9$) hoặc $\\{4; 6; 8\\}$ (tổng $18$), đều chia hết cho $9$. Để chia hết cho $8$, tìm được $3$ số là $432, 648, 864$. Số nhỏ nhất là $432$ có tổng chữ số bằng $9$."
+    },
+    {
+        id: 318914, type: "drag_drop",
+        content: "Cho một số có ba chữ số chia hết cho $7$ và tổng các chữ số của nó cũng chia hết cho $7$.<br>Có tất cả [1] số thỏa mãn điều kiện đã cho, trong đó số nhỏ nhất chia hết cho [2].",
+        choices: ["5", "9", "19", "18"],
+        correctAnswer: ["18", "19"],
+        explanation: "Từ $100a + 10b + c \\equiv 2a + 3b + c \\equiv 0 \\pmod 7$ và $a + b + c \\equiv 0 \\pmod 7$, suy ra $a \\equiv 5b \\pmod 7$ và $c \\equiv b \\pmod 7$. Xét $b \\in \\{0; \\dots; 9\\}$ đếm được $18$ số. Số nhỏ nhất là $133 = 7 \\cdot 19$ nên chia hết cho $19$."
+    },
+    {
+        id: 318915, type: "drag_drop",
+        content: "Cho số nguyên $n$ thỏa mãn $n(n + 3)$ là số chính phương.<br>Có tất cả [1] số $n$ thỏa mãn điều kiện đã cho. Khi đó, có [2] số $n(n + 3)$ thỏa mãn.",
+        choices: ["3", "4", "2", "5"],
+        correctAnswer: ["4", "2"],
+        explanation: "Đặt $n(n+3) = k^2 \\Leftrightarrow (2n + 3 - 2k)(2n + 3 + 2k) = 9$. Giải các cặp ước của $9$ thu được $4$ giá trị $n \\in \\{-4; -3; 0; 1\\}$, tương ứng $2$ giá trị của $n(n+3)$ là $0$ và $4$."
+    },
+    {
+        id: 318916, type: "drag_drop",
+        content: "Cho hai số nguyên dương thỏa mãn tổng hai số bằng $128$ và có ước chung lớn nhất bằng $16$.<br>Có [1] bộ số $(a; b)$ thỏa mãn, trong đó hiệu số lớn trừ số bé lớn nhất bằng [2].",
+        choices: ["48", "3", "2", "32", "96"],
+        correctAnswer: ["2", "96"],
+        explanation: "Đặt $a = 16x, b = 16y$ với $(x, y) = 1 \\Rightarrow x + y = 8$. Có $2$ cặp là $\\{1; 7\\}$ và $\\{3; 5\\}$, tương ứng hai cặp số $\\{16; 112\\}$ và $\\{48; 80\\}$. Hiệu lớn nhất là $112 - 16 = 96$."
+    },
+    {
+        id: 318917, type: "true_false",
+        content: "Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "$7^{89} - 4^{81}$ có chữ số tận cùng bằng $3$.",
+            "$2^{2014} \\cdot 9^{1955}$ chia $5$ dư $2$."
+        ],
+        correctAnswer: { "0": "true", "1": "false" },
+        explanation: "a) $7^{89} = 7^{4 \\cdot 22 + 1} \\equiv 7 \\pmod{10}$, $4^{81} \\equiv 4 \\pmod{10} \\Rightarrow 7^{89} - 4^{81} \\equiv 3 \\pmod{10}$ (Đúng).\nb) $2^{2014} = (2^4)^{503} \\cdot 4 \\equiv -1 \\pmod 5$, $9^{1955} \\equiv (-1)^{1955} = -1 \\pmod 5 \\Rightarrow$ tích chia $5$ dư $1$ (Sai)."
+    },
+    {
+        id: 318918, type: "true_false",
+        content: "Cho $A = n^2 + n + 1$ ($n \\in \\mathbb{N}$). Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "$A$ không chia hết cho $2$.",
+            "$A$ có chữ số tận cùng là số nguyên tố."
+        ],
+        correctAnswer: { "0": "true", "1": "false" },
+        explanation: "a) $n(n+1)$ luôn chẵn nên $A = n(n+1) + 1$ luôn lẻ, không chia hết cho $2$ (Đúng).\nb) Với $n = 0$ thì $A = 1$ không phải số nguyên tố (Sai)."
+    },
+    {
+        id: 318919, type: "true_false",
+        content: "Cho số tự nhiên có hai chữ số, sao cho nếu viết nó tiếp sau số $1999$ thì ta được một số chia hết cho $37$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Có $3$ số tự nhiên thỏa mãn bài toán.",
+            "Trong các số tự nhiên thỏa mãn, chỉ có một số chẵn."
+        ],
+        correctAnswer: { "0": "true", "1": "true" },
+        explanation: "Ta có $199900 + \\overline{ab} \\equiv 26 + \\overline{ab} \\equiv 0 \\pmod{37} \\Rightarrow \\overline{ab} \\equiv 11 \\pmod{37}$. Suy ra $\\overline{ab} \\in \\{11; 48; 85\\}$: có $3$ số và chỉ có $1$ số chẵn là $48$."
+    },
+    {
+        id: 318920, type: "true_false",
+        content: "Cho số $\\overline{abcd}$ thỏa mãn số đó chia hết cho tích các số $\\overline{ab}$ và $\\overline{cd}$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "$\\overline{cd}$ chia hết cho $\\overline{ab}$.",
+            "$\\overline{ab}$ là số nguyên tố.",
+            "Có $3$ số $\\overline{abcd}$ thỏa mãn."
+        ],
+        correctAnswer: { "0": "true", "1": "true", "2": "false" },
+        explanation: "Ta có $100\\overline{ab} + \\overline{cd} \\vdots (\\overline{ab} \\cdot \\overline{cd}) \\Rightarrow \\overline{cd} \\vdots \\overline{ab}$. Đặt $\\overline{cd} = k \\cdot \\overline{ab}$ ($1 \\le k \\le 9$), suy ra $100 + k \\vdots k\\overline{ab} \\Rightarrow k \\in \\{1; 2; 4; 5\\}$. Giải ra chỉ có $2$ số là $1734$ ($\\overline{ab}=17$) và $1352$ ($\\overline{ab}=13$)."
+    },
+    {
+        id: 318921, type: "true_false",
+        content: "Cho số tự nhiên có ba chữ số, biết rằng nó tăng gấp $n$ lần nếu cộng mỗi chữ số của nó với $n$ ($n$ là số tự nhiên, có thể gồm một hoặc nhiều chữ số). Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "$n$ là số tự nhiên có $3$ chữ số.",
+            "Có $3$ số tự nhiên có ba chữ số thỏa mãn bài toán.",
+            "Các số thỏa mãn không vượt quá $115$."
+        ],
+        correctAnswer: { "0": "false", "1": "false", "2": "false" },
+        explanation: "Ta có $\\overline{abc} + 111n = n \\cdot \\overline{abc} \\Leftrightarrow \\overline{abc} = 111 + \\frac{111}{n - 1}$. Vì $n - 1 \\in \\{1; 3; 37; 111\\}$ nên $(n; \\overline{abc}) \\in \\{(2; 222), (4; 148), (38; 114), (112; 112)\\}$. Do đó cả 3 phát biểu đều sai."
+    },
+    {
+        id: 318922, type: "fill_blank",
+        content: "Cho số chính phương có $4$ chữ số biết rằng nếu cộng chữ số hàng nghìn với $3$ và trừ chữ số hàng đơn vị đi $3$ ta vẫn được một số chính phương. Số đó là ________.",
+        correctAnswer: "1764",
+        explanation: "Đặt số ban đầu là $a^2$, số mới là $b^2 = a^2 + 2997 \\Rightarrow (b-a)(b+a) = 2997 = 27 \\cdot 111$. Với $32 \\le a < b \\le 99$, tìm được duy nhất $b + a = 111, b - a = 27 \\Rightarrow a = 42, b = 69$. Số cần tìm là $42^2 = 1764$ (số mới $4761 = 69^2$)."
+    },
+    {
+        id: 318923, type: "fill_blank",
+        content: "Số nguyên dương $n$ nhỏ nhất thỏa mãn các số $n + 1$; $6n + 1$; $20n + 1$ đều là các số chính phương là ________.",
+        correctAnswer: "48",
+        explanation: "Đặt $n + 1 = a^2 \\Rightarrow 6a^2 - 5 = b^2$ (suy ra $a$ lẻ) và $20a^2 - 19 = c^2$ (suy ra $a$ không chia hết cho $3$). Thử lần lượt $a = 5 \\Rightarrow n = 24$ (loại); $a = 7 \\Rightarrow n = 48$ cho $49 = 7^2$, $289 = 17^2$, $961 = 31^2$ (thỏa mãn)."
+    },
+    {
+        id: 318924, type: "fill_blank",
+        content: "Cho số nguyên dương $n$ nhỏ nhất sao cho khi viết tiếp số đó vào sau số $2025$ ta được một số chia hết cho $113$. Tổng các chữ số của $n$ bằng ________.",
+        correctAnswer: "15",
+        explanation: "Thử với $n$ có $1$ chữ số ($20250 + n$) và $2$ chữ số ($202500 + n$) đều không chia hết cho $113$. Với $n$ có $3$ chữ số: $2025000 + n \\equiv 40 + n \\equiv 0 \\pmod{113} \\Rightarrow n \\equiv 73 \\pmod{113}$. Số nhỏ nhất là $n = 186$, tổng chữ số bằng $1 + 8 + 6 = 15$."
+    },
+    {
+        id: 318925, type: "fill_blank",
+        content: "Có ________ số nguyên tố $p$ thỏa mãn $2p + 1$ và $4p + 1$ đều là số nguyên tố.",
+        correctAnswer: "1",
+        explanation: "Với $p = 2$: $4p+1 = 9$ (loại). Với $p = 3$: $2p+1 = 7, 4p+1 = 13$ (nhận). Với $p > 3$: nếu $p \\equiv 1 \\pmod 3$ thì $2p+1 \\vdots 3$; nếu $p \\equiv 2 \\pmod 3$ thì $4p+1 \\vdots 3$. Vậy chỉ có $1$ số là $p = 3$."
+    },
+    {
+        id: 318926, type: "fill_blank",
+        content: "Cho số tự nhiên $a \\ge 3$ thỏa mãn $A = \\overline{a(a-1)} \\cdot \\overline{a(a-1)} = \\overline{(a-2)aa(a-1)}$. Số $A$ có hai chữ số tận cùng bằng ________.",
+        correctAnswer: "76",
+        explanation: "Phương trình tương đương $(11a - 1)^2 = 1111a - 2001 \\Leftrightarrow 11a^2 - 103a + 182 = 0 \\Rightarrow a = 7$. Khi đó $A = 76^2 = 5776$, hai chữ số tận cùng là $76$."
+    },
+    {
+        id: 318927, type: "fill_blank",
+        content: "Cho số chính phương có $4$ chữ số thỏa mãn chữ số cuối là số nguyên tố và căn bậc hai của số đó có tổng các chữ số là một số chính phương. Tổng các chữ số của số đó bằng ________.",
+        correctAnswer: "9",
+        explanation: "Chữ số tận cùng của số chính phương là số nguyên tố nên chỉ có thể là $5$. Căn bậc hai $k \\in \\{35; 45; 55; 65; 75; 85; 95\\}$. Chỉ có $k = 45$ có tổng chữ số $4 + 5 = 9$ là số chính phương. Số đó là $45^2 = 2025$, tổng chữ số bằng $9$."
+    },
+    {
+        id: 318928, type: "fill_blank",
+        content: "Có tất cả [1] bộ số $(x; y)$ thỏa mãn số $\\overline{34x5y}$ chia hết cho $36$. Khi $x$ nhận giá trị lớn nhất thì $y$ bằng [2].<br><i>(Nhập các đáp án theo thứ tự, cách nhau bởi dấu \"; \")</i>",
+        correctAnswer: "3; 6",
+        explanation: "Để chia hết cho $4$ thì $y \\in \\{2; 6\\}$. Để chia hết cho $9$ thì $x + y \\equiv 6 \\pmod 9$. Nếu $y = 2 \\Rightarrow x = 4$; nếu $y = 6 \\Rightarrow x \\in \\{0; 9\\}$. Vậy có $3$ bộ số, khi $x$ lớn nhất ($x = 9$) thì $y = 6$."
+    },
+    {
+        id: 318929, type: "fill_blank",
+        content: "Viết thêm vào bên phải số $579$ ba chữ số để được số chia hết cho $5; 7; 9$. Khi đó, có [1] số thỏa mãn, trong đó số [2] có tích các chữ số lớn nhất.<br><i>(Nhập các đáp án theo thứ tự, cách nhau bởi dấu \"; \")</i>",
+        correctAnswer: "3; 579285",
+        explanation: "Số cần tìm chia hết cho $\\text{BCNN}(5, 7, 9) = 315$ và nằm trong $[579000; 579999]$. Có $3$ số là $579285$, $579600$ và $579915$. So sánh tích $3$ chữ số cuối: $2\\cdot 8\\cdot 5 = 80 > 9\\cdot 1\\cdot 5 = 45 > 0$, nên $579285$ có tích các chữ số lớn nhất."
+    },
+    {
+        id: 318930, type: "fill_blank",
+        content: "Có ________ bộ các số tự nhiên $a, b$ khác $0$ sao cho $(a, b) = 1$ và $\\frac{a + b}{a^2 + b^2} = \\frac{7}{25}$.",
+        correctAnswer: "2",
+        explanation: "Đặt $d = \\gcd(a+b, a^2+b^2)$. Vì $(a, b) = 1$ nên $d \\mid 2 \\Rightarrow d \\in \\{1; 2\\}$. Với $d = 1$: $a+b=7, a^2+b^2=25 \\Rightarrow (a; b) \\in \\{(3; 4), (4; 3)\\}$. Với $d = 2$: $a+b=14, a^2+b^2=50$ (vô nghiệm). Vậy có $2$ bộ số."
+    },
+    {
+        id: 318931, type: "fill_blank",
+        content: "Tổng các số tự nhiên khác $0$ là $a_1, a_2, \\dots, a_{49}$ bằng $999$. Ước số chung lớn nhất của chúng nhận giá trị lớn nhất bằng ________.",
+        correctAnswer: "9",
+        explanation: "Đặt $d = \\gcd(a_1, \\dots, a_{49})$ và $a_i = d \\cdot k_i$ ($k_i \\ge 1$). Khi đó $d(k_1 + \\dots + k_{49}) = 999 = 3^3 \\cdot 37$ với $k_1 + \\dots + k_{49} \\ge 49$. Ước nhỏ nhất của $999$ không nhỏ hơn $49$ là $111$, suy ra $d_{\\max} = \\frac{999}{111} = 9$."
+    }
 ],
     
 
