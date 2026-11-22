@@ -407,6 +407,60 @@
     border-color: #2563eb;
     color: #ffffff;
 }
+/* === NỀN GRADIENT + LƯỚI CHẤM MỜ TẠO CHIỀU SÂU === */
+        .bg-study-depth {
+            background: linear-gradient(135deg, #e6edf7 0%, #f3f7fe 48%, #dceaff 100%);
+            isolation: isolate;
+        }
+
+        /* Lưới chấm mờ ở góc trên bên phải */
+        .bg-study-depth::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 420px;
+            height: 420px;
+            background-image: radial-gradient(rgba(26, 54, 93, 0.18) 1.5px, transparent 1.5px);
+            background-size: 18px 18px;
+            -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 72%);
+            mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 72%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Quầng sáng xanh dương dịu ở góc dưới bên trái */
+        .bg-study-depth::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* (Tùy chọn) Chiều sâu riêng cho khung "Chào mừng trở lại!" */
+        .banner-welcome-depth {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(120deg, #edf2fb 0%, #ffffff 55%, #e2eeff 100%);
+            isolation: isolate;
+        }
+
+        .banner-welcome-depth::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(26, 54, 93, 0.16) 1.4px, transparent 1.4px);
+            background-size: 16px 16px;
+            -webkit-mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 65%);
+            mask-image: radial-gradient(ellipse at top right, #000 0%, transparent 65%);
+            pointer-events: none;
+            z-index: -1;
+        }
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden relative">
@@ -648,7 +702,7 @@
             </aside>
 
             <!-- Main Content Area -->
-            <main class="flex-1 overflow-y-auto p-6 md:p-8 relative">
+            <main class="flex-1 overflow-y-auto p-6 md:p-8 relative bg-study-depth">
                 
                 <!-- 2.0 KẾT QUẢ TÌM KIẾM NHANH -->
                 <div id="view-search-results" class="hidden max-w-6xl mx-auto">
@@ -665,9 +719,9 @@
                 <!-- 2.1 TRANG CHỦ -->
                 <div id="view-home" class="block animate-view">
                     <div class="flex flex-col xl:flex-row gap-6 mb-10">
-                        <div class="flex-1 bg-white rounded-2xl p-8 shadow-sm flex flex-col justify-center border border-gray-100">
-                            <h2 class="text-3xl font-extrabold text-navy mb-2">Chào mừng trở lại! 👋</h2>
-                            <p class="text-gray-500">Hãy tiếp tục hành trình chinh phục kiến thức của bạn hôm nay.</p>
+                        <div class="flex-1 banner-welcome-depth rounded-2xl p-8 shadow-sm flex flex-col justify-center border border-blue-100">
+                            <h2 class="text-3xl font-extrabold text-navy mb-2">VLCM - Luyện Thi DGNL - DGTD - THPT </h2>
+                            <p class="text-gray-500">"Học tập là ngọn lửa duy nhất có thể cháy mãi mãi trong tâm hồn một con người." – Albert Einstein</p>
                         </div>
                     </div>
 
@@ -677,7 +731,7 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                         <!-- 1. Card Chuyển tới Phòng Solo TSA -->
-                        <div onclick="switchView('exam-list')" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer flex flex-col h-full">
+                        <div onclick="switchView('exam-list')" class="bg-white rounded-2xl shadow-sm border-2 border-purple-200 hover:border-purple-400 overflow-hidden hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer flex flex-col h-full">
                             <div class="h-40 bg-purple-50 flex items-center justify-center">
                                 <span class="text-4xl font-extrabold text-purple-900 opacity-80">TSA & VLCM</span>
                             </div>
@@ -690,7 +744,7 @@
                         </div>
 
                         <!-- 2. Card Chuyển tới Thư viện Đề HSA (MỚI THÊM VÀO NGAY SAU TSA) -->
-                        <div onclick="switchView('exam-hsa-list')" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer flex flex-col h-full">
+                        <div onclick="switchView('exam-hsa-list')" class="bg-white rounded-2xl shadow-sm border-2 border-emerald-200 hover:border-emerald-400 overflow-hidden hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer flex flex-col h-full">
                             <div class="h-40 bg-emerald-50 flex items-center justify-center relative overflow-hidden">
                                 <span class="text-4xl font-extrabold text-emerald-900 opacity-80 z-10">HSA - VNU</span>
                             </div>
@@ -707,7 +761,7 @@
                         </div>
 
                         <!-- 3. Card Chuyển tới Đề thi Trường/Sở -->
-                        <div onclick="switchView('exam-school-list')" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer flex flex-col h-full">
+                        <div onclick="switchView('exam-school-list')" class="bg-white rounded-2xl shadow-sm border-2 border-blue-200 hover:border-blue-400 overflow-hidden hover:shadow-md active:scale-95 transition-all duration-200 cursor-pointer flex flex-col h-full">
                             <div class="h-40 bg-blue-50 flex items-center justify-center relative overflow-hidden">
                                 <span class="text-4xl font-extrabold text-blue-900 opacity-80 z-10">THPT & SỞ GD</span>
                             </div>
