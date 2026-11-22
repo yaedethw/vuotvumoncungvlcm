@@ -2214,11 +2214,51 @@
             }
         }
 
+        let questionScrollAnimId = null;
+
+        function fastSmoothScroll(container, targetEl, duration = 320, topOffset = 24) {
+            if (!container || !targetEl) return;
+            if (questionScrollAnimId) cancelAnimationFrame(questionScrollAnimId);
+
+            const startTop = container.scrollTop;
+            const containerRect = container.getBoundingClientRect();
+            const targetRect = targetEl.getBoundingClientRect();
+            const maxScroll = container.scrollHeight - container.clientHeight;
+            const targetTop = Math.max(0, Math.min(maxScroll, startTop + (targetRect.top - containerRect.top) - topOffset));
+            const distance = targetTop - startTop;
+
+            if (Math.abs(distance) < 2) return;
+
+            const startTime = performance.now();
+            const stopOnUserScroll = () => {
+                if (questionScrollAnimId) {
+                    cancelAnimationFrame(questionScrollAnimId);
+                    questionScrollAnimId = null;
+                }
+            };
+            container.addEventListener('wheel', stopOnUserScroll, { once: true, passive: true });
+            container.addEventListener('touchstart', stopOnUserScroll, { once: true, passive: true });
+
+            function step(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                // Hiệu ứng easeOutCubic: trượt nhanh lúc đầu, hãm êm khi tới đúng câu
+                const eased = 1 - Math.pow(1 - progress, 3);
+                container.scrollTop = startTop + distance * eased;
+
+                if (progress < 1) {
+                    questionScrollAnimId = requestAnimationFrame(step);
+                } else {
+                    questionScrollAnimId = null;
+                }
+            }
+
+            questionScrollAnimId = requestAnimationFrame(step);
+        }
+
         function scrollToQuestion(index) {
             const questionElement = document.getElementById('question-' + index);
-            if (questionElement) {
-                questionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            const scrollContainer = document.getElementById('exam-content-container')?.parentElement;
+            fastSmoothScroll(scrollContainer, questionElement, 320, 24);
         }
 
         // --- CHUẨN HÓA SO SÁNH ĐÁP ÁN ĐIỀN KHUYẾT ---
@@ -2680,9 +2720,8 @@ function toggleExplanation(index) {
 
         function scrollToReviewQuestion(index) {
             const questionElement = document.getElementById('review-question-' + index);
-            if (questionElement) {
-                questionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            const scrollContainer = document.getElementById('review-content-container')?.parentElement;
+            fastSmoothScroll(scrollContainer, questionElement, 320, 24);
         }
 
         // --- HÀM HIỂN THỊ LỊCH SỬ LÀM BÀI (CÓ NÚT XEM LẠI ĐÁP ÁN) ---
