@@ -1312,7 +1312,7 @@
     </div>
 
     <!-- ================= TRỢ LÝ GEMINI ================= -->
-    <div class="gemini-fab" onclick="toggleGeminiChat()">
+    <div class="gemini-fab" onclick="toggleGeminiChat()" title="Mở Trợ lý AI Gemini">
         <i class="fa-solid fa-wand-magic-sparkles sparkle-icon"></i>
     </div>
 
@@ -1321,9 +1321,31 @@
         <div class="bg-gradient-to-r from-blue-600 to-blue-400 p-4 flex justify-between items-center text-white shrink-0">
             <div class="flex items-center gap-2 font-bold">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
-                Trợ lý Gemini Pro
+                Trợ lý Gemini
             </div>
-            <button onclick="toggleGeminiChat()" class="hover:bg-white/20 p-1.5 rounded-full transition"><i class="fa-solid fa-xmark"></i></button>
+            <div class="flex items-center gap-1">
+                <button type="button" onclick="toggleGeminiKeyBox()" title="Cài đặt API Key" class="hover:bg-white/20 w-8 h-8 rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-key text-xs"></i>
+                </button>
+                <button type="button" onclick="clearGeminiChat()" title="Xóa đoạn chat" class="hover:bg-white/20 w-8 h-8 rounded-full flex items-center justify-center transition">
+                    <i class="fa-regular fa-trash-can text-xs"></i>
+                </button>
+                <button type="button" onclick="toggleGeminiChat()" title="Đóng" class="hover:bg-white/20 w-8 h-8 rounded-full flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Khung nhập API Key (ẩn/hiện khi bấm biểu tượng chìa khóa) -->
+        <div id="gemini-key-box" class="hidden p-3 bg-blue-50 border-b border-blue-100 text-xs shrink-0">
+            <div class="font-bold text-navy mb-1.5">Nhập Gemini API Key (lưu an toàn trên máy bạn):</div>
+            <div class="flex gap-1.5">
+                <input id="gemini-api-key-input" type="password" placeholder="Dán key dạng AIzaSy..." class="flex-1 px-2.5 py-1.5 rounded-lg border border-blue-200 bg-white focus:outline-none focus:border-blue-500 text-xs">
+                <button type="button" onclick="saveGeminiApiKey()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition">Lưu</button>
+            </div>
+            <div class="mt-1.5 text-[11px] text-gray-500">
+                Chưa có key? Lấy miễn phí tại <a href="https://aistudio.google.com/apikey" target="_blank" class="text-blue-600 underline font-semibold">Google AI Studio</a>.
+            </div>
         </div>
         
         <!-- Khu vực hiển thị tin nhắn -->
@@ -1333,7 +1355,7 @@
                     <i class="fa-solid fa-robot"></i>
                 </div>
                 <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 text-gray-700">
-                    Chào bạn! Mình là trợ lý AI tích hợp Gemini Pro. Bạn cần giải thích câu hỏi nào hay muốn ôn tập lý thuyết phần nào hôm nay?
+                    Chào bạn! Mình là gia sư AI Gemini. Bạn cần giải thích bài Toán, Lý, Hóa, Sinh hay ôn tập phần nào hôm nay?
                 </div>
             </div>
         </div>
@@ -3161,12 +3183,74 @@ function toggleExplanation(index) {
         }
 
         // --- LOGIC TRỢ LÝ GEMINI ---
+        const GEMINI_MODEL = "gemini-3.5-flash-lite";
+        let geminiChatHistory = [];
+
+        function getGeminiApiKey() {
+            return (localStorage.getItem('vlcm_gemini_api_key') || '').trim();
+        }
+
+        function toggleGeminiKeyBox(forceShow = false) {
+            const box = document.getElementById('gemini-key-box');
+            const input = document.getElementById('gemini-api-key-input');
+            if (!box) return;
+            if (forceShow) box.classList.remove('hidden');
+            else box.classList.toggle('hidden');
+
+            if (!box.classList.contains('hidden') && input) {
+                input.value = getGeminiApiKey();
+                input.focus();
+            }
+        }
+
+        function saveGeminiApiKey() {
+            const key = (document.getElementById('gemini-api-key-input')?.value || '').trim();
+            if (!key) {
+                localStorage.removeItem('vlcm_gemini_api_key');
+                showToast('Đã xóa API Key!');
+                return;
+            }
+            localStorage.setItem('vlcm_gemini_api_key', key);
+            document.getElementById('gemini-key-box')?.classList.add('hidden');
+            showToast('🔑 Đã lưu Gemini API Key!');
+        }
+
+        function clearGeminiChat() {
+            geminiChatHistory = [];
+            const messagesContainer = document.getElementById('gemini-messages');
+            if (!messagesContainer) return;
+            messagesContainer.innerHTML = `
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 text-gray-700">
+                        Đã làm mới cuộc trò chuyện! Bạn muốn hỏi bài nào tiếp theo?
+                    </div>
+                </div>`;
+        }
+
         function toggleGeminiChat() {
             const panel = document.getElementById('gemini-chat-panel');
             panel.classList.toggle('active');
             if (panel.classList.contains('active')) {
+                if (!getGeminiApiKey()) toggleGeminiKeyBox(true);
                 document.getElementById('gemini-input').focus();
             }
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&")
+                .replace(/</g, "<")
+                .replace(/>/g, ">");
+        }
+
+        function formatGeminiReply(text) {
+            return escapeHtml(text)
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/`([^`]+)`/g, '<code class="bg-gray-100 px-1 py-0.5 rounded text-xs">$1</code>')
+                .replace(/\n/g, '<br>');
         }
 
         async function sendGeminiMessage(event) {
@@ -3175,15 +3259,21 @@ function toggleExplanation(index) {
             const messageText = inputField.value.trim();
             if (!messageText) return;
 
+            const API_KEY = getGeminiApiKey();
+            if (!API_KEY) {
+                toggleGeminiKeyBox(true);
+                showToast('Vui lòng nhập Gemini API Key trước!');
+                return;
+            }
+
             const messagesContainer = document.getElementById('gemini-messages');
 
             messagesContainer.innerHTML += `
                 <div class="flex gap-3 flex-row-reverse">
-                    <div class="bg-blue-500 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm max-w-[85%]">
-                        ${messageText}
+                    <div class="bg-blue-500 text-white p-3 rounded-2xl rounded-tr-none shadow-sm text-sm max-w-[85%] break-words">
+                        ${escapeHtml(messageText)}
                     </div>
-                </div>
-            `;
+                </div>`;
             inputField.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
@@ -3198,34 +3288,44 @@ function toggleExplanation(index) {
                         <i class="fa-solid fa-circle text-[6px] animate-bounce" style="animation-delay: 0.1s"></i>
                         <i class="fa-solid fa-circle text-[6px] animate-bounce" style="animation-delay: 0.2s"></i>
                     </div>
-                </div>
-            `;
+                </div>`;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
+            geminiChatHistory.push({ role: "user", parts: [{ text: messageText }] });
+            if (geminiChatHistory.length > 12) geminiChatHistory = geminiChatHistory.slice(-12);
+
             try {
-                // !!! DÁN API KEY CỦA BẠN VÀO ĐÂY NẾU MUỐN GỌI TRỰC TIẾP GOOGLE GEMINI API !!!
-                const API_KEY = "DAN_API_KEY_CUA_BAN_VAO_DAY"; 
-                
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=${API_KEY}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: "Bạn là một gia sư AI thân thiện, hỗ trợ học sinh ôn thi THPT Quốc gia môn Toán, Lý, Hóa, Sinh. Hãy trả lời ngắn gọn, súc tích, dễ hiểu và format nội dung rõ ràng bằng markdown. Câu hỏi của học sinh: " + messageText }] }]
-                    })
-                });
+                const response = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-goog-api-key': API_KEY
+                        },
+                        body: JSON.stringify({
+                            systemInstruction: {
+                                parts: [{
+                                    text: "Bạn là gia sư AI thân thiện của hệ thống VLCM, chuyên hỗ trợ học sinh Việt Nam ôn thi THPT Quốc gia, TSA và HSA (Toán, Lý, Hóa, Sinh, Văn). Trả lời súc tích, dễ hiểu, từng bước rõ ràng. Dùng định dạng LaTeX $...$ cho công thức toán/hóa."
+                                }]
+                            },
+                            contents: geminiChatHistory
+                        })
+                    }
+                );
 
                 const data = await response.json();
-                document.getElementById(typingId).remove();
-                
-                let botReply = "";
+                document.getElementById(typingId)?.remove();
 
+                let botReply = "";
                 if (!response.ok) {
-                    botReply = `Lỗi từ Google: <b>${data.error ? data.error.message : 'API Key không hợp lệ'}</b><br><br>👉 Bạn hãy kiểm tra lại biến <code>API_KEY</code> trong file <code>index.html</code> nhé!`;
-                } else if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    botReply = data.candidates[0].content.parts[0].text
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                        .replace(/\n/g, '<br>');
+                    geminiChatHistory.pop();
+                    const errMsg = data.error ? data.error.message : 'API Key không hợp lệ hoặc hết hạn mức';
+                    botReply = `Lỗi từ Google: <b>${escapeHtml(errMsg)}</b><br><br>👉 Nhấn biểu tượng chìa khóa <i class="fa-solid fa-key"></i> phía trên để kiểm tra lại API Key nhé.`;
+                } else {
+                    const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Mình chưa tạo được câu trả lời, bạn thử hỏi lại nhé.";
+                    geminiChatHistory.push({ role: "model", parts: [{ text: rawText }] });
+                    botReply = formatGeminiReply(rawText);
                 }
 
                 messagesContainer.innerHTML += `
@@ -3236,19 +3336,19 @@ function toggleExplanation(index) {
                         <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 text-gray-700 text-sm max-w-[85%] leading-relaxed overflow-x-auto">
                             ${botReply}
                         </div>
-                    </div>
-                `;
+                    </div>`;
+
                 if (window.MathJax) {
-                    MathJax.typesetPromise([messagesContainer]).catch((err) => console.log(err.message));
+                    MathJax.typesetPromise([messagesContainer]).catch(() => {});
                 }
             } catch (error) {
-                document.getElementById(typingId).remove();
+                geminiChatHistory.pop();
+                document.getElementById(typingId)?.remove();
                 messagesContainer.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0"><i class="fa-solid fa-wifi"></i></div>
-                        <div class="bg-red-50 text-red-700 p-3 rounded-2xl rounded-tl-none shadow-sm border border-red-100 text-sm">Không thể kết nối đến máy chủ AI. Hãy kiểm tra lại kết nối mạng hoặc API Key!</div>
-                    </div>
-                `;
+                        <div class="bg-red-50 text-red-700 p-3 rounded-2xl rounded-tl-none shadow-sm border border-red-100 text-sm">Không thể kết nối đến máy chủ Gemini. Hãy kiểm tra lại mạng!</div>
+                    </div>`;
             }
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
