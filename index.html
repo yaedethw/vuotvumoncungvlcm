@@ -699,6 +699,9 @@
                     <a href="javascript:void(0)" onclick="switchView('exam-list')" id="nav-exam-list" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
                         <i class="fa-solid fa-file-pen w-5 text-center text-gray-400"></i> Thư viện Đề thi TSA
                     </a>
+                    <a href="javascript:void(0)" onclick="switchView('tsa-review')" id="nav-tsa-review" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
+                        <i class="fa-solid fa-book-open-reader w-5 text-center text-rose-500"></i> Tổng ôn TSA
+                    </a>
                     <a href="javascript:void(0)" onclick="switchView('exam-hsa-list')" id="nav-exam-hsa-list" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
     <i class="fa-solid fa-compass-drafting w-5 text-center text-emerald-500"></i> Thư viện Đề thi HSA
 </a>
@@ -886,7 +889,24 @@
                             </div>
                         </div>
                     </div>
-
+<!-- KHỐI TỔNG ÔN TSA (KIỂU 2 - NỔI BẬT) -->
+                    <div onclick="switchView('tsa-review')" class="mt-8 bg-gradient-to-r from-rose-50 via-white to-purple-50 rounded-2xl p-6 md:p-7 shadow-sm border-2 border-rose-200 hover:border-rose-400 hover:shadow-md active:scale-[0.99] transition-all cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+                        <div class="flex items-center gap-5">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-purple-600 text-white flex items-center justify-center text-2xl shadow-md shrink-0">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div>
+                                <span class="inline-block px-2.5 py-0.5 bg-rose-100 text-rose-700 text-[10px] font-extrabold rounded-full uppercase tracking-wider mb-1.5">
+                                    <i class="fa-solid fa-fire mr-1"></i> LỘ TRÌNH CHUYÊN ĐỀ
+                                </span>
+                                <h4 class="text-xl font-extrabold text-navy leading-tight">Tổng ôn TSA — Lý thuyết & Bài tập theo chuyên đề</h4>
+                                <p class="text-xs md:text-sm text-gray-500 mt-1">Hệ thống hóa kiến thức trọng tâm Tư duy Toán học, Đọc hiểu và Khoa học kèm bài tập thực hành.</p>
+                            </div>
+                        </div>
+                        <button type="button" class="px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-sm transition-colors text-sm shrink-0 pointer-events-none flex items-center gap-2">
+                            Vào tổng ôn <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                     <!-- BẢNG VÀNG CHUỖI HỌC TẬP -->
                     <div class="mt-12 mb-6 flex justify-between items-end">
                         <div>
@@ -901,7 +921,50 @@
                         </ul>
                     </div>
                 </div>
+<!-- 2.1B TRANG TỔNG ÔN TSA THEO CHUYÊN ĐỀ -->
+                <div id="view-tsa-review" class="hidden max-w-6xl mx-auto pb-20">
+                    <div class="mb-6">
+                        <h2 class="text-2xl font-extrabold text-navy">Tổng ôn TSA theo Chuyên đề</h2>
+                        <p class="text-gray-500 mt-1">Ôn tập lý thuyết cô đọng kết hợp làm bài tập vận dụng từng phần.</p>
+                    </div>
 
+                    <!-- Thanh chuyển Tab 3 mảng TSA -->
+                    <div class="flex flex-wrap gap-2 mb-8 bg-white p-2 rounded-xl shadow-sm border border-gray-100 w-max max-w-full">
+                        <button onclick="filterTSAReview('math')" id="tab-review-math" class="tsa-review-tab px-6 py-2.5 rounded-lg font-bold text-sm bg-rose-50 text-rose-700 transition-colors">
+                            Tư duy Toán học
+                        </button>
+                        <button onclick="filterTSAReview('reading')" id="tab-review-reading" class="tsa-review-tab px-6 py-2.5 rounded-lg font-bold text-sm text-gray-500 hover:bg-gray-50 transition-colors">
+                            Tư duy Đọc hiểu
+                        </button>
+                        <button onclick="filterTSAReview('science')" id="tab-review-science" class="tsa-review-tab px-6 py-2.5 rounded-lg font-bold text-sm text-gray-500 hover:bg-gray-50 transition-colors">
+                            Tư duy Khoa học
+                        </button>
+                    </div>
+
+                    <!-- Danh sách thẻ chuyên đề -->
+                    <div id="tsa-review-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                </div>
+
+                <!-- MODAL XEM LÝ THUYẾT CHUYÊN ĐỀ -->
+                <div id="modal-tsa-theory" onclick="if(event.target === this) closeTheoryModal()" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+                    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col overflow-hidden border border-gray-100 animate-view">
+                        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-rose-50/60 shrink-0">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-rose-600 text-white flex items-center justify-center">
+                                    <i class="fa-solid fa-book-open"></i>
+                                </div>
+                                <h3 id="theory-modal-title" class="text-lg font-extrabold text-navy">Lý thuyết chuyên đề</h3>
+                            </div>
+                            <button type="button" onclick="closeTheoryModal()" class="w-8 h-8 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-white flex items-center justify-center cursor-pointer">
+                                <i class="fa-solid fa-xmark text-lg"></i>
+                            </button>
+                        </div>
+                        <div id="theory-modal-body" class="p-6 overflow-y-auto text-gray-700 text-sm md:text-base leading-relaxed space-y-3"></div>
+                        <div class="p-4 border-t border-gray-100 bg-gray-50 flex justify-end gap-3 shrink-0">
+                            <button type="button" onclick="closeTheoryModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold rounded-xl text-sm cursor-pointer">Đóng</button>
+                        </div>
+                    </div>
+                </div>
                 <!-- 2.2 DANH SÁCH ĐỀ THI LÝ THUYẾT (Solo TSA) -->
                 <div id="view-exam-list" class="hidden max-w-6xl mx-auto">
                     <div class="mb-6">
@@ -1826,7 +1889,7 @@ syncStreakToCloud();
                 backdrop.classList.add('hidden');
             }
 
-            const views = ['view-home', 'view-exam-list', 'view-exam-hsa-list', 'view-exam-school-list', 'view-realtime-exam', 'view-documents', 'view-settings', 'view-history'];
+            const views = ['view-home', 'view-tsa-review', 'view-exam-list', 'view-exam-hsa-list', 'view-exam-school-list', 'view-realtime-exam', 'view-documents', 'view-settings', 'view-history'];
             
             views.forEach(v => {
                 let el = document.getElementById(v);
@@ -1844,7 +1907,13 @@ syncStreakToCloud();
                 targetView.classList.add('block');
                 document.getElementById('nav-home').classList.add('active');
                 renderStreakLeaderboard(); 
-            } else if (viewName === 'exam-list') {
+            }
+             else if (viewName === 'tsa-review') {
+           targetView = document.getElementById('view-tsa-review');
+           targetView.classList.add('block');
+           document.getElementById('nav-tsa-review').classList.add('active');
+           filterTSAReview('math');}
+            else if (viewName === 'exam-list') {
                 targetView = document.getElementById('view-exam-list');
                 targetView.classList.add('block');
                 document.getElementById('nav-exam-list').classList.add('active');
@@ -3351,6 +3420,127 @@ function toggleExplanation(index) {
                     </div>`;
             }
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        // --- DỮ LIỆU & LOGIC TỔNG ÔN TSA THEO CHUYÊN ĐỀ ---
+        const tsaReviewData = [
+            {
+                id: "rev_math_01",
+                category: "math",
+                chapter: "Chuyên đề 1",
+                title: "Ứng dụng đạo hàm & Khảo sát hàm số",
+                desc: "Tính đơn điệu, cực trị, GTLN-GTNN, tiệm cận và tương giao đồ thị.",
+                examId: "tsa_toan_01", // Gắn ID đề bài tập có sẵn trong examsMeta (hoặc để "" nếu chưa có)
+                theory: `
+                    <p><b>1. Điều kiện đơn điệu:</b> Hàm số đồng biến trên $K$ khi $f'(x) \\ge 0, \\forall x \\in K$ (dấu bằng tại hữu hạn điểm).</p>
+                    <p><b>2. Tiệm cận:</b></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Tiệm cận đứng $x = x_0$ nếu $\\lim_{x \\to x_0^{\\pm}} f(x) = \\pm\\infty$.</li>
+                        <li>Tiệm cận ngang $y = y_0$ nếu $\\lim_{x \\to \\pm\\infty} f(x) = y_0$.</li>
+                    </ul>
+                    <p><b>3. Mẹo TSA:</b> Với các câu hỏi kéo thả bảng biến thiên, kiểm tra ngay dấu của $f'(x)$ tại các mốc đặc biệt.</p>
+                `
+            },
+            {
+                id: "rev_math_02",
+                category: "math",
+                chapter: "Chuyên đề 2",
+                title: "Hình học không gian & Tọa độ Oxyz",
+                desc: "Khoảng cách, góc nhị diện, phương trình mặt phẳng, đường thẳng và mặt cầu.",
+                examId: "tsa_toan_02",
+                theory: `
+                    <p><b>1. Khoảng cách từ điểm $M(x_0; y_0; z_0)$ đến mặt phẳng $(P): Ax+By+Cz+D=0$:</b></p>
+                    <p class="text-center py-2 bg-slate-50 rounded-lg font-semibold">$d(M, (P)) = \\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\sqrt{A^2 + B^2 + C^2}}$</p>
+                    <p><b>2. Mặt cầu tâm $I(a;b;c)$ bán kính $R$:</b> $(x-a)^2 + (y-b)^2 + (z-c)^2 = R^2$.</p>
+                `
+            },
+            {
+                id: "rev_read_01",
+                category: "reading",
+                chapter: "Chuyên đề 1",
+                title: "Kỹ năng Đọc hiểu văn bản Khoa học & Xã hội",
+                desc: "Xác định ý chính, từ khóa, suy luận logic và thái độ của tác giả.",
+                examId: "",
+                theory: `
+                    <p><b>Quy trình 3 bước làm bài Đọc hiểu TSA:</b></p>
+                    <ol class="list-decimal pl-5 space-y-1">
+                        <li><b>Đọc câu hỏi trước:</b> Gạch chân từ khóa (tên riêng, số liệu, từ phủ định như KHÔNG, NGOẠI TRỪ).</li>
+                        <li><b>Quét văn bản (Scanning):</b> Định vị đoạn chứa từ khóa và đọc kỹ 1 câu trước + 1 câu sau nó.</li>
+                        <li><b>Loại trừ đáp án nhiễu:</b> Cảnh giác với các từ mang tính tuyệt đối (<i>luôn luôn, tất cả, duy nhất</i>).</li>
+                    </ol>
+                `
+            },
+            {
+                id: "rev_sci_01",
+                category: "science",
+                chapter: "Chuyên đề 1",
+                title: "Phân tích bảng số liệu & Đồ thị thực nghiệm",
+                desc: "Đọc hiểu biểu đồ Vật lí, Hóa học, Sinh học và rút ra quy luật thực nghiệm.",
+                examId: "tsa_khoahoc_01",
+                theory: `
+                    <p><b>1. Cách đọc đồ thị nhanh:</b> Luôn xem tên trục hoành (biến độc lập) và trục tung (biến phụ thuộc) cùng <b>đơn vị đo</b> trước khi tính toán.</p>
+                    <p><b>2. Tốc độ biến thiên:</b> Đoạn đồ thị càng dốc thì đại lượng thay đổi càng nhanh; đoạn nằm ngang thể hiện đại lượng không đổi.</p>
+                `
+            }
+        ];
+
+        function filterTSAReview(category) {
+            document.querySelectorAll('.tsa-review-tab').forEach(tab => {
+                tab.classList.remove('bg-rose-50', 'text-rose-700');
+                tab.classList.add('text-gray-500', 'hover:bg-gray-50');
+            });
+            const activeTab = document.getElementById(`tab-review-${category}`);
+            if (activeTab) {
+                activeTab.classList.remove('text-gray-500', 'hover:bg-gray-50');
+                activeTab.classList.add('bg-rose-50', 'text-rose-700');
+            }
+
+            const container = document.getElementById('tsa-review-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const items = tsaReviewData.filter(item => item.category === category);
+            if (items.length === 0) {
+                container.innerHTML = `<div class="col-span-full py-12 text-center text-gray-500 bg-white rounded-2xl border border-gray-100 font-semibold">Chưa có chuyên đề nào trong mục này.</div>`;
+                return;
+            }
+
+            items.forEach(item => {
+                const hasExam = item.examId && examsMeta.some(e => e.id === item.examId);
+                container.innerHTML += `
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:border-rose-300 hover:shadow-md transition-all flex flex-col">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-3 py-1 bg-rose-50 text-rose-700 text-xs font-extrabold rounded-lg uppercase">${item.chapter}</span>
+                            <span class="text-xs text-gray-400 font-semibold"><i class="fa-solid fa-book-bookmark mr-1"></i> Lý thuyết + Bài tập</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-navy mb-2">${item.title}</h3>
+                        <p class="text-sm text-gray-500 mb-6 flex-1">${item.desc}</p>
+                        <div class="flex gap-3 mt-auto">
+                            <button type="button" onclick="openTheoryModal('${item.id}')" class="flex-1 py-2.5 px-4 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold rounded-xl transition-colors text-sm cursor-pointer">
+                                <i class="fa-solid fa-book-open mr-1.5"></i> Xem lý thuyết
+                            </button>
+                            <button type="button" onclick="${hasExam ? `openConfirmModal('${item.examId}')` : `showToast('Bài tập chuyên đề này đang được cập nhật!')`}" class="flex-1 py-2.5 px-4 bg-navy hover:bg-blue-900 text-white font-bold rounded-xl transition-colors text-sm cursor-pointer" style="background-color: #1a365d;">
+                                <i class="fa-solid fa-pen-to-square mr-1.5"></i> Làm bài tập
+                            </button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        function openTheoryModal(topicId) {
+            const topic = tsaReviewData.find(t => t.id === topicId);
+            if (!topic) return;
+            document.getElementById('theory-modal-title').innerText = `${topic.chapter}: ${topic.title}`;
+            const bodyEl = document.getElementById('theory-modal-body');
+            bodyEl.innerHTML = topic.theory;
+            document.getElementById('modal-tsa-theory').classList.remove('hidden');
+
+            if (window.MathJax) {
+                MathJax.typesetPromise([bodyEl]).catch(() => {});
+            }
+        }
+
+        function closeTheoryModal() {
+            document.getElementById('modal-tsa-theory')?.classList.add('hidden');
         }
         // --- HỆ THỐNG ĐẾM NGƯỢC NGÀY THI ---
         const DEFAULT_COUNTDOWN = {
