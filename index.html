@@ -1362,7 +1362,8 @@
         let currentExamTime = 0;
         let soloTimerInterval;
         let lastActiveViewBeforeReview = 'exam-list';
-
+// Dán link Realtime Database của bạn vào đây (không có dấu / ở cuối)
+const FIREBASE_DB_URL = "https://console.firebase.google.com/u/3/project/vlcm-study/database/vlcm-study-default-rtdb/data/~2F";
         // --- TỰ ĐỘNG TẮT MÀN HÌNH INTRO PHƯỢNG HOÀNG SAU 2.5 GIÂY ---
         // --- TỰ ĐỘNG TẮT MÀN HÌNH INTRO VLCM SAU 2.8 GIÂY ---
         function skipIntro() {
@@ -1806,22 +1807,101 @@
                 targetView.classList.add('animate-view');
             }
         }
-
+async function syncStreakToCloud() {
+    if (!currentUser || !currentSessionEmail || FIREBASE_DB_URL.includes("DAN_LINK")) return;
+    // Đổi ký tự đặc biệt trong email để làm key hợp lệ trên Firebase
+    const safeKey = currentSessionEmail.replace(/[.#$\[\]]/g, '_');
+    try {
+        await fetch(`${FIREBASE_DB_URL}/leaderboard/${safeKey}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: currentSessionEmail,
+                name: currentUser.name || 'Học viên ẩn danh',
+                streak: currentUser.streak || 0,
+                updatedAt: Date.now()
+            })
+        });
+    } catch (e) {
+        console.error("Lỗi đồng bộ Bảng Vàng:", e);
+    }
+}
         // --- BẢNG XẾP HẠNG CHUỖI HỌC TẬP ---
-        function renderStreakLeaderboard() {
-            const listContainer = document.getElementById('streak-leaderboard-list');
-            if (!listContainer) return;
+        async function renderStreakLeaderboard() {
+    const listContainer = document.getElementById('streak-leaderboard-list');
+    if (!listContainer) return;
 
-            const usersObj = JSON.parse(localStorage.getItem('yaecute_users')) || {};
-            const usersArray = [];
+    let usersArray = [];
 
-            for (const email in usersObj) {
-                usersArray.push({
-                    email: email,
-                    name: usersObj[email].name || 'Học viên ẩn danh',
-                    streak: usersObj[email].streak || 0
-                });
+    // Nếu đã gắn link Firebase thì tải dữ liệu chung của mọi thiết bị
+    if (!FIREBASE_DB_URL.includes("DAN_LINK")) {
+        try {
+            const res = await fetch(`${FIREBASE_DB_URL}/leaderboard.json`);
+            const data = await res.json();
+            if (data) {
+                usersArray = Object.values(data).map(u => ({
+                    email: u.email,
+                    name: u.name || 'Học viên ẩn danh',
+                    streak: u.streak || 0
+                }));
             }
+        } catch (e) {
+            console.error("Không tải được Bảng Vàng online:", e);
+        }
+    }
+
+    // Dự phòng: nếu chưa gắn Firebase hoặc mất mạng thì đọc từ localStorage
+    if (usersArray.length === 0) {
+        const usersObj = JSON.parse(localStorage.getItem('yaecute_users')) || {};
+        for (const email in usersObj) {
+            usersArray.push({
+                email: email,
+                name: usersObj[email].name || 'Học viên ẩn danh',
+                streak: usersObj[email].streak || 0
+            });
+        }
+    }
+
+    usersArray.sort((a, b) => b.streak - a.streak);
+    const topUsers = usersArray.slice(0, 5);
+    listContainer.innerHTML = '';
+
+    if (topUsers.length === 0 || topUsers.every(u => u.streak === 0)) {
+        listContainer.innerHTML = '<li class="p-8 text-center text-gray-500">Chưa có ai đạt chuỗi học tập. Hãy là người đầu tiên! 🔥</li>';
+        return;
+    }
+
+    topUsers.forEach((user, index) => {
+        let rankIcon = '';
+        if (index === 0) rankIcon = '<i class="fa-solid fa-trophy text-yellow-400 text-2xl drop-shadow-md"></i>';
+        else if (index === 1) rankIcon = '<i class="fa-solid fa-medal text-gray-300 text-xl"></i>';
+        else if (index === 2) rankIcon = '<i class="fa-solid fa-medal text-orange-400 text-xl"></i>';
+        else rankIcon = `<span class="text-gray-400 font-black text-lg w-6 text-center">${index + 1}</span>`;
+
+        const isCurrentUser = user.email === currentSessionEmail;
+        const bgClass = isCurrentUser ? 'bg-orange-50/50' : 'bg-white';
+        const nameClass = isCurrentUser ? 'text-orange-600' : 'text-navy';
+
+        listContainer.innerHTML += `
+            <li class="flex items-center justify-between p-4 ${bgClass} hover:bg-gray-50 transition-colors">
+                <div class="flex items-center gap-5">
+                    <div class="w-8 flex justify-center shrink-0">${rankIcon}</div>
+                    <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white shadow-sm shrink-0" style="background-color: #1a365d;">
+                        ${user.name.charAt(0).toUpperCase()}
+                    </div>
+                    <div class="font-bold ${nameClass} truncate max-w-[150px] md:max-w-xs">
+                        ${user.name} ${isCurrentUser ? '<span class="text-[10px] bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full ml-1 uppercase">Bạn</span>' : ''}
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 shrink-0">
+                    <i class="fa-solid fa-fire-flame-curved text-orange-500"></i>
+                    <span class="font-black text-gray-800 text-lg w-6 text-right">${user.streak}</span>
+                    <span class="text-xs text-gray-500 font-medium">ngày</span>
+                </div>
+            </li>
+        `;
+    });
+}
 
             usersArray.sort((a, b) => b.streak - a.streak);
             const topUsers = usersArray.slice(0, 5);
