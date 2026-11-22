@@ -3447,16 +3447,32 @@ function toggleExplanation(index) {
         
         // --- DỮ LIỆU & LOGIC TỔNG ÔN TSA THEO CHUYÊN ĐỀ ---
         const tsaReviewData = [
+            // ==================== TƯ DUY TOÁN HỌC (12 CHUYÊN ĐỀ) ====================
             {
                 id: "rev_math_01",
                 category: "math",
                 chapter: "Chuyên đề 1",
-                title: "Ứng dụng đạo hàm & Khảo sát hàm số",
-                desc: "Tính đơn điệu, cực trị, GTLN-GTNN, tiệm cận và tương giao đồ thị.",
+                title: "Số học",
+                desc: "Chia hết, ước chung - bội chung, số nguyên tố, đồng dư thức và phần nguyên.",
                 exercises: [
-                    { title: "Bài 1: Tính đơn điệu & Cực trị hàm số", desc: "Luyện tập nhận diện khoảng đồng biến, nghịch biến và điểm cực trị.", examId: "tsa_toan_01" },
-                    { title: "Bài 2: Tiệm cận & Tương giao đồ thị", desc: "Tìm tiệm cận đứng, ngang, xiên và biện luận số nghiệm.", examId: "tsa_toan_02" },
-                    { title: "Bài 3: Tổng ôn GTLN - GTNN & Bài toán thực tế", desc: "Các bài toán tối ưu thường gặp trong đề TSA.", examId: "" }
+                    { title: "Bài 1: Tổng hợp kiến thức trọng tâm chủ đề Số học (P1)", desc: "30 câu hỏi trắc nghiệm, kéo thả, đúng/sai và điền khuyết về Số học.", examId: "bt_sohoc_01" },
+                    { title: "Bài 2: Phương trình nghiệm nguyên & Đồng dư", desc: "Các bài toán số học nâng cao và phần nguyên.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Số ước nguyên dương:</b> Nếu $N = p_1^{a_1} p_2^{a_2} \\dots p_k^{a_k}$ thì số ước nguyên dương của $N$ là $(a_1+1)(a_2+1)\\dots(a_k+1)$.</p>
+                    <p><b>2. Định lý Fermat nhỏ:</b> Với $p$ là số nguyên tố và $(a,p)=1$, ta có $a^{p-1} \\equiv 1 \\pmod p$.</p>
+                    <p><b>3. Phần nguyên $[x]$:</b> Là số nguyên lớn nhất không vượt quá $x$, tức là $[x] \\le x < [x] + 1$.</p>
+                `
+            },
+            {
+                id: "rev_math_02",
+                category: "math",
+                chapter: "Chuyên đề 2",
+                title: "Hàm số và Đồ thị",
+                desc: "Tính đơn điệu, cực trị, GTLN-GTNN, đường tiệm cận và tương giao đồ thị.",
+                exercises: [
+                    { title: "Bài 1: Tính đơn điệu & Cực trị hàm số", desc: "Nhận diện khoảng đồng biến, nghịch biến và điểm cực trị.", examId: "tsa_toan_01" },
+                    { title: "Bài 2: Tiệm cận, GTLN-GTNN & Tương giao", desc: "Bài toán tiệm cận và ứng dụng thực tế tối ưu hóa.", examId: "tsa_toan_02" }
                 ],
                 theory: `
                     <p><b>1. Điều kiện đơn điệu:</b> Hàm số đồng biến trên $K$ khi $f'(x) \\ge 0, \\forall x \\in K$ (dấu bằng tại hữu hạn điểm).</p>
@@ -3465,25 +3481,170 @@ function toggleExplanation(index) {
                         <li>Tiệm cận đứng $x = x_0$ nếu $\\lim_{x \\to x_0^{\\pm}} f(x) = \\pm\\infty$.</li>
                         <li>Tiệm cận ngang $y = y_0$ nếu $\\lim_{x \\to \\pm\\infty} f(x) = y_0$.</li>
                     </ul>
-                    <p><b>3. Mẹo TSA:</b> Với các câu hỏi kéo thả bảng biến thiên, kiểm tra ngay dấu của $f'(x)$ tại các mốc đặc biệt.</p>
                 `
             },
             {
-                id: "rev_math_02",
+                id: "rev_math_03",
                 category: "math",
-                chapter: "Chuyên đề 2",
-                title: "Hình học không gian & Tọa độ Oxyz",
-                desc: "Khoảng cách, góc nhị diện, phương trình mặt phẳng, đường thẳng và mặt cầu.",
+                chapter: "Chuyên đề 3",
+                title: "Hình học không gian",
+                desc: "Quan hệ song song, vuông góc, góc nhị diện, khoảng cách và thể tích khối đa diện - tròn xoay.",
                 exercises: [
-                    { title: "Bài 1: Hệ tọa độ Oxyz & Phương trình mặt phẳng", desc: "Vectơ pháp tuyến, khoảng cách từ điểm đến mặt phẳng.", examId: "tsa_toan_02" },
-                    { title: "Bài 2: Đường thẳng & Mặt cầu trong không gian", desc: "Vị trí tương đối và bài toán cực trị hình học Oxyz.", examId: "" }
+                    { title: "Bài 1: Góc & Khoảng cách trong không gian", desc: "Góc giữa đường và mặt, góc nhị diện, khoảng cách 2 đường chéo nhau.", examId: "" },
+                    { title: "Bài 2: Thể tích khối chóp, lăng trụ & Khối tròn xoay", desc: "Tính thể tích khối đa diện, nón, trụ, cầu.", examId: "" }
                 ],
                 theory: `
-                    <p><b>1. Khoảng cách từ điểm $M(x_0; y_0; z_0)$ đến mặt phẳng $(P): Ax+By+Cz+D=0$:</b></p>
+                    <p><b>1. Thể tích khối chóp:</b> $V = \\frac{1}{3} S_{\\text{đáy}} \\cdot h$. <b>Khối lăng trụ:</b> $V = S_{\\text{đáy}} \\cdot h$.</p>
+                    <p><b>2. Thể tích khối chóp cụt đều:</b> $V = \\frac{h}{3}(S_1 + S_2 + \\sqrt{S_1 S_2})$.</p>
+                    <p><b>3. Khối tròn xoay:</b> Nón $V = \\frac{1}{3}\\pi R^2 h$; Trụ $V = \\pi R^2 h$; Cầu $V = \\frac{4}{3}\\pi R^3$.</p>
+                `
+            },
+            {
+                id: "rev_math_04",
+                category: "math",
+                chapter: "Chuyên đề 4",
+                title: "Một số yếu tố Thống kê",
+                desc: "Mẫu số liệu ghép nhóm, số trung bình, trung vị, tứ phân vị, phương sai và độ lệch chuẩn.",
+                exercises: [
+                    { title: "Bài 1: Trung bình, Trung vị & Tứ phân vị ghép nhóm", desc: "Tính $Q_1, Q_2, Q_3$ và khoảng tứ phân vị $\\Delta_Q$.", examId: "" },
+                    { title: "Bài 2: Phương sai & Độ lệch chuẩn", desc: "Đánh giá mức độ phân tán của mẫu số liệu.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Tứ phân vị thứ $k$ ($k=1,2,3$) của mẫu ghép nhóm:</b></p>
+                    <p class="text-center py-2 bg-slate-50 rounded-lg font-semibold">$Q_k = u_m + \\frac{\\frac{kn}{4} - C}{n_m} \\cdot (u_{m+1} - u_m)$</p>
+                    <p><b>2. Khoảng tứ phân vị:</b> $\\Delta_Q = Q_3 - Q_1$. <b>Độ lệch chuẩn:</b> $s = \\sqrt{s^2}$.</p>
+                `
+            },
+            {
+                id: "rev_math_05",
+                category: "math",
+                chapter: "Chuyên đề 5",
+                title: "Nguyên hàm - Tích phân",
+                desc: "Bảng nguyên hàm cơ bản, tính chất tích phân và ứng dụng tính diện tích, thể tích.",
+                exercises: [
+                    { title: "Bài 1: Nguyên hàm & Tính tích phân", desc: "Các kỹ thuật tính nguyên hàm và tích phân cơ bản - hàm ẩn.", examId: "" },
+                    { title: "Bài 2: Ứng dụng tích phân tính diện tích & thể tích", desc: "Diện tích hình phẳng và thể tích vật thể tròn xoay.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Diện tích hình phẳng</b> giới hạn bởi $y=f(x), y=g(x)$ và $x=a, x=b$:</p>
+                    <p class="text-center py-2 bg-slate-50 rounded-lg font-semibold">$S = \\int_a^b |f(x) - g(x)|\\,dx$</p>
+                    <p><b>2. Thể tích khối tròn xoay</b> quay quanh $Ox$: $V = \\pi \\int_a^b [f(x)]^2\\,dx$.</p>
+                `
+            },
+            {
+                id: "rev_math_06",
+                category: "math",
+                chapter: "Chuyên đề 6",
+                title: "Phương trình - Bất phương trình - Hệ bất phương trình",
+                desc: "Phương trình quy về bậc hai, hệ bất phương trình bậc nhất hai ẩn và bài toán tối ưu tuyến tính.",
+                exercises: [
+                    { title: "Bài 1: Phương trình & Bất phương trình đại số", desc: "Giải và biện luận phương trình, bất phương trình chứa căn, trị tuyệt đối.", examId: "" },
+                    { title: "Bài 2: Hệ bất phương trình & Bài toán tối ưu", desc: "Xác định miền nghiệm và tìm GTLN - GTNN của biểu thức $F(x;y)$.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Định lý Vi-ét:</b> Phương trình $ax^2+bx+c=0$ ($a\\ne 0$) có 2 nghiệm $x_1, x_2$ thì $x_1+x_2=-\\frac{b}{a}$, $x_1 x_2 = \\frac{c}{a}$.</p>
+                    <p><b>2. Miền nghiệm hệ BPT bậc nhất hai ẩn:</b> Biểu thức $F(x;y)=ax+by$ đạt GTLN/GTNN tại một trong các <b>đỉnh của đa giác miền nghiệm</b>.</p>
+                `
+            },
+            {
+                id: "rev_math_07",
+                category: "math",
+                chapter: "Chuyên đề 7",
+                title: "Đại số Tổ hợp",
+                desc: "Quy tắc đếm, hoán vị, chỉnh hợp, tổ hợp, nhị thức Newton và nguyên lý Dirichlet.",
+                exercises: [
+                    { title: "Bài 1: Quy tắc đếm, Hoán vị - Chỉnh hợp - Tổ hợp", desc: "Bài toán đếm số, xếp chỗ và đếm hình học.", examId: "" },
+                    { title: "Bài 2: Nhị thức Newton & Nguyên lý Dirichlet", desc: "Tìm hệ số trong khai triển và bài toán suy luận tổ hợp.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Công thức đếm:</b> $P_n = n!$; $A_n^k = \\frac{n!}{(n-k)!}$; $C_n^k = \\frac{n!}{k!(n-k)!}$.</p>
+                    <p><b>2. Khai triển nhị thức Newton:</b> $(a+b)^n = \\sum_{k=0}^n C_n^k a^{n-k} b^k$.</p>
+                `
+            },
+            {
+                id: "rev_math_08",
+                category: "math",
+                chapter: "Chuyên đề 8",
+                title: "Lượng giác",
+                desc: "Công thức lượng giác, hàm số lượng giác và phương trình lượng giác cơ bản - nâng cao.",
+                exercises: [
+                    { title: "Bài 1: Biến đổi & Hàm số lượng giác", desc: "Tập xác định, tính tuần hoàn, GTLN - GTNN hàm lượng giác.", examId: "" },
+                    { title: "Bài 2: Phương trình lượng giác & Đếm nghiệm", desc: "Giải phương trình và đếm số nghiệm trên khoảng cho trước.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Phương trình cơ bản:</b></p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>$\\sin x = \\sin\\alpha \\Leftrightarrow x = \\alpha + k2\\pi$ hoặc $x = \\pi - \\alpha + k2\\pi$.</li>
+                        <li>$\\cos x = \\cos\\alpha \\Leftrightarrow x = \\pm\\alpha + k2\\pi$.</li>
+                        <li>$\\tan x = \\tan\\alpha \\Leftrightarrow x = \\alpha + k\\pi$.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "rev_math_09",
+                category: "math",
+                chapter: "Chuyên đề 9",
+                title: "Dãy số - Cấp số cộng - Cấp số nhân - Đạo hàm - Giới hạn",
+                desc: "Công thức số hạng tổng quát, tổng n số hạng đầu, giới hạn dãy số - hàm số và đạo hàm.",
+                exercises: [
+                    { title: "Bài 1: Dãy số, Cấp số cộng & Cấp số nhân", desc: "Tìm số hạng tổng quát, tính tổng và bài toán lãi suất.", examId: "" },
+                    { title: "Bài 2: Giới hạn, Hàm liên tục & Đạo hàm", desc: "Tính giới hạn, xét tính liên tục và phương trình tiếp tuyến.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Cấp số cộng:</b> $u_n = u_1 + (n-1)d$; $S_n = \\frac{n(u_1+u_n)}{2}$.</p>
+                    <p><b>2. Cấp số nhân:</b> $u_n = u_1 q^{n-1}$; $S_n = u_1 \\frac{1-q^n}{1-q}$ ($q \\ne 1$).</p>
+                    <p><b>3. Tiếp tuyến</b> tại $M(x_0; y_0)$: $y = f'(x_0)(x - x_0) + y_0$.</p>
+                `
+            },
+            {
+                id: "rev_math_10",
+                category: "math",
+                chapter: "Chuyên đề 10",
+                title: "Lũy thừa, Mũ và Logarit",
+                desc: "Biến đổi lũy thừa - logarit, hàm số mũ - logarit, phương trình, bất phương trình và bài toán tăng trưởng.",
+                exercises: [
+                    { title: "Bài 1: Biến đổi biểu thức & Hàm số Mũ - Logarit", desc: "Tính chất logarit, tập xác định và đạo hàm mũ - logarit.", examId: "" },
+                    { title: "Bài 2: Phương trình, BPT & Bài toán lãi kép - tăng trưởng", desc: "Giải PT/BPT mũ - logarit và ứng dụng thực tế.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Quy tắc logarit ($a>0, a\\ne 1, x,y>0$):</b> $\\log_a(xy) = \\log_a x + \\log_a y$; $\\log_a x^\\alpha = \\alpha\\log_a x$; $\\log_a b = \\frac{1}{\\log_b a}$.</p>
+                    <p><b>2. Lãi kép:</b> $T_n = A(1+r)^n$. <b>Tăng trưởng liên tục:</b> $S(t) = S_0 e^{rt}$.</p>
+                `
+            },
+            {
+                id: "rev_math_11",
+                category: "math",
+                chapter: "Chuyên đề 11",
+                title: "Một số yếu tố Xác suất",
+                desc: "Xác suất cổ điển, quy tắc cộng - nhân, xác suất có điều kiện và công thức Bayes.",
+                exercises: [
+                    { title: "Bài 1: Xác suất cổ điển & Biến cố hợp - giao", desc: "Tính xác suất bằng tổ hợp và quy tắc cộng, nhân.", examId: "" },
+                    { title: "Bài 2: Xác suất có điều kiện & Công thức Bayes", desc: "Sơ đồ hình cây, công thức xác suất toàn phần và Bayes.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Quy tắc cộng:</b> $P(A \\cup B) = P(A) + P(B) - P(AB)$.</p>
+                    <p><b>2. Xác suất có điều kiện:</b> $P(A|B) = \\frac{P(AB)}{P(B)}$.</p>
+                    <p><b>3. Công thức Bayes:</b> $P(A|B) = \\frac{P(A)P(B|A)}{P(A)P(B|A) + P(\\overline{A})P(B|\\overline{A})}$.</p>
+                `
+            },
+            {
+                id: "rev_math_12",
+                category: "math",
+                chapter: "Chuyên đề 12",
+                title: "Phương pháp Tọa độ trong Không gian",
+                desc: "Tọa độ vectơ, phương trình mặt phẳng, đường thẳng, mặt cầu và bài toán cực trị Oxyz.",
+                exercises: [
+                    { title: "Bài 1: Vectơ, Mặt phẳng & Đường thẳng trong Oxyz", desc: "Viết phương trình mặt phẳng, đường thẳng, tính góc và khoảng cách.", examId: "" },
+                    { title: "Bài 2: Mặt cầu & Cực trị hình học Oxyz", desc: "Vị trí tương đối mặt cầu và các bài toán thực tế gắn hệ trục Oxyz.", examId: "" }
+                ],
+                theory: `
+                    <p><b>1. Khoảng cách từ $M(x_0; y_0; z_0)$ đến $(P): Ax+By+Cz+D=0$:</b></p>
                     <p class="text-center py-2 bg-slate-50 rounded-lg font-semibold">$d(M, (P)) = \\frac{|Ax_0 + By_0 + Cz_0 + D|}{\\sqrt{A^2 + B^2 + C^2}}$</p>
                     <p><b>2. Mặt cầu tâm $I(a;b;c)$ bán kính $R$:</b> $(x-a)^2 + (y-b)^2 + (z-c)^2 = R^2$.</p>
                 `
             },
+
+            // ==================== TƯ DUY ĐỌC HIỂU ====================
             {
                 id: "rev_read_01",
                 category: "reading",
@@ -3503,6 +3664,8 @@ function toggleExplanation(index) {
                     </ol>
                 `
             },
+
+            // ==================== TƯ DUY KHOA HỌC ====================
             {
                 id: "rev_sci_01",
                 category: "science",
