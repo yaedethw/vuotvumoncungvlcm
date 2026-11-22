@@ -1666,32 +1666,63 @@ syncStreakToCloud();
             }
         }
 
-        function performRegister(event) {
+        
+        async function performRegister(event) {
             event.preventDefault();
             const email = document.getElementById('reg-email').value.trim();
+            const safeKey = email.replace(/[.#$\[\]]/g, '_');
             const existingUsers = JSON.parse(localStorage.getItem('yaecute_users')) || {};
 
-            if (existingUsers[email]) {
-                alert("Email này đã được đăng ký!");
-            } else {
-                existingUsers[email] = {
-                    name: document.getElementById('reg-name').value.trim(),
-                    password: document.getElementById('reg-password').value,
-                    documents: [], dob: '', phone: '', school: '', className: '', examHistory: [],
-                    streak: 0,
-                    lastExamDate: null
-                };
-                localStorage.setItem('yaecute_users', JSON.stringify(existingUsers));
-                alert("Đăng ký thành công! Vui lòng đăng nhập.");
-                switchAuth('login');
-                document.getElementById('login-email').value = email;
+            // Kiểm tra tài khoản đã tồn tại trên Firebase chưa
+            let cloudUser = null;
+            if (!FIREBASE_DB_URL.includes("DAN_LINK")) {
+                try {
+                    const res = await fetch(`${FIREBASE_DB_URL}/users/${safeKey}.json`);
+                    cloudUser = await res.json();
+                } catch (e) {
+                    console.error("Lỗi kiểm tra tài khoản:", e);
+                }
             }
+
+            if (cloudUser || existingUsers[email]) {
+                alert("Email này đã được đăng ký!");
+                return;
+            }
+
+            const newUser = {
+                name: document.getElementById('reg-name').value.trim(),
+                password: document.getElementById('reg-password').value,
+                documents: [], dob: '', phone: '', school: '', className: '', examHistory: [],
+                streak: 0,
+                lastExamDate: null
+            };
+
+            // Lưu lên máy và đẩy lên Firebase
+            existingUsers[email] = newUser;
+            localStorage.setItem('yaecute_users', JSON.stringify(existingUsers));
+
+            if (!FIREBASE_DB_URL.includes("DAN_LINK")) {
+                try {
+                    await fetch(`${FIREBASE_DB_URL}/users/${safeKey}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newUser)
+                    });
+                } catch (e) {
+                    console.error("Lỗi lưu tài khoản lên Firebase:", e);
+                }
+            }
+
+            alert("Đăng ký thành công! Vui lòng đăng nhập.");
+            switchAuth('login');
+            document.getElementById('login-email').value = email;
         }
 
-        function performLogin(event) {
+        async function performLogin(event) {
             event.preventDefault();
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
+            const safeKey = email.replace(/[.#$\[\]]/g, '_');
             const existingUsers = JSON.parse(localStorage.getItem('yaecute_users')) || {};
 
             if (email === 'admin@gmail.com' && !existingUsers['admin@gmail.com']) {
@@ -1701,10 +1732,39 @@ syncStreakToCloud();
                 localStorage.setItem('yaecute_users', JSON.stringify(existingUsers));
             }
 
-            if (existingUsers[email] && existingUsers[email].password === password) {
+            // 1. Thử tải tài khoản từ Firebase về trước
+            let userData = null;
+            if (!FIREBASE_DB_URL.includes("DAN_LINK")) {
+                try {
+                    const res = await fetch(`${FIREBASE_DB_URL}/users/${safeKey}.json`);
+                    const cloudUser = await res.json();
+                    if (cloudUser) {
+                        userData = cloudUser;
+                        existingUsers[email] = cloudUser;
+                        localStorage.setItem('yaecute_users', JSON.stringify(existingUsers));
+                    }
+                } catch (e) {
+                    console.error("Lỗi tải tài khoản từ Firebase:", e);
+                }
+            }
+
+            // 2. Nếu chưa có trên Firebase (tài khoản cũ tạo trên máy tính) thì lấy từ máy và tự đồng bộ lên Firebase
+            if (!userData && existingUsers[email]) {
+                userData = existingUsers[email];
+                if (!FIREBASE_DB_URL.includes("DAN_LINK")) {
+                    fetch(`${FIREBASE_DB_URL}/users/${safeKey}.json`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(userData)
+                    }).catch(() => {});
+                }
+            }
+
+            if (userData && userData.password === password) {
+                document.getElementById('login-error').classList.add('hidden');
                 currentSessionEmail = email;
-                currentUser = existingUsers[email];
-                if(!currentUser.examHistory) currentUser.examHistory = []; 
+                currentUser = userData;
+                if (!currentUser.examHistory) currentUser.examHistory = []; 
                 
                 checkAndUpdateStreakOnLogin();
 
@@ -1720,7 +1780,6 @@ syncStreakToCloud();
                 document.getElementById('login-error').classList.remove('hidden');
             }
         }
-
         function logoutUser(event) {
             event.preventDefault();
             currentSessionEmail = null;
