@@ -461,6 +461,27 @@
             pointer-events: none;
             z-index: -1;
         }
+        /* === HIỆU ỨNG ĐÓNG / MỞ SIDEBAR MƯỢT MÀ === */
+        #main-sidebar {
+            transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), padding 0.25s ease, opacity 0.2s ease;
+        }
+        #main-sidebar .nav-item {
+            white-space: nowrap;
+        }
+        #main-sidebar .nav-item:focus {
+            outline: none;
+        }
+        @media (min-width: 768px) {
+            #main-sidebar.sidebar-collapsed {
+                width: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                border-right-width: 0 !important;
+                opacity: 0;
+                overflow: hidden;
+                pointer-events: none;
+            }
+        }
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden relative">
@@ -597,8 +618,8 @@
         <header class="bg-white py-3 px-6 flex items-center justify-between border-b border-gray-200 z-30 shrink-0 gap-4">
             <!-- 1. Khu vực Logo -->
             <div class="flex items-center gap-3 w-auto lg:w-64 shrink-0">
-                <button onclick="toggleMobileSidebar()" class="md:hidden text-gray-500 hover:text-navy transition-colors mr-1">
-                    <i class="fa-solid fa-bars text-xl"></i>
+                <button type="button" onclick="toggleMobileSidebar()" title="Đóng / mở thanh menu" class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-500 hover:text-navy hover:bg-gray-100 transition-colors cursor-pointer shrink-0">
+                    <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-lg"></i>
                 </button>
                 <div class="flex items-center cursor-pointer" onclick="switchView('home')">
                     <img src="https://i.postimg.cc/Gm0gGjnj/Gemini-Generated-Image-gqn1iggqn1iggqn1.png" alt="VLCM Logo" class="h-14 object-contain">
@@ -1254,19 +1275,36 @@
         }
 
         // --- ĐÓNG / MỞ SIDEBAR TRÊN ĐIỆN THOẠI ---
+        // --- ĐÓNG / MỞ SIDEBAR TRÊN CẢ MÁY TÍNH VÀ ĐIỆN THOẠI ---
         function toggleMobileSidebar() {
             const sidebar = document.getElementById('main-sidebar');
             const backdrop = document.getElementById('mobile-sidebar-backdrop');
-            if (sidebar.classList.contains('hidden')) {
-                sidebar.classList.remove('hidden');
-                sidebar.classList.add('flex');
-                backdrop.classList.remove('hidden');
+            if (!sidebar) return;
+
+            if (window.innerWidth >= 768) {
+                // Máy tính: thu gọn / mở rộng mượt và tự nhớ trạng thái
+                const isCollapsed = sidebar.classList.toggle('sidebar-collapsed');
+                localStorage.setItem('vlcm_sidebar_collapsed', isCollapsed ? '1' : '0');
             } else {
-                sidebar.classList.add('hidden');
-                sidebar.classList.remove('flex');
-                backdrop.classList.add('hidden');
+                // Điện thoại: bật / tắt ngăn kéo như cũ
+                if (sidebar.classList.contains('hidden')) {
+                    sidebar.classList.remove('hidden');
+                    sidebar.classList.add('flex');
+                    backdrop.classList.remove('hidden');
+                } else {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('flex');
+                    backdrop.classList.add('hidden');
+                }
             }
         }
+
+        // Tự động khôi phục trạng thái đóng/mở sidebar lần truy cập trước
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('vlcm_sidebar_collapsed') === '1') {
+                document.getElementById('main-sidebar')?.classList.add('sidebar-collapsed');
+            }
+        });
 
         // --- HÀM RENDER THẺ ĐỀ THI DÙNG CHUNG (CÓ NGÔI SAO ĐÁNH DẤU ĐÃ LÀM) ---
         function buildExamCardHTML(exam) {
