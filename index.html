@@ -1247,11 +1247,12 @@
             }
         }
 
-        // --- HÀM RENDER THẺ ĐỀ THI DÙNG CHUNG (ĐÃ THÊM MÀU XANH NGỌC CHO HSA) ---
+        // --- HÀM RENDER THẺ ĐỀ THI DÙNG CHUNG (CÓ NGÔI SAO ĐÁNH DẤU ĐÃ LÀM) ---
         function buildExamCardHTML(exam) {
             const isTSA = exam.type === 'TSA';
             const isHSA = exam.type === 'HSA';
             const isUrlImg = exam.img && (exam.img.startsWith('http://') || exam.img.startsWith('https://') || exam.img.startsWith('data:'));
+            const isStarred = currentUser && Array.isArray(currentUser.starredExams) && currentUser.starredExams.includes(exam.id);
             
             const coverBgClass = isTSA ? 'bg-purple-100' : (isHSA ? 'bg-emerald-100' : 'bg-blue-100');
             const iconColorClass = isTSA ? 'text-purple-300' : (isHSA ? 'text-emerald-300' : 'text-blue-300');
@@ -1263,10 +1264,22 @@
                 ? `<img src="${exam.img}" class="w-full h-full object-cover" alt="Cover" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x200?text=YAECUTE+EXAM';">`
                 : `<i class="fa-solid ${exam.img || 'fa-file-signature'} text-6xl ${iconColorClass}"></i>`;
 
+            const starBtnClass = isStarred
+                ? 'bg-amber-50 border-amber-300 text-amber-400'
+                : 'bg-white/90 border-gray-200 text-gray-400 hover:text-amber-400';
+            const starIconClass = isStarred ? 'fa-solid fa-star' : 'fa-regular fa-star';
+
             return `
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-md transition">
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-blue-300 overflow-hidden flex flex-col hover:shadow-md transition">
                     <div class="relative h-48 ${coverBgClass} flex items-center justify-center overflow-hidden">
                         ${mediaHTML}
+                        <button type="button"
+                                onclick="toggleExamStar(event, '${exam.id}')"
+                                data-star-exam="${exam.id}"
+                                title="${isStarred ? 'Đã làm xong (nhấn để bỏ đánh dấu)' : 'Nhấn để đánh dấu đã làm đề này'}"
+                                class="absolute top-3 left-3 w-8 h-8 rounded-full border shadow-sm flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer z-10 ${starBtnClass}">
+                            <i class="${starIconClass} text-sm"></i>
+                        </button>
                         ${exam.isVip ? '<div class="absolute top-3 right-3 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow"><i class="fa-solid fa-crown"></i> VIP</div>' : ''}
                     </div>
                     <div class="p-5 flex flex-col flex-1">
@@ -1284,6 +1297,46 @@
                         <button onclick="openConfirmModal('${exam.id}')" class="w-full ${btnBgClass} text-white font-bold py-2.5 rounded-lg transition-colors text-sm">Bắt đầu thi</button>
                     </div>
                 </div>`;
+        }
+
+        // --- HÀM BẬT / TẮT NGÔI SAO ĐÁNH DẤU ĐÃ LÀM ĐỀ ---
+        function toggleExamStar(event, examId) {
+            event.stopPropagation();
+            if (!currentUser || !currentSessionEmail) return;
+
+            if (!Array.isArray(currentUser.starredExams)) {
+                currentUser.starredExams = [];
+            }
+
+            const idx = currentUser.starredExams.indexOf(examId);
+            const isNowStarred = idx === -1;
+
+            if (isNowStarred) {
+                currentUser.starredExams.push(examId);
+                showToast("⭐ Đã đánh dấu hoàn thành đề này!");
+            } else {
+                currentUser.starredExams.splice(idx, 1);
+                showToast("Đã bỏ đánh dấu đề này.");
+            }
+
+            const users = JSON.parse(localStorage.getItem('yaecute_users')) || {};
+            users[currentSessionEmail] = currentUser;
+            localStorage.setItem('yaecute_users', JSON.stringify(users));
+
+            document.querySelectorAll(`[data-star-exam="${examId}"]`).forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (isNowStarred) {
+                    btn.classList.remove('bg-white/90', 'border-gray-200', 'text-gray-400', 'hover:text-amber-400');
+                    btn.classList.add('bg-amber-50', 'border-amber-300', 'text-amber-400');
+                    icon.className = 'fa-solid fa-star text-sm';
+                    btn.title = 'Đã làm xong (nhấn để bỏ đánh dấu)';
+                } else {
+                    btn.classList.remove('bg-amber-50', 'border-amber-300', 'text-amber-400');
+                    btn.classList.add('bg-white/90', 'border-gray-200', 'text-gray-400', 'hover:text-amber-400');
+                    icon.className = 'fa-regular fa-star text-sm';
+                    btn.title = 'Nhấn để đánh dấu đã làm đề này';
+                }
+            });
         }
 
         // --- HÀM LỌC VÀ RENDER ĐỀ THI TSA ---
