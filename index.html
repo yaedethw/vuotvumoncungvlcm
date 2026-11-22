@@ -1495,6 +1495,7 @@ const FIREBASE_DB_URL = "https://vlcm-study-default-rtdb.asia-southeast1.firebas
             const users = JSON.parse(localStorage.getItem('yaecute_users')) || {};
             users[currentSessionEmail] = currentUser;
             localStorage.setItem('yaecute_users', JSON.stringify(users));
+syncStreakToCloud();
 
             document.querySelectorAll(`[data-star-exam="${examId}"]`).forEach(btn => {
                 const icon = btn.querySelector('i');
@@ -2548,7 +2549,7 @@ function openSubmitModal() {
             closeSubmitModal();
             submitExam(true);
         }
-        function submitExam(forceSubmit = false) {
+        async function submitExam(forceSubmit = false) {
             if (!forceSubmit) {
                 openSubmitModal();
                 return;
@@ -2576,6 +2577,7 @@ function openSubmitModal() {
                     currentUser.lastExamDate = todayStr;
                     showToast(`🔥 Tuyệt vời! Bạn đã đạt chuỗi ${currentUser.streak} ngày!`);
                     renderStreakUI(); 
+                    await syncStreakToCloud();
                     renderStreakLeaderboard();
                 }
 
