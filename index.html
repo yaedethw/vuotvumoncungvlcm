@@ -373,6 +373,24 @@
     background: #eff6ff;
     color: #1d4ed8;
 }
+/* === CSS CHO CÂU HỎI CHỌN NHIỀU ĐÁP ÁN (CHECKBOX) === */
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #64748b;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #ffffff;
+    transition: all 0.15s ease;
+}
+.custom-checkbox.checked {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+}
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden relative">
@@ -1931,6 +1949,20 @@
                     });
                     questionHTML += `</div>`;
                 }
+                else if (q.type === 'multiple_select') {
+                    questionHTML += `<div class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-3"><i class="fa-regular fa-square-check mr-1"></i> Chọn tất cả các phương án đúng</div>`;
+                    questionHTML += `<div class="flex flex-col gap-3 mt-2">`;
+                    q.options.forEach((opt, optIdx) => {
+                        const char = String.fromCharCode(65 + optIdx);
+                        questionHTML += `
+                            <button type="button" onclick="toggleMultipleSelect(this, ${q.id}, '${char}')" class="flex items-center gap-3 text-left py-3 px-4 border border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 transition-all cursor-pointer">
+                                <span class="custom-checkbox"><i class="fa-solid fa-check text-xs hidden"></i></span>
+                                <span class="flex-1">${opt}</span>
+                            </button>
+                        `;
+                    });
+                    questionHTML += `</div>`;
+                }
 
                 questionHTML += `</div></div>`;
                 container.innerHTML += questionHTML;
@@ -2000,6 +2032,37 @@
             
             userAnswers[qId] = char;
             updateQuestionGridStatus(qId, true);
+        }
+        function toggleMultipleSelect(btn, qId, char) {
+            if (!Array.isArray(userAnswers[qId])) userAnswers[qId] = [];
+
+            const box = btn.querySelector('.custom-checkbox');
+            const icon = box.querySelector('i');
+            const idx = userAnswers[qId].indexOf(char);
+
+            if (idx > -1) {
+                // Bỏ chọn
+                userAnswers[qId].splice(idx, 1);
+                btn.classList.remove('bg-blue-50', 'border-blue-500', 'text-blue-800', 'ring-2', 'ring-blue-200');
+                box.classList.remove('checked');
+                icon.classList.add('hidden');
+            } else {
+                // Chọn thêm
+                userAnswers[qId].push(char);
+                btn.classList.add('bg-blue-50', 'border-blue-500', 'text-blue-800', 'ring-2', 'ring-blue-200');
+                box.classList.add('checked');
+                icon.classList.remove('hidden');
+            }
+
+            updateQuestionGridStatus(qId, userAnswers[qId].length > 0);
+        }
+
+        function isMultipleSelectCorrect(userArr, correctArr) {
+            if (!Array.isArray(userArr) || !Array.isArray(correctArr)) return false;
+            if (userArr.length !== correctArr.length) return false;
+            const s1 = [...userArr].sort();
+            const s2 = [...correctArr].sort();
+            return s1.every((v, i) => v === s2[i]);
         }
 
         function selectRadio(element, qId, pIndex, value) {
@@ -2116,6 +2179,12 @@
                         if (currentExamType === 'THPT') totalScore += 1.0;
                     }
                 }
+                else if (q.type === 'multiple_select') {
+                    if (isMultipleSelectCorrect(userAnswers[q.id], q.correctAnswer)) {
+                        isFullyCorrect = true;
+                        if (currentExamType === 'THPT') totalScore += 0.25;
+                    }
+                }
 
                 if (isFullyCorrect) correctCount++;
             });
@@ -2220,13 +2289,13 @@
                     if (userAnswers[q.id][i] === q.correctAnswer[i]) correctProps++;
                 }
                 return correctProps === q.propositions.length; 
-            } 
-            // === PHẦN THÊM MỚI CHO DẠNG KÉO THẢ ===
-            else if (q.type === 'drag_drop') {
+            } else if (q.type === 'drag_drop') {
                 for (let i = 0; i < q.correctAnswer.length; i++) {
                     if (userAnswers[q.id][i] !== q.correctAnswer[i]) return false;
                 }
                 return true;
+            } else if (q.type === 'multiple_select') {
+                return isMultipleSelectCorrect(userAnswers[q.id], q.correctAnswer);
             }
             return false;
         }
@@ -2355,6 +2424,48 @@
                             <div class="text-left py-3 px-5 border rounded-xl ${btnClass} flex justify-between items-center">
                                 <span>${opt}</span>
                                 ${isCorrectAns ? '<i class="fa-solid fa-circle-check text-green-600 text-xl"></i>' : (isUserSelected ? '<i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>' : '')}
+                            </div>
+                        `;
+                    });
+                    questionHTML += `</div>`;
+                }
+                else if (q.type === 'multiple_select') {
+                    const userSelectedArr = Array.isArray(userAnswers[q.id]) ? userAnswers[q.id] : [];
+                    const correctArr = Array.isArray(q.correctAnswer) ? q.correctAnswer : [];
+
+                    questionHTML += `<div class="flex flex-col gap-3 mt-4">`;
+                    q.options.forEach((opt, optIdx) => {
+                        const char = String.fromCharCode(65 + optIdx);
+                        const isCorrectOpt = correctArr.includes(char);
+                        const isSelected = userSelectedArr.includes(char);
+
+                        let btnClass = "border-gray-200 bg-white text-gray-600";
+                        let boxClass = "border-gray-300 bg-white text-transparent";
+                        let statusBadge = "";
+
+                        if (isCorrectOpt && isSelected) {
+                            btnClass = "border-green-500 bg-green-50 text-green-800 ring-2 ring-green-200 font-bold";
+                            boxClass = "border-green-600 bg-green-600 text-white";
+                            statusBadge = '<i class="fa-solid fa-circle-check text-green-600 text-xl"></i>';
+                        } else if (isCorrectOpt && !isSelected) {
+                            btnClass = "border-green-400 border-dashed bg-green-50/40 text-green-800 font-semibold";
+                            boxClass = "border-green-500 bg-white text-transparent";
+                            statusBadge = '<span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Đáp án đúng (thiếu)</span>';
+                        } else if (!isCorrectOpt && isSelected) {
+                            btnClass = "border-red-500 bg-red-50 text-red-800 ring-2 ring-red-200 font-bold line-through opacity-85";
+                            boxClass = "border-red-500 bg-red-500 text-white";
+                            statusBadge = '<i class="fa-solid fa-circle-xmark text-red-600 text-xl"></i>';
+                        }
+
+                        questionHTML += `
+                            <div class="flex items-center justify-between gap-3 text-left py-3 px-4 border rounded-xl ${btnClass}">
+                                <div class="flex items-center gap-3">
+                                    <span class="w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 ${boxClass}">
+                                        <i class="fa-solid fa-check text-[11px]"></i>
+                                    </span>
+                                    <span>${opt}</span>
+                                </div>
+                                <div class="shrink-0">${statusBadge}</div>
                             </div>
                         `;
                     });
