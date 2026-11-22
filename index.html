@@ -636,8 +636,25 @@
                 </div>
             </div>
 
-            <!-- 3. Khu vực User -->
-            <div class="flex items-center gap-5 justify-end w-auto lg:w-64 shrink-0">
+            
+                <!-- 3. Khu vực User -->
+<div class="flex items-center gap-4 justify-end w-auto shrink-0">
+
+    <!-- 👉 DÁN BƯỚC 1 VÀO ĐÂY 👈 -->
+    <button type="button" onclick="openCountdownModal()" title="Nhấn để chỉnh sửa kỳ thi & ngày thi"
+            class="hidden lg:flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-blue-50/80 hover:bg-blue-100/80 border border-blue-200/80 transition-all cursor-pointer group shrink-0">
+        <span id="countdown-icon-wrap" class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs shadow-sm group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-hourglass-half"></i>
+        </span>
+        <div class="text-left leading-tight pr-1">
+            <span id="countdown-exam-name" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider">Kỳ thi mục tiêu</span>
+            <span id="countdown-days-text" class="block text-xs font-extrabold text-navy">Đang tính...</span>
+        </div>
+        <i class="fa-solid fa-pen text-[10px] text-gray-400 group-hover:text-blue-600 transition-colors"></i>
+    </button>
+
+    
+        
                 <button onclick="showToast('Bạn không có thông báo mới nào!')" class="relative text-gray-500 hover:text-navy transition">
                     <i class="fa-regular fa-bell text-xl"></i>
                     <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -727,7 +744,7 @@
                     </div>
                     <div class="space-y-2">
                         <!-- Facebook -->
-                        <a href="https://www.facebook.com/profile.php?id=61594327412021" target="_blank" rel="noopener noreferrer"
+                        <a href="https://facebook.com/LINK_CUA_BAN" target="_blank" rel="noopener noreferrer"
                            class="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-red-50/70 transition-all group">
                             <svg viewBox="0 0 36 36" class="w-8 h-8 shrink-0 drop-shadow-[0_3px_6px_rgba(24,119,242,0.35)] group-hover:scale-105 transition-transform">
                                 <defs>
@@ -743,7 +760,7 @@
                         </a>
 
                         <!-- Messenger -->
-                        <a href="https://www.facebook.com/profile.php?id=61594327412021" target="_blank" rel="noopener noreferrer"
+                        <a href="https://m.me/LINK_CUA_BAN" target="_blank" rel="noopener noreferrer"
                            class="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-red-50/70 transition-all group">
                             <svg viewBox="0 0 36 36" class="w-8 h-8 shrink-0 drop-shadow-[0_3px_6px_rgba(160,51,255,0.35)] group-hover:scale-105 transition-transform">
                                 <defs>
@@ -761,7 +778,7 @@
                         </a>
 
                         <!-- Youtube -->
-                        <a href="http://www.youtube.com/@VLCM-V%C6%AF%E1%BB%A2TL%C3%8ANCH%C3%8DNHM%C3%8CNH" target="_blank" rel="noopener noreferrer"
+                        <a href="https://youtube.com/@LINK_CUA_BAN" target="_blank" rel="noopener noreferrer"
                            class="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-red-50/70 transition-all group">
                             <svg viewBox="0 0 36 36" class="w-8 h-8 shrink-0 drop-shadow-[0_3px_6px_rgba(230,0,0,0.35)] group-hover:scale-105 transition-transform">
                                 <defs>
@@ -1150,6 +1167,44 @@
                         <button onclick="submitExam()" class="w-full bg-[#b91c1c] hover:bg-red-800 text-white font-bold py-2.5 rounded-lg transition-colors">Nộp bài</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- ================= MODAL CÀI ĐẶT ĐẾM NGƯỢC NGÀY THI ================= -->
+    <div id="modal-countdown" onclick="if(event.target === this) closeCountdownModal()" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 border border-gray-100 animate-view">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <i class="fa-solid fa-calendar-day"></i>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-navy">Đếm ngược ngày thi</h3>
+                </div>
+                <button type="button" onclick="closeCountdownModal()" class="text-gray-400 hover:text-gray-600 w-8 h-8 rounded-lg hover:bg-gray-100 flex items-center justify-center cursor-pointer">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label for="input-countdown-name" class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Tên kỳ thi</label>
+                    <input id="input-countdown-name" type="text" maxlength="24" placeholder="VD: TSA Đợt 1, Thi THPT..."
+                           class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm font-medium text-gray-800">
+                </div>
+                <div>
+                    <label for="input-countdown-date" class="block text-xs font-bold text-gray-600 uppercase mb-1.5">Ngày thi mục tiêu</label>
+                    <input id="input-countdown-date" type="date"
+                           class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm font-medium text-gray-800">
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button type="button" onclick="closeCountdownModal()" class="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl transition-colors text-sm cursor-pointer">
+                    Hủy
+                </button>
+                <button type="button" onclick="saveCountdownSettings()" class="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors text-sm cursor-pointer">
+                    Lưu mục tiêu
+                </button>
             </div>
         </div>
     </div>
@@ -3098,6 +3153,89 @@ function toggleExplanation(index) {
             }
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
+        // --- HỆ THỐNG ĐẾM NGƯỢC NGÀY THI ---
+        const DEFAULT_COUNTDOWN = {
+            name: 'Kỳ thi mục tiêu',
+            date: '2027-01-17'
+        };
+
+        function getCountdownData() {
+            try {
+                const saved = JSON.parse(localStorage.getItem('vlcm_exam_countdown'));
+                if (saved && saved.date) return saved;
+            } catch (e) {}
+            return { ...DEFAULT_COUNTDOWN };
+        }
+
+        function renderExamCountdown() {
+            const nameEl = document.getElementById('countdown-exam-name');
+            const daysEl = document.getElementById('countdown-days-text');
+            const iconWrap = document.getElementById('countdown-icon-wrap');
+            if (!nameEl || !daysEl || !iconWrap) return;
+
+            const data = getCountdownData();
+            const [y, m, d] = data.date.split('-').map(Number);
+            const targetDate = new Date(y, m - 1, d);
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const diffDays = Math.round((targetDate - today) / (1000 * 60 * 60 * 24));
+
+            nameEl.textContent = data.name || 'Kỳ thi mục tiêu';
+
+            // Tự động đổi màu theo mức độ gấp rút
+            iconWrap.className = 'w-7 h-7 rounded-full text-white flex items-center justify-center text-xs shadow-sm group-hover:scale-105 transition-transform';
+
+            if (diffDays > 0) {
+                daysEl.textContent = `Còn ${diffDays} ngày`;
+                if (diffDays <= 7) {
+                    iconWrap.classList.add('bg-red-600', 'animate-pulse');
+                    daysEl.className = 'block text-xs font-extrabold text-red-600';
+                } else if (diffDays <= 30) {
+                    iconWrap.classList.add('bg-orange-500');
+                    daysEl.className = 'block text-xs font-extrabold text-orange-600';
+                } else {
+                    iconWrap.classList.add('bg-blue-600');
+                    daysEl.className = 'block text-xs font-extrabold text-navy';
+                }
+            } else if (diffDays === 0) {
+                daysEl.textContent = 'Hôm nay thi! 🔥';
+                iconWrap.classList.add('bg-red-600', 'animate-bounce');
+                daysEl.className = 'block text-xs font-extrabold text-red-600';
+            } else {
+                daysEl.textContent = `Đã qua ${Math.abs(diffDays)} ngày`;
+                iconWrap.classList.add('bg-gray-400');
+                daysEl.className = 'block text-xs font-extrabold text-gray-500';
+            }
+        }
+
+        function openCountdownModal() {
+            const data = getCountdownData();
+            document.getElementById('input-countdown-name').value = data.name || '';
+            document.getElementById('input-countdown-date').value = data.date || '';
+            document.getElementById('modal-countdown').classList.remove('hidden');
+        }
+
+        function closeCountdownModal() {
+            document.getElementById('modal-countdown')?.classList.add('hidden');
+        }
+
+        function saveCountdownSettings() {
+            const name = document.getElementById('input-countdown-name').value.trim() || 'Kỳ thi mục tiêu';
+            const date = document.getElementById('input-countdown-date').value;
+            if (!date) {
+                if (typeof showToast === 'function') showToast('Vui lòng chọn ngày thi mục tiêu!');
+                return;
+            }
+            localStorage.setItem('vlcm_exam_countdown', JSON.stringify({ name, date }));
+            renderExamCountdown();
+            closeCountdownModal();
+            if (typeof showToast === 'function') showToast('⏳ Đã cập nhật ngày thi mục tiêu!');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderExamCountdown();
+            setInterval(renderExamCountdown, 60000);
+        });
     </script>
 </body>
 </html>f
