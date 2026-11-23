@@ -2,11 +2,53 @@
 const examsMeta = [
 
     // =========================================================================
-    // 1. TỔNG ÔN TSA (BÀI TẬP THEO CHUYÊN ĐỀ - Không hiện lẫn ở Thư viện đề)
     // =========================================================================
-    // 👉 Thêm bài tập tổng ôn vào ngay dưới đây (nhớ để category: "review"):
-    // { id: "bt_hamso_01", type: "TSA", category: "review", title: "Bài 1: Tính đơn điệu & Cực trị", questionsCount: 10, time: 20, img: "", isVip: false },
+    // 1. TỔNG ÔN TSA (BÀI TẬP THEO CHUYÊN ĐỀ - category luôn là "review")
+    // =========================================================================
+
+    // --- [CHUYÊN ĐỀ 1] SỐ HỌC (id: bt_sohoc_...) ---
     { id: "bt_sohoc_01", type: "TSA", category: "review", title: "Tổng hợp kiến thức trọng tâm chủ đề Số học (P1)", questionsCount: 30, time: 45, img: "", isVip: false },
+    // { id: "bt_sohoc_02", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 2] HÀM SỐ VÀ ĐỒ THỊ (id: bt_hamso_...) ---
+    // { id: "bt_hamso_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 3] HÌNH HỌC KHÔNG GIAN (id: bt_hhkg_...) ---
+    { id: "bt_hhkg_01", type: "TSA", category: "review", title: "Góc trong không gian (P1)", questionsCount: 30, time: 45, img: "", isVip: false },
+    // { id: "bt_hhkg_02", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 4] MỘT SỐ YẾU TỐ THỐNG KÊ (id: bt_thongke_...) ---
+    // { id: "bt_thongke_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 5] NGUYÊN HÀM - TÍCH PHÂN (id: bt_tichphan_...) ---
+    // { id: "bt_tichphan_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 6] PHƯƠNG TRÌNH - BẤT PHƯƠNG TRÌNH - HỆ BPT (id: bt_ptbpt_...) ---
+    // { id: "bt_ptbpt_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 7] ĐẠI SỐ TỔ HỢP (id: bt_tohop_...) ---
+    // { id: "bt_tohop_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 8] LƯỢNG GIÁC (id: bt_luonggiac_...) ---
+    // { id: "bt_luonggiac_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 9] DÃY SỐ - CSC - CSN - ĐẠO HÀM - GIỚI HẠN (id: bt_dayso_...) ---
+    // { id: "bt_dayso_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 10] LŨY THỪA, MŨ VÀ LOGARIT (id: bt_mulog_...) ---
+    // { id: "bt_mulog_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 11] MỘT SỐ YẾU TỐ XÁC SUẤT (id: bt_xacsuat_...) ---
+    // { id: "bt_xacsuat_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [CHUYÊN ĐỀ 12] PHƯƠNG PHÁP TỌA ĐỘ TRONG KHÔNG GIAN OXYZ (id: bt_oxyz_...) ---
+    // { id: "bt_oxyz_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+
+    // --- [TỔNG ÔN] TƯ DUY ĐỌC HIỂU (id: bt_dochieu_...) ---
+    // { id: "bt_dochieu_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 20, time: 30, img: "", isVip: false },
+
+    // --- [TỔNG ÔN] TƯ DUY KHOA HỌC (id: bt_khoahoc_...) ---
+    // { id: "bt_khoahoc_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 20, time: 30, img: "", isVip: false },
     // =========================================================================
     // 2. THƯ VIỆN ĐỀ THI TSA (ĐẠI HỌC BÁCH KHOA HÀ NỘI)
     // =========================================================================
@@ -2235,6 +2277,223 @@ const allExamsData = {
         content: "Tổng các số tự nhiên khác $0$ là $a_1, a_2, \\dots, a_{49}$ bằng $999$. Ước số chung lớn nhất của chúng nhận giá trị lớn nhất bằng ________.",
         correctAnswer: "9",
         explanation: "Đặt $d = \\gcd(a_1, \\dots, a_{49})$ và $a_i = d \\cdot k_i$ ($k_i \\ge 1$). Khi đó $d(k_1 + \\dots + k_{49}) = 999 = 3^3 \\cdot 37$ với $k_1 + \\dots + k_{49} \\ge 49$. Ước nhỏ nhất của $999$ không nhỏ hơn $49$ là $111$, suy ra $d_{\\max} = \\frac{999}{111} = 9$."
+    }
+],
+    "bt_hhkg_01": [
+    {
+        id: 321824, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABC$ có đáy là tam giác đều cạnh $a$, $SA \\perp (ABC)$ và $SA = a\\sqrt{3}$. Gọi $M, N$ lần lượt là trung điểm $AB$ và $SC$. Cosin của góc giữa hai đường thẳng $AN$ và $CM$ bằng bao nhiêu?",
+        options: ["A. $\\frac{\\sqrt{2}}{3}$.", "B. $\\frac{\\sqrt{5}}{5}$.", "C. $\\frac{\\sqrt{3}}{4}$.", "D. $\\frac{1}{2}$."],
+        correctAnswer: "C",
+        explanation: "Gắn hệ trục $Oxyz$ với $A(0;0;0), B(a;0;0), C\\left(\\frac{a}{2};\\frac{a\\sqrt{3}}{2};0\\right), S(0;0;a\\sqrt{3})$. Ta có $M\\left(\\frac{a}{2};0;0\\right), N\\left(\\frac{a}{4};\\frac{a\\sqrt{3}}{4};\\frac{a\\sqrt{3}}{2}\\right)$. Khi đó $|\\overrightarrow{AN}| = a$, $|\\overrightarrow{CM}| = \\frac{a\\sqrt{3}}{2}$, $\\overrightarrow{AN}\\cdot\\overrightarrow{CM} = -\\frac{3a^2}{8} \\Rightarrow \\cos(AN, CM) = \\frac{\\sqrt{3}}{4}$."
+    },
+    {
+        id: 321825, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình chữ nhật $AB = 2a$, $BC = a\\sqrt{2}$, $SA = a$ và $SA \\perp (ABCD)$. Gọi $M$ là trung điểm $SD$. Khi đó, $\\tan\\alpha$ với $\\alpha$ là góc giữa hai đường thẳng $SA$ và $CM$ bằng",
+        options: ["A. $3\\sqrt{2}$.", "B. $2\\sqrt{2}$.", "C. $\\frac{3}{2}$.", "D. $\\sqrt{6}$."],
+        correctAnswer: "A",
+        explanation: "Gọi $H$ là trung điểm $AD$, suy ra $MH \\parallel SA$ và $MH = \\frac{a}{2}$, $MH \\perp (ABCD)$. Góc $\\alpha = (SA, CM) = \\widehat{HMC}$. Ta có $HC = \\sqrt{HD^2 + CD^2} = \\sqrt{\\frac{a^2}{2} + 4a^2} = \\frac{3a}{\\sqrt{2}} \\Rightarrow \\tan\\alpha = \\frac{HC}{MH} = 3\\sqrt{2}$."
+    },
+    {
+        id: 321826, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có tất cả các cạnh đều bằng $a$. Gọi $I$ và $J$ lần lượt là trung điểm của $SC$ và $BC$. Số đo của góc $(IJ, CD)$ bằng",
+        options: ["A. $90^\\circ$.", "B. $45^\\circ$.", "C. $60^\\circ$.", "D. $30^\\circ$."],
+        correctAnswer: "C",
+        explanation: "Ta có $IJ \\parallel SB$ (đường trung bình $\\Delta SBC$) và $CD \\parallel AB \\Rightarrow (IJ, CD) = (SB, AB) = \\widehat{SBA} = 60^\\circ$ (vì $\\Delta SAB$ đều)."
+    },
+    {
+        id: 321827, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABC$ có độ dài các cạnh $SA = SB = SC = AB = AC = a$ và $BC = a\\sqrt{2}$. Góc giữa hai đường thẳng $AB$ và $SC$ bằng",
+        options: ["A. $60^\\circ$.", "B. $90^\\circ$.", "C. $30^\\circ$.", "D. $45^\\circ$."],
+        correctAnswer: "A",
+        explanation: "Ta có $\\Delta SBC$ vuông tại $S$ ($SB^2 + SC^2 = BC^2$) nên $\\overrightarrow{SB}\\cdot\\overrightarrow{SC} = 0$; $\\Delta SAC$ đều nên $\\overrightarrow{SA}\\cdot\\overrightarrow{SC} = \\frac{a^2}{2}$. Suy ra $\\overrightarrow{AB}\\cdot\\overrightarrow{SC} = (\\overrightarrow{SB} - \\overrightarrow{SA})\\cdot\\overrightarrow{SC} = -\\frac{a^2}{2} \\Rightarrow \\cos(AB, SC) = \\frac{1}{2} \\Rightarrow (AB, SC) = 60^\\circ$."
+    },
+    {
+        id: 321828, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình vuông, tam giác $SAB$ vuông tại $S$ và $\\widehat{SBA} = 30^\\circ$. Mặt phẳng $(SAB)$ vuông góc với mặt phẳng đáy. Gọi $M$ là trung điểm của $AB$. Khi đó, cosin góc tạo bởi hai đường thẳng $SM$ và $BD$ bằng",
+        options: ["A. $\\frac{1}{\\sqrt{3}}$.", "B. $\\frac{\\sqrt{2}}{\\sqrt{3}}$.", "C. $\\frac{\\sqrt{26}}{13}$.", "D. $\\frac{\\sqrt{2}}{4}$."],
+        correctAnswer: "D",
+        explanation: "Đặt $AB = 2$, $M$ là trung điểm $AB$ nên $\\Delta SAM$ đều cạnh $1$. Gắn hệ trục với $A(0;0;0), B(2;0;0), D(0;2;0), M(1;0;0), S\\left(\\frac{1}{2};0;\\frac{\\sqrt{3}}{2}\\right)$. Khi đó $\\overrightarrow{MS} = \\left(-\\frac{1}{2};0;\\frac{\\sqrt{3}}{2}\\right)$ ($|\\overrightarrow{MS}| = 1$) và $\\overrightarrow{BD} = (-2;2;0)$ ($|\\overrightarrow{BD}| = 2\\sqrt{2}$). Suy ra $\\cos(SM, BD) = \\frac{1}{2\\sqrt{2}} = \\frac{\\sqrt{2}}{4}$."
+    },
+    {
+        id: 321829, type: "multiple_choice",
+        content: "Cho tứ diện $ABCD$ có $AB = CD = a$. Gọi $M, N$ lần lượt là trung điểm của $AD$ và $BC$. Độ dài đoạn thẳng $MN$ bằng bao nhiêu để góc giữa hai đường thẳng $AB$ và $MN$ bằng $30^\\circ$?",
+        options: ["A. $MN = \\frac{a}{4}$.", "B. $MN = \\frac{a\\sqrt{3}}{3}$.", "C. $MN = \\frac{a\\sqrt{3}}{2}$.", "D. $MN = \\frac{a}{2}$."],
+        correctAnswer: "C",
+        explanation: "Gọi $P$ là trung điểm $AC$, suy ra $PM = PN = \\frac{a}{2}$ và $PN \\parallel AB$. Tam giác $PMN$ cân tại $P$ có $(AB, MN) = \\widehat{PNM} = 30^\\circ \\Rightarrow MN = 2 \\cdot PN \\cos 30^\\circ = \\frac{a\\sqrt{3}}{2}$."
+    },
+    {
+        id: 321830, type: "multiple_choice",
+        content: "Cho hình lăng trụ đứng $ABC.A'B'C'$ có đáy là tam giác vuông tại $A$, $BA = 2AC = 2a$, cạnh bên $AA' = 2a$, $M$ là trung điểm $BC$. Cosin góc giữa hai đường thẳng $B'C$ và $AM$ bằng",
+        options: ["A. $\\frac{1}{5}$.", "B. $\\frac{\\sqrt{5}}{5}$.", "C. $\\frac{\\sqrt{2}}{2}$.", "D. $\\frac{1}{2}$."],
+        correctAnswer: "B",
+        explanation: "Gắn hệ trục $A(0;0;0), B(2;0;0), C(0;1;0), B'(2;0;2), M\\left(1;\\frac{1}{2};0\\right)$. Ta có $\\overrightarrow{B'C} = (-2;1;-2)$ ($|\\overrightarrow{B'C}| = 3$) và $\\overrightarrow{AM} = \\left(1;\\frac{1}{2};0\\right)$ ($|\\overrightarrow{AM}| = \\frac{\\sqrt{5}}{2}$). Suy ra $\\cos(B'C, AM) = \\frac{|-3/2|}{3 \\cdot \\sqrt{5}/2} = \\frac{\\sqrt{5}}{5}$."
+    },
+    {
+        id: 321831, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình vuông $ABCD$ cạnh bằng $a$ và các cạnh bên đều bằng $a$. Gọi $M$ và $N$ lần lượt là trung điểm của $AD$ và $SD$. Số đo của góc $(MN, SC)$ bằng",
+        options: ["A. $30^\\circ$.", "B. $45^\\circ$.", "C. $60^\\circ$.", "D. $90^\\circ$."],
+        correctAnswer: "D",
+        explanation: "Vì $MN \\parallel SA$ nên $(MN, SC) = (SA, SC)$. Trong $\\Delta SAC$ có $SA = SC = a$ và $AC = a\\sqrt{2} \\Rightarrow SA^2 + SC^2 = AC^2 \\Rightarrow SA \\perp SC \\Rightarrow (MN, SC) = 90^\\circ$."
+    },
+    {
+        id: 321832, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thang vuông tại $A$ và $D$, $SA$ vuông góc với mặt phẳng đáy. Biết $AD = DC = a$, $AB = 2a$, $SA = \\frac{2a\\sqrt{3}}{3}$, cosin góc giữa hai đường thẳng $SD$ và $BC$ bằng",
+        options: ["A. $\\frac{1}{\\sqrt{42}}$.", "B. $\\frac{2}{\\sqrt{42}}$.", "C. $\\frac{3}{\\sqrt{42}}$.", "D. $\\frac{4}{\\sqrt{42}}$."],
+        correctAnswer: "C",
+        explanation: "Gắn hệ trục $A(0;0;0), D(0;1;0), C(1;1;0), B(2;0;0), S\\left(0;0;\\frac{2}{\\sqrt{3}}\\right)$. Ta có $\\overrightarrow{SD} = \\left(0;1;-\\frac{2}{\\sqrt{3}}\\right)$ ($|\\overrightarrow{SD}| = \\sqrt{\\frac{7}{3}}$) và $\\overrightarrow{BC} = (-1;1;0)$ ($|\\overrightarrow{BC}| = \\sqrt{2}$). Suy ra $\\cos(SD, BC) = \\frac{1}{\\sqrt{14/3}} = \\frac{3}{\\sqrt{42}}$."
+    },
+    {
+        id: 321833, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông, cạnh bên $SA$ vuông góc với mặt phẳng đáy, $SA = AB = a$. Gọi $M$ là trung điểm của $SB$. Góc giữa $AM$ và $BD$ bằng",
+        options: ["A. $45^\\circ$.", "B. $30^\\circ$.", "C. $90^\\circ$.", "D. $60^\\circ$."],
+        correctAnswer: "D",
+        explanation: "Gắn hệ trục $A(0;0;0), B(1;0;0), D(0;1;0), S(0;0;1), M\\left(\\frac{1}{2};0;\\frac{1}{2}\\right)$. Khi đó $\\overrightarrow{AM} = \\left(\\frac{1}{2};0;\\frac{1}{2}\\right)$ ($|\\overrightarrow{AM}| = \\frac{\\sqrt{2}}{2}$) và $\\overrightarrow{BD} = (-1;1;0)$ ($|\\overrightarrow{BD}| = \\sqrt{2}$). Suy ra $\\cos(AM, BD) = \\frac{|-1/2|}{1} = \\frac{1}{2} \\Rightarrow (AM, BD) = 60^\\circ$."
+    },
+    {
+        id: 321834, type: "drag_drop",
+        content: "Cho tứ diện đều $ABCD$ có độ dài cạnh bằng $a$. Gọi $M, N, P, Q$ lần lượt là trung điểm của $AB, CD, AD, BC$.<br>- Góc giữa $MC$ và $MD$ bằng [1].<br>- Gọi $E$ là trung điểm của $AC$. Góc giữa $QE$ và $PE$ bằng [2].<br><i>(Các kết quả làm tròn đến hàng đơn vị nếu cần)</i>",
+        choices: ["$71^\\circ$", "$30^\\circ$", "$65^\\circ$", "$45^\\circ$", "$90^\\circ$"],
+        correctAnswer: ["$71^\\circ$", "$90^\\circ$"],
+        explanation: "1) $MC = MD = \\frac{a\\sqrt{3}}{2}, CD = a \\Rightarrow \\cos\\widehat{CMD} = \\frac{MC^2 + MD^2 - CD^2}{2\\cdot MC\\cdot MD} = \\frac{1}{3} \\Rightarrow \\widehat{CMD} \\approx 71^\\circ$.\n2) $QE \\parallel AB$ và $PE \\parallel CD$, mà trong tứ diện đều $AB \\perp CD \\Rightarrow (QE, PE) = 90^\\circ$."
+    },
+    {
+        id: 321835, type: "drag_drop",
+        content: "Cho hình chóp $S.ABC$ có $SA = SB = SC = AB = a$; $AC = a\\sqrt{2}$ và $BC = a\\sqrt{3}$.<br>- $\\Delta SAC$ [1] tại $S$.<br>- $\\Delta ABC$ [2] tại $A$.<br>- Cosin góc giữa hai đường thẳng $SC$ và $AB$ bằng [3].",
+        choices: ["$\\frac{1}{2}$", "vuông", "cân", "$\\frac{\\sqrt{3}}{3}$", "$\\frac{\\sqrt{3}}{2}$", "vuông cân"],
+        correctAnswer: ["vuông cân", "vuông", "$\\frac{1}{2}$"],
+        explanation: "1) $SA = SC = a, AC = a\\sqrt{2} \\Rightarrow \\Delta SAC$ vuông cân tại $S$.\n2) $AB^2 + AC^2 = a^2 + 2a^2 = 3a^2 = BC^2 \\Rightarrow \\Delta ABC$ vuông tại $A$.\n3) Trong $\\Delta SBC$ có $\\cos\\widehat{BSC} = \\frac{a^2 + a^2 - 3a^2}{2a^2} = -\\frac{1}{2}$. Khi đó $\\overrightarrow{SC}\\cdot\\overrightarrow{AB} = \\overrightarrow{SC}\\cdot(\\overrightarrow{SB} - \\overrightarrow{SA}) = -\\frac{a^2}{2} - 0 = -\\frac{a^2}{2} \\Rightarrow \\cos(SC, AB) = \\frac{1}{2}$."
+    },
+    {
+        id: 321836, type: "drag_drop",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật có $AB = a$, $AD = a\\sqrt{2}$, $SA \\perp AB$, $SA \\perp AD$, $SA \\perp AC$ và $SA = 2a$. Gọi $I$ là trung điểm của $CD$.<br>- Cosin góc giữa hai đường thẳng $CD$ và $SD$ bằng [1].<br>- Cosin góc giữa hai đường thẳng $SB$ và $AI$ bằng [2].",
+        choices: ["$\\frac{\\sqrt{3}}{5}$", "$\\frac{1}{2}$", "$0$", "$\\frac{1}{3\\sqrt{5}}$"],
+        correctAnswer: ["$0$", "$\\frac{1}{3\\sqrt{5}}$"],
+        explanation: "1) Vì $CD \\perp AD$ và $CD \\perp SA \\Rightarrow CD \\perp (SAD) \\Rightarrow CD \\perp SD \\Rightarrow \\cos(CD, SD) = 0$.\n2) Gắn hệ trục $A(0;0;0), B(1;0;0), I\\left(\\frac{1}{2};\\sqrt{2};0\\right), S(0;0;2)$. Ta có $\\overrightarrow{SB} = (1;0;-2)$ ($|\\overrightarrow{SB}| = \\sqrt{5}$), $\\overrightarrow{AI} = \\left(\\frac{1}{2};\\sqrt{2};0\\right)$ ($|\\overrightarrow{AI}| = \\frac{3}{2}$) $\\Rightarrow \\cos(SB, AI) = \\frac{1/2}{\\frac{3\\sqrt{5}}{2}} = \\frac{1}{3\\sqrt{5}}$."
+    },
+    {
+        id: 321837, type: "drag_drop",
+        content: "Cho hình hộp thoi $ABCD.A'B'C'D'$ có tất cả các cạnh bằng $a$ và $\\widehat{ABC} = \\widehat{B'BA} = \\widehat{B'BC} = 60^\\circ$.<br>- Góc giữa đường thẳng $AB$ và $B'C$ bằng [1].<br>- Tứ giác $A'B'CD$ là [2]. <i>(Chọn ô vuông đúng nhất)</i>",
+        choices: ["$120^\\circ$", "hình thoi", "$60^\\circ$", "$90^\\circ$", "hình chữ nhật", "hình vuông"],
+        correctAnswer: ["$90^\\circ$", "hình vuông"],
+        explanation: "1) $\\overrightarrow{BA}\\cdot\\overrightarrow{B'C} = \\overrightarrow{BA}\\cdot(\\overrightarrow{BC} - \\overrightarrow{BB'}) = a^2\\cos 60^\\circ - a^2\\cos 60^\\circ = 0 \\Rightarrow (AB, B'C) = 90^\\circ$.\n2) Tứ giác $A'B'CD$ là hình bình hành có $A'B' = B'C = a$ (do $\\Delta B'BC$ đều) và $B'C \\perp A'B'$ nên là hình vuông."
+    },
+    {
+        id: 321838, type: "drag_drop",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông tâm $O$, cạnh bằng $a$; $SA$ vuông góc với đáy và $SA = a\\sqrt{3}$.<br>- Sin góc giữa hai đường thẳng $SO$ và $CD$ bằng [1].<br>- Cosin góc giữa $SB$ và $AC$ bằng [2].",
+        choices: ["$\\frac{\\sqrt{182}}{14}$", "$\\frac{\\sqrt{14}}{14}$", "$\\frac{\\sqrt{2}}{4}$", "$\\frac{\\sqrt{6}}{12}$", "$\\frac{\\sqrt{3}}{4}$"],
+        correctAnswer: ["$\\frac{\\sqrt{182}}{14}$", "$\\frac{\\sqrt{2}}{4}$"],
+        explanation: "Gắn hệ trục $A(0;0;0), B(1;0;0), C(1;1;0), D(0;1;0), O\\left(\\frac{1}{2};\\frac{1}{2};0\\right), S(0;0;\\sqrt{3})$.\n1) $\\cos(SO, CD) = \\frac{1/2}{\\sqrt{7/2}} = \\frac{1}{\\sqrt{14}} \\Rightarrow \\sin(SO, CD) = \\sqrt{\\frac{13}{14}} = \\frac{\\sqrt{182}}{14}$.\n2) $\\overrightarrow{SB} = (1;0;-\\sqrt{3})$ ($|\\overrightarrow{SB}| = 2$), $\\overrightarrow{AC} = (1;1;0)$ ($|\\overrightarrow{AC}| = \\sqrt{2}$) $\\Rightarrow \\cos(SB, AC) = \\frac{1}{2\\sqrt{2}} = \\frac{\\sqrt{2}}{4}$."
+    },
+    {
+        id: 321839, type: "true_false",
+        content: "Cho tứ diện đều $ABCD$, cạnh có độ dài bằng $a$. Gọi $O$ là tâm đường tròn ngoại tiếp $\\Delta BCD$. Gọi $M$ là trung điểm của $CD$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "$BO \\perp CD$.",
+            "Góc giữa $AC$ và $BM$ không vượt quá $70^\\circ$."
+        ],
+        correctAnswer: { "0": "true", "1": "false" },
+        explanation: "a) Trong tam giác đều $BCD$, tâm $O$ nằm trên đường cao $BM \\Rightarrow BO \\perp CD$ (Đúng).\nb) Gọi $N$ là trung điểm $AD$, ta có $MN \\parallel AC$, $MN = \\frac{a}{2}$, $BM = BN = \\frac{a\\sqrt{3}}{2}$. Khi đó $\\cos\\widehat{BMN} = \\frac{MN}{2\\cdot BM} = \\frac{\\sqrt{3}}{6} \\Rightarrow (AC, BM) \\approx 73,2^\\circ > 70^\\circ$ (Sai)."
+    },
+    {
+        id: 321840, type: "true_false",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình chữ nhật có $AB = a$, $AD = a\\sqrt{2}$, $SA \\perp (ABCD)$ và $SA = 2a$. Gọi $I$ là trung điểm của $CD$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Cosin góc giữa hai đường thẳng $BC$ và $SD$ bằng $\\frac{1}{3\\sqrt{5}}$.",
+            "Cosin góc giữa hai đường thẳng $SB$ và $AI$ bằng $\\frac{1}{\\sqrt{3}}$."
+        ],
+        correctAnswer: { "0": "false", "1": "false" },
+        explanation: "a) $BC \\parallel AD \\Rightarrow \\cos(BC, SD) = \\cos\\widehat{SDA} = \\frac{AD}{SD} = \\frac{a\\sqrt{2}}{a\\sqrt{6}} = \\frac{1}{\\sqrt{3}}$ (Sai).\nb) Theo tính toán ở Câu 13, $\\cos(SB, AI) = \\frac{1}{3\\sqrt{5}}$ (Sai)."
+    },
+    {
+        id: 321841, type: "true_false",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình thang vuông tại $A$ và $B$ có $AD = 2AB = 2BC = 2a$ và $SA \\perp (ABCD)$. Biết rằng $SC$ tạo với đáy một góc $60^\\circ$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Cosin góc giữa $BC$ và $SD$ bằng $\\frac{3}{5}$.",
+            "Sin góc tạo bởi $AI$ và $SD$ (với $I$ là trung điểm $CD$) bằng $\\frac{4}{5}$."
+        ],
+        correctAnswer: { "0": "false", "1": "true" },
+        explanation: "Ta có $AC = a\\sqrt{2} \\Rightarrow SA = AC\\tan 60^\\circ = a\\sqrt{6}$, $SD = \\sqrt{SA^2 + AD^2} = a\\sqrt{10}$.\na) $BC \\parallel AD \\Rightarrow \\cos(BC, SD) = \\frac{AD}{SD} = \\frac{2}{\\sqrt{10}} = \\frac{\\sqrt{10}}{5}$ (Sai).\nb) Gắn hệ trục $A(0;0;0), D(0;2;0), I\\left(\\frac{1}{2};\\frac{3}{2};0\\right), S(0;0;\\sqrt{6})$. Ta có $\\cos(AI, SD) = \\frac{3}{5} \\Rightarrow \\sin(AI, SD) = \\frac{4}{5}$ (Đúng)."
+    },
+    {
+        id: 321842, type: "true_false",
+        content: "Cho hình lăng trụ $ABC.A'B'C'$ có đáy là tam giác đều cạnh $a$, hình chiếu của điểm $A'$ xuống mặt đáy $(ABC)$ trùng với trung điểm của $BC$. Biết cạnh bên tạo với mặt đáy một góc $60^\\circ$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Tan góc tạo bởi $B'C'$ và $A'C$ bằng $3$.",
+            "Cosin góc tạo bởi $CC'$ và $AB$ bằng $\\frac{\\sqrt{13}}{4}$."
+        ],
+        correctAnswer: { "0": "true", "1": "false" },
+        explanation: "Gọi $H$ là trung điểm $BC$. Ta có $AH = \\frac{a\\sqrt{3}}{2}$, $\\widehat{A'AH} = 60^\\circ \\Rightarrow A'H = \\frac{3a}{2}$, $AA' = a\\sqrt{3}$.\na) $B'C' \\parallel BC \\Rightarrow \\tan(B'C', A'C) = \\tan\\widehat{A'CH} = \\frac{A'H}{HC} = \\frac{3a/2}{a/2} = 3$ (Đúng).\nb) $CC' \\parallel AA' \\Rightarrow \\cos(CC', AB) = \\cos\\widehat{A'AB} = \\frac{AA'^2 + AB^2 - A'B^2}{2\\cdot AA'\\cdot AB} = \\frac{\\sqrt{3}}{4}$ (Sai)."
+    },
+    {
+        id: 321843, type: "true_false",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình thoi cạnh $a$, $\\widehat{ABC} = 60^\\circ$. Tam giác $SAB$ cân tại $S$ và thuộc mặt phẳng vuông góc với đáy. Biết rằng $SC$ tạo với đáy một góc $30^\\circ$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Cosin góc giữa $BC$ và $SD$ bằng $\\frac{5\\sqrt{2}}{8}$.",
+            "Cosin góc tạo bởi $DH$ và $SC$ (với $H$ là chân đường cao hạ từ $S$ xuống mặt đáy $(ABCD)$) bằng $\\frac{3\\sqrt{17}}{14}$."
+        ],
+        correctAnswer: { "0": "true", "1": "false" },
+        explanation: "$H$ là trung điểm $AB \\Rightarrow CH = \\frac{a\\sqrt{3}}{2}, SH = CH\\tan 30^\\circ = \\frac{a}{2}$. Gắn hệ trục gốc $H$: $B\\left(\\frac{1}{2};0;0\\right), C\\left(0;\\frac{\\sqrt{3}}{2};0\\right), D\\left(-1;\\frac{\\sqrt{3}}{2};0\\right), S\\left(0;0;\\frac{1}{2}\\right)$.\na) $\\cos(BC, SD) = \\frac{5/4}{\\sqrt{2}} = \\frac{5\\sqrt{2}}{8}$ (Đúng).\nb) $\\cos(DH, SC) = \\frac{3/4}{\\frac{\\sqrt{7}}{2} \\cdot 1} = \\frac{3\\sqrt{7}}{14}$ (Sai)."
+    },
+    {
+        id: 321844, type: "fill_blank",
+        content: "Cho hình chóp $S.ABC$ có $SA = SB = SC = AB = a$, $AC = a\\sqrt{2}$ và $BC = a\\sqrt{3}$. Khi đó, cosin góc giữa hai đường thẳng $SC$ và $AB$ bằng ________. <i>(Điền phân số tối giản a/b)</i>",
+        correctAnswer: "1/2",
+        explanation: "Tương tự Câu 12: $\\overrightarrow{SC}\\cdot\\overrightarrow{SA} = 0$ và $\\overrightarrow{SC}\\cdot\\overrightarrow{SB} = -\\frac{a^2}{2} \\Rightarrow \\cos(SC, AB) = \\frac{|-a^2/2|}{a^2} = \\frac{1}{2}$."
+    },
+    {
+        id: 321845, type: "fill_blank",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình vuông $ABCD$ cạnh $2a$, $SA \\perp (ABCD)$ và $SB = a\\sqrt{5}$. Gọi $M$ là trung điểm $AB$ và $N$ là trung điểm $BC$. Khi đó, cosin góc giữa hai đường thẳng $SM$ và $DN$ bằng ________. <i>(Kết quả làm tròn đến hàng phần mười)</i>",
+        correctAnswer: "0,6",
+        explanation: "Ta có $SA = \\sqrt{SB^2 - AB^2} = a$. Gắn hệ trục $A(0;0;0), D(0;2;0), S(0;0;1), M(1;0;0), N(2;1;0)$. Khi đó $\\overrightarrow{SM} = (1;0;-1)$, $\\overrightarrow{DN} = (2;-1;0) \\Rightarrow \\cos(SM, DN) = \\frac{2}{\\sqrt{2}\\cdot\\sqrt{5}} = \\frac{\\sqrt{10}}{5} \\approx 0,6$."
+    },
+    {
+        id: 321846, type: "fill_blank",
+        content: "Cho tứ diện $ABCD$ có $AB$ vuông góc với mặt phẳng $(BCD)$. Biết tam giác $BCD$ vuông tại $C$ và $AB = \\frac{a\\sqrt{6}}{2}$, $AC = a\\sqrt{2}$, $CD = a$. Gọi $E$ là trung điểm của $AC$. Góc giữa hai đường thẳng $AB$ và $DE$ bằng ________ độ.",
+        correctAnswer: "60",
+        explanation: "Gọi $F$ là trung điểm $BC$, suy ra $EF \\parallel AB$, $EF = \\frac{a\\sqrt{6}}{4}$ và $EF \\perp (BCD)$. Ta có $BC = \\sqrt{AC^2 - AB^2} = \\frac{a\\sqrt{2}}{2} \\Rightarrow CF = \\frac{a\\sqrt{2}}{4} \\Rightarrow DF = \\sqrt{CD^2 + CF^2} = \\frac{3a\\sqrt{2}}{4}$. Suy ra $\\tan\\widehat{DEF} = \\frac{DF}{EF} = \\sqrt{3} \\Rightarrow (AB, DE) = 60^\\circ$."
+    },
+    {
+        id: 321847, type: "fill_blank",
+        content: "Cho tứ diện $ABCD$ có $AB$ vuông góc với mặt phẳng $(BCD)$. Biết tam giác $BCD$ vuông tại $C$ và $AB = \\frac{a\\sqrt{6}}{2}$, $AC = a\\sqrt{2}$, $CD = a$. Gọi $E$ là trung điểm của $AD$. Góc giữa hai đường thẳng $AB$ và $CE$ bằng ________ độ.",
+        correctAnswer: "45",
+        explanation: "Gọi $K$ là trung điểm $BD$, suy ra $EK \\parallel AB$, $EK = \\frac{a\\sqrt{6}}{4}$ và $EK \\perp (BCD)$. Ta có $BD = \\sqrt{BC^2 + CD^2} = \\frac{a\\sqrt{6}}{2} \\Rightarrow CK = \\frac{BD}{2} = \\frac{a\\sqrt{6}}{4} = EK \\Rightarrow \\Delta EKC$ vuông cân tại $K \\Rightarrow (AB, CE) = \\widehat{CEK} = 45^\\circ$."
+    },
+    {
+        id: 321848, type: "fill_blank",
+        content: "Cho hình lăng trụ tam giác đều $ABC.A'B'C'$ có $AB = a$ và $AA' = a\\sqrt{2}$. Góc giữa hai đường thẳng $AB'$ và $BC'$ bằng ________ độ.",
+        correctAnswer: "60",
+        explanation: "Ta có $AB' = BC' = \\sqrt{a^2 + 2a^2} = a\\sqrt{3}$. Tính tích vô hướng $\\overrightarrow{AB'}\\cdot\\overrightarrow{BC'} = (\\overrightarrow{AB} + \\overrightarrow{BB'})\\cdot(\\overrightarrow{BC} + \\overrightarrow{CC'}) = -\\frac{a^2}{2} + 2a^2 = \\frac{3a^2}{2}$. Suy ra $\\cos(AB', BC') = \\frac{3a^2/2}{3a^2} = \\frac{1}{2} \\Rightarrow (AB', BC') = 60^\\circ$."
+    },
+    {
+        id: 321849, type: "fill_blank",
+        content: "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB = AD = \\sqrt{2}$, $AA' = 2$. Khi đó, cosin góc giữa hai đường thẳng $AB'$ và $CD'$ bằng ________. <i>(Điền phân số tối giản a/b)</i>",
+        correctAnswer: "1/3",
+        explanation: "Ta có $AB' \\parallel DC' \\Rightarrow (AB', CD') = (DC', CD')$. Trong hình chữ nhật $CDD'C'$ có $CD = \\sqrt{2}, CC' = 2 \\Rightarrow DC' = CD' = \\sqrt{6}$. Gọi $O$ là tâm $CDD'C'$, áp dụng định lí cosin cho $\\Delta OCD$: $\\cos\\widehat{COD} = \\frac{3/2 + 3/2 - 2}{2 \\cdot 3/2} = \\frac{1}{3}$."
+    },
+    {
+        id: 321850, type: "fill_blank",
+        content: "Cho lăng trụ đều $ABC.A'B'C'$ có tất cả các cạnh bằng $a$. Gọi $M, N$ lần lượt là trung điểm của các cạnh $AB, B'C'$. Gọi $\\alpha$ là góc giữa hai đường thẳng $AC$ và $MN$. Khi đó, $\\tan\\alpha$ bằng ________.",
+        correctAnswer: "2",
+        explanation: "Gắn hệ trục $A(0;0;0), B(1;0;0), C\\left(\\frac{1}{2};\\frac{\\sqrt{3}}{2};0\\right), M\\left(\\frac{1}{2};0;0\\right), N\\left(\\frac{3}{4};\\frac{\\sqrt{3}}{4};1\\right)$. Ta có $|\\overrightarrow{AC}| = 1$, $|\\overrightarrow{MN}| = \\frac{\\sqrt{5}}{2}$, $\\overrightarrow{AC}\\cdot\\overrightarrow{MN} = \\frac{1}{2} \\Rightarrow \\cos\\alpha = \\frac{1}{\\sqrt{5}} \\Rightarrow \\tan\\alpha = 2$."
+    },
+    {
+        id: 321851, type: "fill_blank",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh $a$, $SA \\perp (ABCD)$ và $SA = a\\sqrt{3}$. Gọi $G_1, G_2$ lần lượt là trọng tâm $\\Delta BCD$ và $\\Delta SCD$. Góc giữa hai đường thẳng $CD$ và $G_1G_2$ bằng ________ độ.",
+        correctAnswer: "60",
+        explanation: "Vì $G_1, G_2$ là trọng tâm $\\Delta BCD$ và $\\Delta SCD$ nên $G_1G_2 \\parallel BS$. Lại có $CD \\parallel AB \\Rightarrow (CD, G_1G_2) = (AB, BS) = \\widehat{SBA}$. Do $\\tan\\widehat{SBA} = \\frac{SA}{AB} = \\sqrt{3}$ nên góc cần tìm bằng $60^\\circ$."
+    },
+    {
+        id: 321852, type: "fill_blank",
+        content: "Cho hình lăng trụ tam giác đều $ABC.A'B'C'$ cạnh đáy bằng $a$, cạnh bên có độ dài $a\\sqrt{2}$. Góc giữa hai đường thẳng $AB'$ và $BC'$ bằng ________ độ.",
+        correctAnswer: "60",
+        explanation: "Ta có $\\overrightarrow{AB'}\\cdot\\overrightarrow{BC'} = (\\overrightarrow{AB} + \\overrightarrow{BB'})\\cdot(\\overrightarrow{BC} + \\overrightarrow{BB'}) = a^2\\cos 120^\\circ + 2a^2 = \\frac{3a^2}{2}$. Vì $AB' = BC' = a\\sqrt{3}$ nên $\\cos(AB', BC') = \\frac{1}{2} \\Rightarrow (AB', BC') = 60^\\circ$."
+    },
+    {
+        id: 321853, type: "fill_blank",
+        content: "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông cân tại $C$. Tam giác $SAB$ vuông cân tại $S$ và $\\widehat{BSC} = 60^\\circ$. Gọi $M$ là trung điểm cạnh $SB$, $\\varphi$ là góc giữa đường thẳng $AB$ và $CM$. Biết $\\cos\\varphi = \\frac{\\sqrt{a}}{b}$ ($a, b \\in \\mathbb{N}^*$). Khi đó, $a - b =$ ________.",
+        correctAnswer: "0",
+        explanation: "Đặt $AB = 2 \\Rightarrow SA = SB = CA = CB = \\sqrt{2}$. Vì $\\widehat{BSC} = 60^\\circ$ nên $\\Delta SBC$ đều $\\Rightarrow SC = \\sqrt{2}$ và $CM = \\frac{\\sqrt{6}}{2}$, đồng thời $\\Delta SAC$ cũng đều. Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{CM} = (\\overrightarrow{SB} - \\overrightarrow{SA})\\cdot\\left(\\frac{1}{2}\\overrightarrow{SB} - \\overrightarrow{SC}\\right) = 1 - 1 - 0 + 1 = 1 \\Rightarrow \\cos\\varphi = \\frac{1}{2 \\cdot \\frac{\\sqrt{6}}{2}} = \\frac{\\sqrt{6}}{6}$. Vậy $a = 6, b = 6 \\Rightarrow a - b = 0$."
     }
 ],
     
