@@ -482,6 +482,158 @@
                 pointer-events: none;
             }
         }
+  /* === THEME SIDEBAR 2: XANH NAVY ĐẬM CAO CẤP === */
+        #main-sidebar {
+            background: linear-gradient(180deg, #0f2447 0%, #173463 100%) !important;
+            border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        #main-sidebar .nav-item {
+            color: #cbd5e1 !important;
+        }
+        #main-sidebar .nav-item i {
+            color: #94a3b8 !important;
+        }
+        #main-sidebar #btn-practice-menu svg {
+            color: #60a5fa !important;
+        }
+        #main-sidebar .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+        }
+        #main-sidebar .nav-item.active {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
+            color: #ffffff !important;
+            border: none !important;
+            box-shadow: 0 6px 16px -3px rgba(37, 99, 235, 0.5);
+        }
+        #main-sidebar .nav-item.active i,
+        #main-sidebar .nav-item.active svg {
+            color: #ffffff !important;
+        }
+        #main-sidebar #practice-submenu {
+            border-left-color: rgba(255, 255, 255, 0.16) !important;
+        }
+        #main-sidebar .border-t {
+            border-top-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        /* Khối Chuỗi học tập dạng kính mờ */
+        #main-sidebar .from-orange-50 {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(239, 68, 68, 0.15)) !important;
+            border-color: rgba(251, 146, 60, 0.35) !important;
+        }
+        #main-sidebar .from-orange-50 .bg-white {
+            background-color: rgba(255, 255, 255, 0.14) !important;
+        }
+        #main-sidebar .text-orange-800 {
+            color: #fed7aa !important;
+        }
+        #main-sidebar .text-orange-600 {
+            color: #fb923c !important;
+        }
+        /* Phần Liên kết */
+        #main-sidebar .text-custom-red {
+            color: #e2e8f0 !important;
+        }
+        #main-sidebar a[target="_blank"]:hover {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        /* === ĐỒNG BỘ DARK NAVY CHO HEADER & TRANG CHỦ === */
+        #app-container {
+            background-color: #0b182e !important;
+        }
+
+        /* 1. Header xanh đậm */
+        #app-container > header {
+            background-color: #0f2447 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        #app-container > header #global-search-input {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.14) !important;
+            color: #ffffff !important;
+        }
+        #app-container > header #global-search-input::placeholder {
+            color: #94a3b8 !important;
+        }
+        #app-container > header #display-user-name,
+        #app-container > header #countdown-days-text {
+            color: #f8fafc !important;
+        }
+        #app-container > header #countdown-exam-name {
+            color: #93c5fd !important;
+        }
+        #app-container > header button[onclick="openCountdownModal()"] {
+            background-color: rgba(37, 99, 235, 0.22) !important;
+            border-color: rgba(96, 165, 250, 0.35) !important;
+        }
+        #app-container > header .text-gray-500 {
+            color: #cbd5e1 !important;
+        }
+
+        /* 2. Nền chính xanh đậm đồng bộ với Sidebar */
+        #app-container main.bg-study-depth {
+            background: linear-gradient(135deg, #0b182e 0%, #102548 50%, #0d1e3b 100%) !important;
+        }
+        #app-container main.bg-study-depth::before {
+            background-image: radial-gradient(rgba(147, 197, 253, 0.16) 1.5px, transparent 1.5px) !important;
+        }
+        #app-container main.bg-study-depth::after {
+            background: radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.18) 0%, transparent 70%) !important;
+        }
+
+        /* 3. Khung chào mừng (Banner) */
+        #app-container .banner-welcome-depth {
+            background: linear-gradient(120deg, #16305c 0%, #1e3f78 55%, #142a52 100%) !important;
+            border-color: rgba(96, 165, 250, 0.28) !important;
+        }
+        #app-container .banner-welcome-depth::before {
+            background-image: radial-gradient(rgba(191, 219, 254, 0.18) 1.4px, transparent 1.4px) !important;
+        }
+
+        /* 4. Chữ tiêu đề & mô tả trên nền tối */
+        #app-container main .text-navy,
+        #app-container main .text-gray-800 {
+            color: #f8fafc !important;
+        }
+        #app-container main .text-gray-500,
+        #app-container main .text-gray-600 {
+            color: #94a3b8 !important;
+        }
+
+        /* 5. Các thẻ phòng luyện, thẻ đề thi & bảng xếp hạng */
+        #app-container main .bg-white {
+            background-color: #152a4e !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        #app-container main .bg-white:hover {
+            border-color: rgba(96, 165, 250, 0.45) !important;
+        }
+        /* Làm dịu phần nền màu phía trên 4 thẻ Trang chủ */
+        #view-home .bg-purple-50 { background-color: rgba(147, 51, 234, 0.18) !important; }
+        #view-home .text-purple-900, #view-home .text-purple-700 { color: #d8b4fe !important; }
+        #view-home .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.18) !important; }
+        #view-home .text-emerald-900, #view-home .text-emerald-700 { color: #6ee7b7 !important; }
+        #view-home .bg-blue-50 { background-color: rgba(59, 130, 246, 0.18) !important; }
+        #view-home .text-blue-900, #view-home .text-blue-800 { color: #93c5fd !important; }
+        #view-home .bg-orange-50 { background-color: rgba(249, 115, 22, 0.18) !important; }
+        #view-home .text-orange-900 { color: #fdba74 !important; }
+
+        /* Khối Tổng ôn TSA trên Trang chủ */
+        #view-home .from-rose-50 {
+            background: linear-gradient(120deg, rgba(225, 29, 72, 0.22), #152a4e 55%, rgba(147, 51, 234, 0.22)) !important;
+            border-color: rgba(244, 63, 94, 0.35) !important;
+        }
+
+        /* Bảng Vàng Nỗ Lực */
+        #streak-leaderboard-list {
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        #streak-leaderboard-list > li {
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        #streak-leaderboard-list > li:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden relative">
