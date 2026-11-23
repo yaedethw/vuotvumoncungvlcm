@@ -15,7 +15,7 @@ const examsMeta = [
 
     // --- [CHUYÊN ĐỀ 3] HÌNH HỌC KHÔNG GIAN (id: bt_hhkg_...) ---
     { id: "bt_hhkg_01", type: "TSA", category: "review", title: "Góc trong không gian (P1)", questionsCount: 30, time: 45, img: "", isVip: false },
-    // { id: "bt_hhkg_02", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
+    { id: "bt_hhkg_02", type: "TSA", category: "review", title: "Góc trong không gian (P2)", questionsCount: 30, time: 45, img: "", isVip: false },
 
     // --- [CHUYÊN ĐỀ 4] MỘT SỐ YẾU TỐ THỐNG KÊ (id: bt_thongke_...) ---
     // { id: "bt_thongke_01", type: "TSA", category: "review", title: "Tên bài...", questionsCount: 30, time: 45, img: "", isVip: false },
@@ -2494,6 +2494,225 @@ const allExamsData = {
         content: "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông cân tại $C$. Tam giác $SAB$ vuông cân tại $S$ và $\\widehat{BSC} = 60^\\circ$. Gọi $M$ là trung điểm cạnh $SB$, $\\varphi$ là góc giữa đường thẳng $AB$ và $CM$. Biết $\\cos\\varphi = \\frac{\\sqrt{a}}{b}$ ($a, b \\in \\mathbb{N}^*$). Khi đó, $a - b =$ ________.",
         correctAnswer: "0",
         explanation: "Đặt $AB = 2 \\Rightarrow SA = SB = CA = CB = \\sqrt{2}$. Vì $\\widehat{BSC} = 60^\\circ$ nên $\\Delta SBC$ đều $\\Rightarrow SC = \\sqrt{2}$ và $CM = \\frac{\\sqrt{6}}{2}$, đồng thời $\\Delta SAC$ cũng đều. Ta có $\\overrightarrow{AB}\\cdot\\overrightarrow{CM} = (\\overrightarrow{SB} - \\overrightarrow{SA})\\cdot\\left(\\frac{1}{2}\\overrightarrow{SB} - \\overrightarrow{SC}\\right) = 1 - 1 - 0 + 1 = 1 \\Rightarrow \\cos\\varphi = \\frac{1}{2 \\cdot \\frac{\\sqrt{6}}{2}} = \\frac{\\sqrt{6}}{6}$. Vậy $a = 6, b = 6 \\Rightarrow a - b = 0$."
+    }
+],
+    "bt_hhkg_02": [
+    {
+        id: 322061, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình vuông với $AC = 5\\sqrt{2}$. Biết $SA$ vuông góc với mặt phẳng $(ABCD)$ và $SA = 5$. Góc giữa $SD$ và mặt phẳng $(SAB)$ bằng",
+        options: ["A. $45^\\circ$.", "B. $90^\\circ$.", "C. $30^\\circ$.", "D. $60^\\circ$."],
+        correctAnswer: "A",
+        explanation: "Vì $ABCD$ là hình vuông có $AC = 5\\sqrt{2}$ nên $AD = 5$. Do $AD \\perp AB$ và $AD \\perp SA$ nên $AD \\perp (SAB)$. Suy ra góc giữa $SD$ và $(SAB)$ là $\\widehat{DSA}$. Ta có $\\tan\\widehat{DSA} = \\frac{AD}{SA} = \\frac{5}{5} = 1 \\Rightarrow \\widehat{DSA} = 45^\\circ$."
+    },
+    {
+        id: 322062, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABC$ có $SA = SB = CB = CA$, hình chiếu vuông góc của $S$ lên mặt phẳng $(ABC)$ trùng với trung điểm $I$ của cạnh $AB$. Góc giữa đường thẳng $SC$ và mặt phẳng $(ABC)$ bằng",
+        options: ["A. $45^\\circ$.", "B. $30^\\circ$.", "C. $90^\\circ$.", "D. $60^\\circ$."],
+        correctAnswer: "A",
+        explanation: "Vì $SI \\perp (ABC)$ nên hình chiếu của $SC$ lên $(ABC)$ là $CI \\Rightarrow (SC, (ABC)) = \\widehat{SCI}$. Hai tam giác cân $SAB$ và $CAB$ có các cạnh bằng nhau nên $SI = CI$, do đó $\\Delta SIC$ vuông cân tại $I \\Rightarrow \\widehat{SCI} = 45^\\circ$."
+    },
+    {
+        id: 322063, type: "multiple_choice",
+        content: "Cho hình hộp chữ nhật $ABCD.A'B'C'D'$ có $AB = a\\sqrt{2}$, $BC = a$, $AA' = a\\sqrt{3}$. Góc giữa đường thẳng $AC'$ và mặt phẳng $(ABCD)$ bằng",
+        options: ["A. $30^\\circ$.", "B. $60^\\circ$.", "C. $45^\\circ$.", "D. $90^\\circ$."],
+        correctAnswer: "C",
+        explanation: "Vì $C'C \\perp (ABCD)$ nên $(AC', (ABCD)) = \\widehat{C'AC}$. Ta có $AC = \\sqrt{AB^2 + BC^2} = a\\sqrt{3} = CC' \\Rightarrow \\tan\\widehat{C'AC} = 1 \\Rightarrow \\widehat{C'AC} = 45^\\circ$."
+    },
+    {
+        id: 322064, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình thoi tâm $O$, tam giác $ABD$ đều cạnh $a\\sqrt{2}$. Biết $SA$ vuông góc với mặt phẳng đáy và $SA = \\frac{3\\sqrt{2}}{2}a$. Góc giữa đường thẳng $SO$ và mặt phẳng $(ABCD)$ bằng",
+        options: ["A. $45^\\circ$.", "B. $30^\\circ$.", "C. $60^\\circ$.", "D. $90^\\circ$."],
+        correctAnswer: "C",
+        explanation: "Hình chiếu của $SO$ lên $(ABCD)$ là $AO$. Vì $\\Delta ABD$ đều cạnh $a\\sqrt{2}$ nên $AO = \\frac{a\\sqrt{2} \\cdot \\sqrt{3}}{2} = \\frac{a\\sqrt{6}}{2}$. Suy ra $\\tan\\widehat{SOA} = \\frac{SA}{AO} = \\frac{3\\sqrt{2}}{\\sqrt{6}} = \\sqrt{3} \\Rightarrow (SO, (ABCD)) = 60^\\circ$."
+    },
+    {
+        id: 322065, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông cân tại $C$, tam giác $SAB$ đều và nằm trong mặt phẳng vuông góc với mặt đáy. Cạnh $SC$ tạo với mặt phẳng $(ABC)$ một góc là $\\varphi$. Khẳng định nào sau đây là đúng?",
+        options: ["A. $\\tan\\varphi = \\sqrt{2}$.", "B. $\\tan\\varphi = \\sqrt{3}$.", "C. $\\tan\\varphi = \\frac{\\sqrt{6}}{3}$.", "D. $\\tan\\varphi = \\frac{\\sqrt{3}}{3}$."],
+        correctAnswer: "B",
+        explanation: "Gọi $H$ là trung điểm $AB$. Vì $\\Delta SAB$ đều và $(SAB) \\perp (ABC)$ nên $SH \\perp (ABC) \\Rightarrow \\varphi = \\widehat{SCH}$. Đặt $AB = 2a \\Rightarrow SH = a\\sqrt{3}$ và $CH = \\frac{AB}{2} = a \\Rightarrow \\tan\\varphi = \\frac{SH}{CH} = \\sqrt{3}$."
+    },
+    {
+        id: 322066, type: "multiple_choice",
+        content: "Cho hình lập phương $ABCD.A'B'C'D'$. Gọi $M, N$ lần lượt là trung điểm của cạnh $AC$ và $B'C'$. Gọi $\\alpha$ là góc hợp giữa đường thẳng $MN$ và mặt phẳng $(A'B'C'D')$. Giá trị của $\\sin\\alpha$ bằng",
+        options: ["A. $\\frac{1}{2\\sqrt{6}}$.", "B. $\\frac{\\sqrt{3}}{3}$.", "C. $\\frac{1}{\\sqrt{6}}$.", "D. $\\frac{2}{\\sqrt{5}}$."],
+        correctAnswer: "D",
+        explanation: "Đặt cạnh hình lập phương bằng $2$. Gọi $O'$ là tâm đáy trên $(A'B'C'D')$, suy ra $MO' \\perp (A'B'C'D')$ và $MO' = 2$, $O'N = 1$. Khi đó $MN = \\sqrt{2^2 + 1^2} = \\sqrt{5} \\Rightarrow \\sin\\alpha = \\frac{MO'}{MN} = \\frac{2}{\\sqrt{5}}$."
+    },
+    {
+        id: 322067, type: "multiple_choice",
+        content: "Cho hình chóp tứ giác đều $S.ABCD$ có tất cả các cạnh bằng $a$. Gọi $M$ là trung điểm của $SD$. Tan của góc giữa đường thẳng $BM$ và mặt phẳng $(ABCD)$ bằng",
+        options: ["A. $\\frac{\\sqrt{2}}{2}$.", "B. $\\frac{\\sqrt{3}}{3}$.", "C. $\\frac{2}{3}$.", "D. $\\frac{1}{3}$."],
+        correctAnswer: "D",
+        explanation: "Gọi $O$ là tâm đáy $ABCD$ và $H$ là trung điểm $OD$. Khi đó $MH \\parallel SO \\Rightarrow MH \\perp (ABCD)$ và $MH = \\frac{SO}{2} = \\frac{a\\sqrt{2}}{4}$. Lại có $BH = \\frac{3}{4}BD = \\frac{3a\\sqrt{2}}{4} \\Rightarrow \\tan(BM, (ABCD)) = \\frac{MH}{BH} = \\frac{1}{3}$."
+    },
+    {
+        id: 322068, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABC$ có $SA$ vuông góc với mặt phẳng $(ABC)$, $SA = 2a$, tam giác $ABC$ vuông tại $B$, $AB = a$, $BC = a\\sqrt{3}$. Góc giữa đường thẳng $SC$ và mặt phẳng $(ABC)$ bằng",
+        options: ["A. $90^\\circ$.", "B. $30^\\circ$.", "C. $60^\\circ$.", "D. $45^\\circ$."],
+        correctAnswer: "D",
+        explanation: "Ta có $AC = \\sqrt{AB^2 + BC^2} = \\sqrt{a^2 + 3a^2} = 2a = SA$. Vì $SA \\perp (ABC)$ nên $(SC, (ABC)) = \\widehat{SCA} = 45^\\circ$."
+    },
+    {
+        id: 322069, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác đều cạnh $a$, cạnh $SA$ vuông góc với mặt phẳng đáy và $SA = 2a$, gọi $M$ là trung điểm của $SC$. Côsin của góc $\\alpha$ là góc giữa đường thẳng $BM$ và $(ABC)$ bằng",
+        options: ["A. $\\cos\\alpha = \\frac{\\sqrt{7}}{14}$.", "B. $\\cos\\alpha = \\frac{2\\sqrt{7}}{7}$.", "C. $\\cos\\alpha = \\frac{\\sqrt{21}}{7}$.", "D. $\\cos\\alpha = \\frac{\\sqrt{5}}{7}$."],
+        correctAnswer: "C",
+        explanation: "Gọi $H$ là trung điểm $AC$, suy ra $MH \\parallel SA \\Rightarrow MH \\perp (ABC)$ và $MH = a$. Ta có $BH = \\frac{a\\sqrt{3}}{2} \\Rightarrow BM = \\sqrt{MH^2 + BH^2} = \\frac{a\\sqrt{7}}{2} \\Rightarrow \\cos\\alpha = \\frac{BH}{BM} = \\frac{\\sqrt{21}}{7}$."
+    },
+    {
+        id: 322070, type: "multiple_choice",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh $a$, $SD = a$ và $SD$ vuông góc với mặt phẳng đáy. Góc giữa đường thẳng $SA$ và mặt phẳng $(SBD)$ bằng",
+        options: ["A. $60^\\circ$.", "B. $14^\\circ$.", "C. $45^\\circ$.", "D. $30^\\circ$."],
+        correctAnswer: "D",
+        explanation: "Gọi $O$ là tâm hình vuông $ABCD$. Ta có $AO \\perp BD$ và $AO \\perp SD \\Rightarrow AO \\perp (SBD)$. Suy ra $(SA, (SBD)) = \\widehat{ASO}$. Với $AO = \\frac{a\\sqrt{2}}{2}$ và $SA = a\\sqrt{2}$, ta có $\\sin\\widehat{ASO} = \\frac{AO}{SA} = \\frac{1}{2} \\Rightarrow \\widehat{ASO} = 30^\\circ$."
+    },
+    {
+        id: 322071, type: "drag_drop",
+        content: "Cho hình lập phương $ABCD.A'B'C'D'$ có cạnh bằng $a$. Gọi $M, N$ là hai điểm thay đổi lần lượt trên các cạnh $AB, A'D'$ sao cho $MN = \\frac{2\\sqrt{3}a}{3}$.<br>- Cosin góc giữa đường thẳng $A'D$ và $CD'$ bằng [1].<br>- Sin góc giữa đường thẳng $MN$ và mặt phẳng $(ABCD)$ bằng [2].",
+        choices: ["$\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$", "$\\frac{\\sqrt{2}}{3}$", "$\\frac{\\sqrt{2}}{2}$", "$\\frac{\\sqrt{3}}{3}$"],
+        correctAnswer: ["$\\frac{1}{2}$", "$\\frac{\\sqrt{3}}{2}$"],
+        explanation: "1) Vì $A'D \\parallel B'C$ nên $(A'D, CD') = (B'C, CD') = 60^\\circ$ (do $\\Delta B'CD'$ đều) $\\Rightarrow \\cos = \\frac{1}{2}$.\n2) Khoảng cách từ $N$ xuống $(ABCD)$ bằng $a$, nên $\\sin(MN, (ABCD)) = \\frac{a}{MN} = \\frac{\\sqrt{3}}{2}$."
+    },
+    {
+        id: 322072, type: "drag_drop",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi cạnh bằng $1$, $\\widehat{BAD} = 60^\\circ$, tam giác $SBD$ là tam giác đều, $SA = 2SC$.<br>- Chiều cao $SH$ của hình chóp $S.ABCD$ bằng [1].<br>- Cosin của góc hợp bởi đường thẳng $SB$ và mặt phẳng $(ABCD)$ bằng [2].",
+        choices: ["$\\frac{2\\sqrt{15}}{5}$", "$\\frac{\\sqrt{13}}{5}$", "$\\frac{2\\sqrt{3}}{5}$"],
+        correctAnswer: ["$\\frac{2\\sqrt{3}}{5}$", "$\\frac{\\sqrt{13}}{5}$"],
+        explanation: "Vì $SB = SD = 1$ nên hình chiếu $H$ của $S$ nằm trên $AC$. Đặt $O(0;0;0), A\\left(\\frac{\\sqrt{3}}{2};0;0\\right), C\\left(-\\frac{\\sqrt{3}}{2};0;0\\right), B\\left(0;\\frac{1}{2};0\\right), S(x;0;z)$. Từ $SB = 1$ và $SA = 2SC$ giải được $x = -\\frac{3\\sqrt{3}}{10}$ và $SH = z = \\frac{2\\sqrt{3}}{5}$. Suy ra $\\sin(SB, (ABCD)) = \\frac{SH}{SB} = \\frac{2\\sqrt{3}}{5} \\Rightarrow \\cos = \\frac{\\sqrt{13}}{5}$."
+    },
+    {
+        id: 322073, type: "drag_drop",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh $a$, hình chiếu vuông góc của $S$ lên mặt đáy là trung điểm $M$ của cạnh $AD$, $SM = \\frac{a\\sqrt{3}}{2}$. Gọi $N$ là trung điểm của cạnh $BC$.<br>- Tan góc giữa đường thẳng $SB$ và mặt phẳng đáy bằng [1].<br>- Sin của góc giữa $SN$ và mặt phẳng $(SBM)$ bằng [2].",
+        choices: ["$\\frac{2}{\\sqrt{35}}$", "$\\frac{\\sqrt{3}}{15}$", "$\\frac{\\sqrt{15}}{5}$", "$\\frac{\\sqrt{5}}{13}$", "$\\frac{\\sqrt{3}}{2}$", "$\\frac{3\\sqrt{35}}{35}$"],
+        correctAnswer: ["$\\frac{\\sqrt{15}}{5}$", "$\\frac{2}{\\sqrt{35}}$"],
+        explanation: "1) $BM = \\sqrt{AB^2 + AM^2} = \\frac{a\\sqrt{5}}{2} \\Rightarrow \\tan(SB, (ABCD)) = \\frac{SM}{BM} = \\frac{\\sqrt{3}}{\\sqrt{5}} = \\frac{\\sqrt{15}}{5}$.\n2) Do $(SBM) \\perp (ABCD)$ theo giao tuyến $BM$ nên $d(N, (SBM)) = d(N, BM) = \\frac{2 S_{\\Delta BMN}}{BM} = \\frac{a}{\\sqrt{5}}$. Lại có $SN = \\sqrt{SM^2 + MN^2} = \\frac{a\\sqrt{7}}{2} \\Rightarrow \\sin(SN, (SBM)) = \\frac{d(N, (SBM))}{SN} = \\frac{2}{\\sqrt{35}}$."
+    },
+    {
+        id: 322074, type: "drag_drop",
+        content: "Cho hình chóp $S.ABCD$ có $(SAB) \\perp (ABCD)$, đáy $ABCD$ là hình vuông, tam giác $SAB$ vuông tại $S$, $SA = 2$, $SB = 2\\sqrt{3}$.<br>- Chiều cao $SH$ của hình chóp $S.ABCD$ bằng [1].<br>- Giá trị tan của góc giữa đường thẳng $SC$ và mặt phẳng $(ABCD)$ bằng [2].",
+        choices: ["$\\frac{\\sqrt{6}}{3}$", "$\\frac{\\sqrt{3}}{5}$", "$\\frac{3}{2}$", "$\\frac{1}{\\sqrt{2}}$", "$\\frac{\\sqrt{3}}{2}$", "$\\sqrt{3}$"],
+        correctAnswer: ["$\\sqrt{3}$", "$\\frac{\\sqrt{3}}{5}$"],
+        explanation: "1) Ta có $AB = \\sqrt{SA^2 + SB^2} = 4 \\Rightarrow SH = \\frac{SA \\cdot SB}{AB} = \\sqrt{3}$.\n2) Có $BH = \\frac{SB^2}{AB} = 3 \\Rightarrow CH = \\sqrt{BH^2 + BC^2} = \\sqrt{3^2 + 4^2} = 5 \\Rightarrow \\tan(SC, (ABCD)) = \\frac{SH}{CH} = \\frac{\\sqrt{3}}{5}$."
+    },
+    {
+        id: 322075, type: "drag_drop",
+        content: "Cho hình chóp $S.ABCD$ có $ABCD$ là hình thoi tâm $I$, cạnh $a$, góc $\\widehat{BAD} = 60^\\circ$. Biết $SA = SB = SD = \\frac{a\\sqrt{3}}{2}$.<br>- Cosin góc giữa $SC$ và hình chiếu của $SC$ trên mặt phẳng đáy bằng [1].<br>- Gọi $\\alpha$ là góc giữa đường thẳng $SD$ với $(SBC)$. Khi đó, $\\sin\\alpha$ bằng [2].",
+        choices: ["$\\frac{1}{3}$", "$\\frac{4}{\\sqrt{21}}$", "$\\frac{1}{\\sqrt{2}}$", "$\\frac{2}{3}$", "$\\frac{4}{\\sqrt{5}}$", "$\\frac{\\sqrt{5}}{3}$"],
+        correctAnswer: ["$\\frac{4}{\\sqrt{21}}$", "$\\frac{\\sqrt{5}}{3}$"],
+        explanation: "Vì $SA = SB = SD$ nên hình chiếu $H$ của $S$ trùng trọng tâm $\\Delta ABD$ đều cạnh $a$. Ta có $AH = \\frac{a\\sqrt{3}}{3} \\Rightarrow SH = \\frac{a\\sqrt{15}}{6}$ và $HC = AC - AH = \\frac{2a\\sqrt{3}}{3}$.\n1) $SC = \\sqrt{SH^2 + HC^2} = \\frac{a\\sqrt{7}}{2} \\Rightarrow \\cos(SC, HC) = \\frac{HC}{SC} = \\frac{4}{\\sqrt{21}}$.\n2) Gắn hệ trục tính trực tiếp được $\\sin(SD, (SBC)) = \\frac{\\sqrt{5}}{3}$."
+    },
+    {
+        id: 322076, type: "true_false",
+        content: "Cho hình chóp $S.ABC$ có đáy $ABC$ là tam giác vuông tại $B$, có $AB = a$, $BC = a\\sqrt{3}$. Biết $SA \\perp (ABC)$, $SB$ tạo với đáy một góc $60^\\circ$ và $M$ là trung điểm của $BC$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Cosin góc giữa $SC$ và mặt phẳng $(ABC)$ bằng $\\frac{2}{\\sqrt{7}}$.",
+            "Cosin góc giữa $SM$ và mặt phẳng $(ABC)$ bằng $\\frac{\\sqrt{133}}{19}$."
+        ],
+        correctAnswer: { "0": "true", "1": "true" },
+        explanation: "Ta có $SA = AB\\tan 60^\\circ = a\\sqrt{3}$ và $AC = 2a$.\na) $SC = \\sqrt{SA^2 + AC^2} = a\\sqrt{7} \\Rightarrow \\cos(SC, (ABC)) = \\frac{AC}{SC} = \\frac{2}{\\sqrt{7}}$ (Đúng).\nb) $AM = \\sqrt{a^2 + \\frac{3a^2}{4}} = \\frac{a\\sqrt{7}}{2}$, $SM = \\frac{a\\sqrt{19}}{2} \\Rightarrow \\cos(SM, (ABC)) = \\frac{AM}{SM} = \\frac{\\sqrt{7}}{\\sqrt{19}} = \\frac{\\sqrt{133}}{19}$ (Đúng)."
+    },
+    {
+        id: 322077, type: "true_false",
+        content: "Cho hình chóp $S.ABCD$, có đáy là nửa lục giác đều cạnh $a$, $AD = 2a$. Biết $SA \\perp (ABCD)$ và đường thẳng $SB$ tạo với đáy một góc $45^\\circ$. Gọi $I$ là trung điểm của $CD$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Tích cosin góc tạo bởi các cạnh $SC, SD$ và mặt đáy $(ABCD)$ bằng $\\frac{\\sqrt{15}}{5}$.",
+            "Tan góc tạo bởi $SI$ và mặt phẳng $(ABCD)$ bằng $\\frac{2}{\\sqrt{5}}$."
+        ],
+        correctAnswer: { "0": "true", "1": "false" },
+        explanation: "Vì $SA \\perp (ABCD)$ và $\\widehat{SBA} = 45^\\circ$ nên $SA = AB = a$. Trong nửa lục giác đều: $AC = a\\sqrt{3}$, $AD = 2a$, $AI = \\frac{a\\sqrt{13}}{2}$.\na) $\\cos(SC, (ABCD)) \\cdot \\cos(SD, (ABCD)) = \\frac{\\sqrt{3}}{2} \\cdot \\frac{2}{\\sqrt{5}} = \\frac{\\sqrt{15}}{5}$ (Đúng).\nb) $\\tan(SI, (ABCD)) = \\frac{SA}{AI} = \\frac{2}{\\sqrt{13}} \\ne \\frac{2}{\\sqrt{5}}$ (Sai)."
+    },
+    {
+        id: 322078, type: "true_false",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình thoi tâm $O$ cạnh $a$, $BD = a\\sqrt{3}$, $SA \\perp (ABCD)$. Biết $SC$ tạo với đáy một góc $60^\\circ$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Cosin góc tạo bởi $SC$ và $BD$ bằng $0$.",
+            "Tan góc tạo bởi $SC$ và mặt phẳng $(SAB)$ bằng $\\frac{\\sqrt{39}}{13}$.",
+            "Sin góc tạo bởi $SD$ và mặt phẳng $(SAC)$ bằng $\\frac{\\sqrt{39}}{13}$."
+        ],
+        correctAnswer: { "0": "true", "1": "true", "2": "false" },
+        explanation: "Vì $BD = a\\sqrt{3}$ nên $AC = a$ và $SA = AC\\tan 60^\\circ = a\\sqrt{3}$.\na) $BD \\perp AC$ và $BD \\perp SA \\Rightarrow BD \\perp (SAC) \\Rightarrow BD \\perp SC \\Rightarrow \\cos = 0$ (Đúng).\nb) $d(C, (SAB)) = d(C, AB) = \\frac{a\\sqrt{3}}{2}$, $SC = 2a \\Rightarrow \\sin(SC, (SAB)) = \\frac{\\sqrt{3}}{4} \\Rightarrow \\tan = \\frac{\\sqrt{3}}{\\sqrt{13}} = \\frac{\\sqrt{39}}{13}$ (Đúng).\nc) $DO \\perp (SAC) \\Rightarrow \\sin(SD, (SAC)) = \\frac{DO}{SD} = \\frac{a\\sqrt{3}/2}{2a} = \\frac{\\sqrt{3}}{4}$ (Sai)."
+    },
+    {
+        id: 322079, type: "true_false",
+        content: "Cho hình lăng trụ $ABCD.A'B'C'D'$ có đáy $ABCD$ là hình chữ nhật có $AB = 2a$, $AD = 2a\\sqrt{3}$, hình chiếu vuông góc của $A'$ lên mặt phẳng $(ABCD)$ trùng với tâm $O$ của hình chữ nhật $ABCD$, biết cạnh bên $AA'$ tạo với đáy một góc $60^\\circ$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Góc tạo bởi $AA'$ và mặt phẳng đáy là $\\widehat{A'AO}$.",
+            "Cosin góc tạo bởi $A'C$ và mặt phẳng $(A'BD)$ bằng $\\frac{\\sqrt{13}}{4}$."
+        ],
+        correctAnswer: { "0": "true", "1": "true" },
+        explanation: "a) Hình chiếu của $AA'$ lên $(ABCD)$ là $AO$ nên góc giữa $AA'$ và đáy là $\\widehat{A'AO}$ (Đúng).\nb) Ta có $OA = OC = 2a$, $A'O = 2a\\sqrt{3}$, $A'C = 4a$. Vì $(A'BD) \\perp (ABCD)$ theo giao tuyến $BD$ nên $d(C, (A'BD)) = d(C, BD) = \\frac{2a \\cdot 2a\\sqrt{3}}{4a} = a\\sqrt{3}$. Suy ra $\\sin(A'C, (A'BD)) = \\frac{\\sqrt{3}}{4} \\Rightarrow \\cos = \\frac{\\sqrt{13}}{4}$ (Đúng)."
+    },
+    {
+        id: 322080, type: "true_false",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình chữ nhật $ABCD$, hình chiếu vuông góc của đỉnh $S$ lên mặt đáy là điểm $H$ thuộc cạnh $AB$ sao cho $\\overrightarrow{HB} = -2\\overrightarrow{HA}$. Biết $AB = 3$, $AD = 6$ và $SH = 2$. Mỗi phát biểu sau đây là đúng hay sai?",
+        propositions: [
+            "Tan góc tạo bởi $SA$ và mặt phẳng $(SHD)$ bằng $\\frac{3\\sqrt{5}}{10}$.",
+            "Tan góc tạo bởi $SB$ và mặt phẳng $(SHC)$ bằng $\\frac{6}{\\sqrt{185}}$.",
+            "Cosin góc tạo bởi hai đường thẳng $SD$ và $HC$ bằng $\\frac{17}{\\sqrt{410}}$."
+        ],
+        correctAnswer: { "0": "false", "1": "false", "2": "true" },
+        explanation: "Ta có $HA = 1, HB = 2, SH = 2$.\na) $d(A, (SHD)) = d(A, HD) = \\frac{6}{\\sqrt{37}}$, $SA = \\sqrt{5} \\Rightarrow \\sin(SA, (SHD)) = \\frac{6}{\\sqrt{185}} \\Rightarrow \\tan = \\frac{6}{\\sqrt{149}}$ (Sai).\nb) $d(B, (SHC)) = d(B, HC) = \\frac{6}{\\sqrt{10}}$, $SB = 2\\sqrt{2} \\Rightarrow \\sin(SB, (SHC)) = \\frac{3\\sqrt{5}}{10} \\Rightarrow \\tan = \\frac{3}{\\sqrt{11}}$ (Sai).\nc) Gắn hệ trục $A(0;0;0), H(1;0;0), S(1;0;2), D(0;6;0), C(3;6;0)$: $\\overrightarrow{SD} = (-1;6;-2)$, $\\overrightarrow{HC} = (2;6;0) \\Rightarrow \\cos(SD, HC) = \\frac{34}{\\sqrt{41}\\cdot\\sqrt{40}} = \\frac{17}{\\sqrt{410}}$ (Đúng)."
+    },
+    {
+        id: 322081, type: "fill_blank",
+        content: "Cho hình chóp $S.ABC$ có $SA$ vuông góc với mặt phẳng $(ABC)$, $SA = \\sqrt{2}a$, tam giác $ABC$ vuông cân tại $B$ và $AC = 2a$. Góc giữa đường thẳng $SB$ và mặt phẳng $(ABC)$ bằng ________ độ.",
+        correctAnswer: "45",
+        explanation: "Vì $\\Delta ABC$ vuông cân tại $B$ có $AC = 2a$ nên $AB = \\frac{AC}{\\sqrt{2}} = a\\sqrt{2} = SA$. Do $SA \\perp (ABC)$ nên $(SB, (ABC)) = \\widehat{SBA} = 45^\\circ$."
+    },
+    {
+        id: 322082, type: "fill_blank",
+        content: "Cho hình lăng trụ đứng $ABC.A'B'C'$ có đáy $ABC$ là tam giác vuông tại $B$ có cạnh $AB = \\sqrt{2}$, $BC = \\sqrt{3}$ và cạnh $AA' = \\sqrt{15}$. Góc giữa đường thẳng $A'C$ và mặt phẳng $(ABC)$ bằng ________ độ.",
+        correctAnswer: "60",
+        explanation: "Ta có $AC = \\sqrt{AB^2 + BC^2} = \\sqrt{5}$. Do $A'A \\perp (ABC)$ nên $\\tan(A'C, (ABC)) = \\frac{AA'}{AC} = \\frac{\\sqrt{15}}{\\sqrt{5}} = \\sqrt{3} \\Rightarrow (A'C, (ABC)) = 60^\\circ$."
+    },
+    {
+        id: 322083, type: "fill_blank",
+        content: "Cho hình lăng trụ đứng $ABC.A'B'C'$ biết tam giác $ABC$ vuông tại $B$, $AB = a$, $BC = a\\sqrt{2}$, $AA' = \\frac{a\\sqrt{3}}{2}$. Gọi $I$ là trung điểm của $A'B'$. Sin góc giữa đường thẳng $CI$ và mặt phẳng $(ABC)$ bằng ________. <i>(Điền phân số tối giản a/b)</i>",
+        correctAnswer: "1/2",
+        explanation: "Gọi $H$ là trung điểm $AB$, suy ra $IH \\perp (ABC)$ và $IH = \\frac{a\\sqrt{3}}{2}$. Ta có $CH = \\sqrt{BC^2 + BH^2} = \\frac{3a}{2} \\Rightarrow CI = \\sqrt{IH^2 + CH^2} = a\\sqrt{3}$. Suy ra $\\sin(CI, (ABC)) = \\frac{IH}{CI} = \\frac{1}{2}$."
+    },
+    {
+        id: 322084, type: "fill_blank",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông cạnh $a$, $SA = a\\sqrt{2}$ và $SA$ vuông góc với mặt đáy $(ABCD)$. Gọi $M, N$ lần lượt là hình chiếu vuông góc của đỉnh $A$ lên các cạnh $SB$ và $SD$. Khi đó góc giữa đường thẳng $SB$ và mặt phẳng $(AMN)$ bằng ________ độ.",
+        correctAnswer: "60",
+        explanation: "Ta có $BC \\perp (SAB) \\Rightarrow BC \\perp AM$, lại có $AM \\perp SB \\Rightarrow AM \\perp (SBC) \\Rightarrow AM \\perp SC$. Tương tự $AN \\perp SC$, suy ra $SC \\perp (AMN)$. Do đó $\\sin(SB, (AMN)) = \\cos(SB, SC) = \\frac{SB}{SC} = \\frac{a\\sqrt{3}}{2a} = \\frac{\\sqrt{3}}{2} \\Rightarrow (SB, (AMN)) = 60^\\circ$."
+    },
+    {
+        id: 322085, type: "fill_blank",
+        content: "Cho hình chóp $S.ABC$ có $SA \\perp (ABC)$ và $SA = a\\sqrt{5}$, đáy là tam giác vuông tại $A$ với $AB = a$, $AC = 2a$. Gọi $\\alpha$ là góc giữa đường thẳng $SA$ và mặt phẳng $(SBC)$. Giá trị của $\\tan\\alpha$ bằng ________. <i>(Điền phân số tối giản a/b)</i>",
+        correctAnswer: "2/5",
+        explanation: "Kẻ $AH \\perp BC$ ($H \\in BC$) và $AK \\perp SH$ ($K \\in SH$), suy ra $AK \\perp (SBC) \\Rightarrow \\alpha = \\widehat{ASH}$. Ta có $AH = \\frac{AB \\cdot AC}{\\sqrt{AB^2 + AC^2}} = \\frac{2a}{\\sqrt{5}} \\Rightarrow \\tan\\alpha = \\frac{AH}{SA} = \\frac{2}{5}$."
+    },
+    {
+        id: 322086, type: "fill_blank",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình vuông, cạnh bên $SA$ vuông góc với đáy. Biết rằng $AB = a$, $SD = a\\sqrt{5}$. Góc giữa đường thẳng $AC$ và mặt phẳng $(SCD)$ bằng ________ độ. <i>(Làm tròn đến hàng phần trăm)</i>",
+        correctAnswer: "39,23",
+        explanation: "Ta có $SA = \\sqrt{SD^2 - AD^2} = 2a$. Kẻ $AH \\perp SD \\Rightarrow AH \\perp (SCD)$, suy ra $AH = \\frac{SA \\cdot AD}{SD} = \\frac{2a}{\\sqrt{5}}$. Với $AC = a\\sqrt{2}$, ta có $\\sin(AC, (SCD)) = \\frac{AH}{AC} = \\frac{\\sqrt{10}}{5} \\Rightarrow (AC, (SCD)) \\approx 39,23^\\circ$."
+    },
+    {
+        id: 322087, type: "fill_blank",
+        content: "Cho hình chóp $S.ABCD$ có đáy là hình thoi cạnh $2a$, $\\widehat{ABC} = 60^\\circ$, $SA = a\\sqrt{3}$ và $SA \\perp (ABCD)$. Sin góc giữa $SA$ và mặt phẳng $(SBD)$ bằng ________. <i>(Điền phân số tối giản a/b)</i>",
+        correctAnswer: "1/2",
+        explanation: "Gọi $O$ là tâm hình thoi. Vì $\\Delta ABC$ đều cạnh $2a$ nên $AC = 2a \\Rightarrow AO = a$. Do $BD \\perp (SAC)$ nên hình chiếu của $SA$ lên $(SBD)$ là $SO \\Rightarrow (SA, (SBD)) = \\widehat{ASO}$. Có $SO = \\sqrt{SA^2 + AO^2} = 2a \\Rightarrow \\sin\\widehat{ASO} = \\frac{AO}{SO} = \\frac{1}{2}$."
+    },
+    {
+        id: 322088, type: "fill_blank",
+        content: "Cho hình lập phương $ABCD.A'B'C'D'$. Gọi $\\alpha$ là góc giữa đường thẳng $AC'$ và $(A'BCD')$. Khi đó giá trị của $\\tan\\alpha = \\sqrt{k}$. Giá trị của $k$ bằng ________.",
+        correctAnswer: "2",
+        explanation: "Gắn hệ trục đơn vị $A(0;0;0), C'(1;1;1)$ và mặt phẳng $(A'BCD'): x + z - 1 = 0$ có pháp tuyến $\\vec{n} = (1;0;1)$. Ta có $\\sin\\alpha = \\frac{|1 + 0 + 1|}{\\sqrt{3}\\cdot\\sqrt{2}} = \\sqrt{\\frac{2}{3}} \\Rightarrow \\tan\\alpha = \\sqrt{2} \\Rightarrow k = 2$."
+    },
+    {
+        id: 322089, type: "fill_blank",
+        content: "Cho hình lăng trụ đứng $ABCD.A'B'C'D'$ có đáy $ABCD$ là hình bình hành và tam giác $ACD$ vuông cân tại $A$, $AC = 2a$. Biết $A'C$ tạo với đáy một góc $\\alpha$ thỏa mãn $\\tan\\alpha = \\frac{\\sqrt{2}}{2}$. Gọi $I$ là trung điểm $CD$. Sin góc giữa đường thẳng $AC$ và mặt phẳng $(A'CD)$ bằng ________. <i>(Điền phân số tối giản a/b)</i>",
+        correctAnswer: "1/2",
+        explanation: "Ta có $AA' = AC\\tan\\alpha = a\\sqrt{2}$, $AI = \\frac{CD}{2} = a\\sqrt{2}$. Kẻ $AH \\perp A'I \\Rightarrow AH \\perp (A'CD)$. Vì $\\Delta A'AI$ vuông cân tại $A$ nên $AH = a$. Suy ra $\\sin(AC, (A'CD)) = \\frac{AH}{AC} = \\frac{a}{2a} = \\frac{1}{2}$."
+    },
+    {
+        id: 322090, type: "fill_blank",
+        content: "Cho hình chóp $S.ABCD$ có đáy $ABCD$ là hình thoi cạnh $a$, $\\widehat{ABC} = 60^\\circ$ và $SB = a$. Hình chiếu vuông góc của điểm $S$ lên mặt phẳng $(ABC)$ trùng với trọng tâm tam giác $ABC$. Gọi $\\varphi$ là góc giữa đường thẳng $SB$ và mặt phẳng $(SCD)$. Khi đó, $\\tan\\varphi$ bằng ________.",
+        correctAnswer: "1",
+        explanation: "Đặt $a = 1$, $\\Delta ABC$ đều cạnh $1$ có trọng tâm $G$, suy ra $BG = \\frac{1}{\\sqrt{3}}$ và $SG = \\sqrt{1 - \\frac{1}{3}} = \\frac{\\sqrt{6}}{3}$. Gắn hệ trục tâm $O$: $A\\left(\\frac{1}{2};0;0\\right), C\\left(-\\frac{1}{2};0;0\\right), B\\left(0;\\frac{\\sqrt{3}}{2};0\\right), D\\left(0;-\\frac{\\sqrt{3}}{2};0\\right), S\\left(0;\\frac{\\sqrt{3}}{6};\\frac{\\sqrt{6}}{3}\\right)$. Tính được $\\sin\\varphi = \\frac{\\sqrt{2}}{2} \\Rightarrow \\tan\\varphi = 1$."
     }
 ],
     
