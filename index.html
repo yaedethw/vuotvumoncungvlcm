@@ -773,9 +773,40 @@
                 <button type="button" onclick="toggleMobileSidebar()" title="Đóng / mở thanh menu" class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-500 hover:text-navy hover:bg-gray-100 transition-colors cursor-pointer shrink-0">
                     <i id="sidebar-toggle-icon" class="fa-solid fa-bars text-lg"></i>
                 </button>
-                <div class="flex items-center cursor-pointer" onclick="switchView('home')">
-                    <img src="https://i.postimg.cc/Gm0gGjnj/Gemini-Generated-Image-gqn1iggqn1iggqn1.png" alt="VLCM Logo" class="h-14 object-contain">
-                </div>
+                <div class="flex items-center gap-2.5 cursor-pointer select-none group" onclick="switchView('home')">
+    <!-- Logo SVG trong suốt hoàn toàn -->
+    <svg viewBox="0 0 200 200" class="w-11 h-11 shrink-0 drop-shadow-[0_2px_8px_rgba(56,189,248,0.45)] group-hover:scale-105 transition-transform">
+        <defs>
+            <linearGradient id="hdrHexRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7dd3fc" />
+                <stop offset="100%" stop-color="#38bdf8" />
+            </linearGradient>
+            <radialGradient id="hdrHexGlow" cx="50%" cy="50%" r="55%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="60%" stop-color="#bae6fd" />
+                <stop offset="100%" stop-color="#38bdf8" />
+            </radialGradient>
+            <radialGradient id="hdrNodeGrad" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#93c5fd" />
+                <stop offset="60%" stop-color="#2563eb" />
+                <stop offset="100%" stop-color="#1e3a8a" />
+            </radialGradient>
+        </defs>
+        <polygon points="108,46 97,65 75,65 64,46 75,27 97,27" fill="url(#hdrHexGlow)" stroke="url(#hdrHexRim)" stroke-width="3" stroke-linejoin="round" />
+        <polygon points="174,102 160,126.2 132,126.2 118,102 132,77.8 160,77.8" fill="url(#hdrHexGlow)" stroke="url(#hdrHexRim)" stroke-width="3.5" stroke-linejoin="round" />
+        <polygon points="104,134 86,165.2 50,165.2 32,134 50,102.8 86,102.8" fill="url(#hdrHexGlow)" stroke="url(#hdrHexRim)" stroke-width="4" stroke-linejoin="round" />
+        <line x1="86" y1="46" x2="146" y2="102" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" />
+        <line x1="146" y1="102" x2="68" y2="134" stroke="#60a5fa" stroke-width="8.5" stroke-linecap="round" />
+        <line x1="68" y1="134" x2="86" y2="46" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" />
+        <circle cx="86" cy="46" r="9" fill="url(#hdrNodeGrad)" stroke="#bfdbfe" stroke-width="2" />
+        <circle cx="146" cy="102" r="12" fill="url(#hdrNodeGrad)" stroke="#bfdbfe" stroke-width="2.2" />
+        <circle cx="68" cy="134" r="16" fill="url(#hdrNodeGrad)" stroke="#bfdbfe" stroke-width="2.5" />
+    </svg>
+    <div class="leading-tight">
+        <div class="text-white font-black text-base tracking-wider">VLCM</div>
+        <div class="text-sky-300 text-[9px] font-bold tracking-widest uppercase">Science & Technology</div>
+    </div>
+</div>
             </div>
 
             <!-- 2. Thanh tìm kiếm -->
