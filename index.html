@@ -634,6 +634,87 @@
         #streak-leaderboard-list > li:hover {
             background-color: rgba(255, 255, 255, 0.05) !important;
         }
+        /* === SỬA MÀU HỘP THOẠI LÝ THUYẾT & BÀI TẬP (DARK NAVY) === */
+        #modal-tsa-theory > div,
+        #modal-tsa-exercises > div {
+            background-color: #132544 !important;
+            border: 1px solid rgba(147, 197, 253, 0.24) !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        /* Header hộp thoại */
+        #modal-tsa-theory > div > div:first-child {
+            background: linear-gradient(90deg, rgba(225, 29, 72, 0.22), #18325e) !important;
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        #modal-tsa-exercises > div > div:first-child {
+            background: linear-gradient(90deg, rgba(37, 99, 235, 0.28), #18325e) !important;
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        #modal-tsa-theory > div > div:first-child button,
+        #modal-tsa-exercises > div > div:first-child button {
+            color: #cbd5e1 !important;
+        }
+        #modal-tsa-theory > div > div:first-child button:hover,
+        #modal-tsa-exercises > div > div:first-child button:hover {
+            background-color: rgba(255, 255, 255, 0.12) !important;
+            color: #ffffff !important;
+        }
+
+        /* Nội dung lý thuyết chữ trắng sáng, công thức nổi bật */
+        #theory-modal-body {
+            background-color: #0e1d38 !important;
+            color: #f1f5f9 !important;
+        }
+        #theory-modal-body b,
+        #theory-modal-body strong {
+            color: #7dd3fc !important;
+        }
+        #theory-modal-body .bg-slate-50 {
+            background-color: rgba(37, 99, 235, 0.2) !important;
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            color: #ffffff !important;
+        }
+
+        /* Nội dung danh sách bài tập */
+        #exercises-modal-body {
+            background-color: #0e1d38 !important;
+        }
+        #exercises-modal-body .bg-blue-50 {
+            background-color: rgba(59, 130, 246, 0.22) !important;
+            color: #93c5fd !important;
+        }
+        #exercises-modal-body .bg-gray-100 {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: #94a3b8 !important;
+        }
+
+        /* Chân hộp thoại & nút Đóng */
+        #modal-tsa-theory > div > div:last-child,
+        #modal-tsa-exercises > div > div:last-child {
+            background-color: #132544 !important;
+            border-top-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        #modal-tsa-theory > div > div:last-child button,
+        #modal-tsa-exercises > div > div:last-child button {
+            background-color: rgba(255, 255, 255, 0.12) !important;
+            color: #f8fafc !important;
+        }
+        #modal-tsa-theory > div > div:last-child button:hover,
+        #modal-tsa-exercises > div > div:last-child button:hover {
+            background-color: rgba(255, 255, 255, 0.22) !important;
+        }
+
+        /* Làm sắc nét nút "Xem lý thuyết" & nhãn Chuyên đề trên nền tối */
+        #view-tsa-review .bg-rose-50 {
+            background-color: rgba(244, 63, 94, 0.18) !important;
+            color: #fda4af !important;
+            border: 1px solid rgba(244, 63, 94, 0.32);
+        }
+        #view-tsa-review button.bg-rose-50:hover {
+            background-color: rgba(244, 63, 94, 0.3) !important;
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body class="h-screen flex flex-col overflow-hidden relative">
