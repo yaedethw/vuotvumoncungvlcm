@@ -696,17 +696,46 @@
                     <a href="javascript:void(0)" onclick="switchView('home')" id="nav-home" class="nav-item active flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
                         <i class="fa-solid fa-house w-5 text-center text-gray-400"></i> Trang chủ
                     </a>
-                    <a href="javascript:void(0)" onclick="switchView('exam-list')" id="nav-exam-list" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
-                        <i class="fa-solid fa-file-pen w-5 text-center text-gray-400"></i> Thư viện Đề thi TSA
-                    </a>
+
+                    <!-- NHÓM GỘP: PHÒNG LUYỆN THI (TSA, HSA, TRƯỜNG/SỞ) -->
+                    <div>
+                        <button type="button" id="btn-practice-menu" onclick="togglePracticeMenu()"
+                                class="w-full nav-item flex items-center justify-between px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm cursor-pointer">
+                            <span class="flex items-center gap-3">
+                                <!-- Icon 2 cây kiếm chém nhau -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 shrink-0 text-custom-red">
+                                    <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline>
+                                    <line x1="13" y1="19" x2="19" y2="13"></line>
+                                    <line x1="16" y1="16" x2="20" y2="20"></line>
+                                    <line x1="19" y1="21" x2="21" y2="19"></line>
+                                    <polyline points="12 9 18 3 21 3 21 6 15 12"></polyline>
+                                    <line x1="9" y1="12" x2="6.5" y2="14.5"></line>
+                                    <line x1="12" y1="15" x2="9.5" y2="17.5"></line>
+                                    <line x1="5" y1="13" x2="11" y2="19"></line>
+                                    <line x1="8" y1="16" x2="4" y2="20"></line>
+                                    <line x1="5" y1="21" x2="3" y2="19"></line>
+                                </svg>
+                                <span>Phòng luyện thi</span>
+                            </span>
+                            <i id="practice-menu-arrow" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200"></i>
+                        </button>
+
+                        <!-- 3 phòng luyện sổ xuống -->
+                        <div id="practice-submenu" class="hidden mt-1.5 ml-4 pl-3 border-l-2 border-gray-100 space-y-1">
+                            <a href="javascript:void(0)" onclick="switchView('exam-list')" id="nav-exam-list" class="nav-item flex items-center gap-3 px-3 py-2.5 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
+                                <i class="fa-solid fa-file-pen w-4 text-center text-purple-500"></i> Thư viện Đề thi TSA
+                            </a>
+                            <a href="javascript:void(0)" onclick="switchView('exam-hsa-list')" id="nav-exam-hsa-list" class="nav-item flex items-center gap-3 px-3 py-2.5 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
+                                <i class="fa-solid fa-compass-drafting w-4 text-center text-emerald-500"></i> Thư viện Đề thi HSA
+                            </a>
+                            <a href="javascript:void(0)" onclick="switchView('exam-school-list')" id="nav-exam-school-list" class="nav-item flex items-center gap-3 px-3 py-2.5 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
+                                <i class="fa-solid fa-graduation-cap w-4 text-center text-blue-500"></i> Đề thi Trường/Sở
+                            </a>
+                        </div>
+                    </div>
+
                     <a href="javascript:void(0)" onclick="switchView('tsa-review')" id="nav-tsa-review" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
                         <i class="fa-solid fa-book-open-reader w-5 text-center text-rose-500"></i> Tổng ôn TSA
-                    </a>
-                    <a href="javascript:void(0)" onclick="switchView('exam-hsa-list')" id="nav-exam-hsa-list" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
-    <i class="fa-solid fa-compass-drafting w-5 text-center text-emerald-500"></i> Thư viện Đề thi HSA
-</a>
-                    <a href="javascript:void(0)" onclick="switchView('exam-school-list')" id="nav-exam-school-list" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
-                        <i class="fa-solid fa-graduation-cap w-5 text-center text-gray-400"></i> Đề thi Trường/Sở
                     </a>
                     <a href="javascript:void(0)" onclick="switchView('realtime-exam')" id="nav-realtime-exam" class="nav-item flex items-center gap-3 px-4 py-3 text-gray-600 rounded-xl hover:bg-gray-50 hover:text-navy font-semibold transition-colors text-sm">
                         <i class="fa-solid fa-bolt w-5 text-center text-orange-400"></i> Phòng Thực Chiến
@@ -1898,7 +1927,19 @@ syncStreakToCloud();
         function toggleDropdown() {
             document.getElementById('profile-dropdown').classList.toggle('hidden');
         }
+function togglePracticeMenu(forceOpen = false) {
+            const submenu = document.getElementById('practice-submenu');
+            const arrow = document.getElementById('practice-menu-arrow');
+            if (!submenu || !arrow) return;
 
+            if (forceOpen) {
+                submenu.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            } else {
+                const isHidden = submenu.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180', !isHidden);
+            }
+        }
         function switchView(viewName) {
             document.getElementById('profile-dropdown').classList.add('hidden');
             document.getElementById('view-search-results').classList.add('hidden');
@@ -1935,19 +1976,22 @@ syncStreakToCloud();
            targetView = document.getElementById('view-tsa-review');
            targetView.classList.add('block');
            document.getElementById('nav-tsa-review').classList.add('active');
-           filterTSAReview('math');}
-            else if (viewName === 'exam-list') {
+           filterTSAReview('math');
+            } else if (viewName === 'exam-list') {
                 targetView = document.getElementById('view-exam-list');
                 targetView.classList.add('block');
                 document.getElementById('nav-exam-list').classList.add('active');
+                togglePracticeMenu(true);
             } else if (viewName === 'exam-hsa-list') {
                 targetView = document.getElementById('view-exam-hsa-list');
                 targetView.classList.add('block');
                 document.getElementById('nav-exam-hsa-list').classList.add('active');
+                togglePracticeMenu(true);
             } else if (viewName === 'exam-school-list') {
                 targetView = document.getElementById('view-exam-school-list');
                 targetView.classList.add('block');
                 document.getElementById('nav-exam-school-list').classList.add('active');
+                togglePracticeMenu(true);
             } else if (viewName === 'realtime-exam') {
                 targetView = document.getElementById('view-realtime-exam');
                 targetView.classList.add('flex');
@@ -1975,12 +2019,14 @@ syncStreakToCloud();
                 renderExamHistory();
             }
 
+            // ✅ Chuẩn
             if (targetView) {
                 targetView.classList.remove('hidden');
                 void targetView.offsetWidth; 
                 targetView.classList.add('animate-view');
             }
         }
+
 async function syncStreakToCloud() {
     if (!currentUser || !currentSessionEmail || FIREBASE_DB_URL.includes("DAN_LINK")) return;
     // Đổi ký tự đặc biệt trong email để làm key hợp lệ trên Firebase
