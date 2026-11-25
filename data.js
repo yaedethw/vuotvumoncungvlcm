@@ -78,7 +78,7 @@ const examsMeta = [
     { id: "hsa_van_02", type: "HSA", category: "language", title: "Đề ĐGNL HSA Số 02 - Định tính (VLCM)", questionsCount: 50, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
     // --- Khoa học & Tiếng Anh ---
     { id: "hsa_khoahoc_01", type: "HSA", category: "science", title: "Đề ĐGNL HSA Số 01 - Khoa học (VLCM)", questionsCount: 50, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
-
+    { id: "hsa_khoahoc_02", type: "HSA", category: "science", title: "Đề ĐGNL HSA Số 02 - Khoa học (VLCM)", questionsCount: 50, time: 60, img: "https://i.postimg.cc/FFbmqQ9X/A-nh-chu-p-ma-n-hi-nh-2026-10-14-004011.png", isVip: true },
     // --- Đề Tổng hợp HSA ---
     // (Chưa có đề)
 
