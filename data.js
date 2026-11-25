@@ -2940,7 +2940,7 @@ const allExamsData = {
 
 
 // 2. Thêm vào object allExamsData
-hsa_van_02: [
+"hsa_van_02": [
   {
     id: 271810,
     type: "multiple_choice",
